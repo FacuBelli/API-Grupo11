@@ -1,5 +1,5 @@
-import ItemCard from "../../componets/ItemCard"
-import Slider from "../../componets/Slider"
+import ItemCard from '../../components/ItemCard'
+import Slider from '../../components/Slider'
 
 export default function Gallery() {
   const products = [
@@ -29,11 +29,14 @@ export default function Gallery() {
     <main>
       <h1>Gallery</h1>
       <Slider>
-        {
-          products.map((item, i) => {
-            return <ItemCard item={item} key={i} />
-          })
-        }
+        {products.map((item, i) => (
+          <ItemCard
+            title={item.title}
+            price={item.price}
+            url={item.url}
+            key={i}
+          />
+        ))}
       </Slider>
     </main>
   )
