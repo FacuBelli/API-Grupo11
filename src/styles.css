@@ -1,6 +1,30 @@
 :root {
   --color-black: #000000;
-  --fontsize-title: 2rem;
+  --font-size-title: 1.5rem;
+  --font-size-subtitle: 1.25rem;
+  --font-size-text: 0.875rem;
+  --font-size-subtext: 0.625rem;
+  --font-weight-default: 400;
+  --font-weight-highlight: 700;
+  --padding-inline-responsive: 80px;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --padding-inline-responsive: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    --padding-inline-responsive: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  :root {
+    --padding-inline-responsive: 10px;
+  }
 }
 
 * {
@@ -10,8 +34,8 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--color-black);
-  font-weight: 400;
-  font-size: 1rem;
+  font-weight: var(--font-weight-default);
+  font-size: var(--fontsize-text);
 }
 
 body {
@@ -30,5 +54,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 100px;
-  padding: 40px 80px;
+  padding-inline: var(--padding-inline-responsive);
+  padding-top: 80px;
 }

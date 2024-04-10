@@ -14,5 +14,17 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    '@typescript-eslint/consistent-type-imports': 'error',
+    '@typescript-eslint/quotes': [
+      'error', 
+      'single',
+      {
+        avoidEscape: true,
+        allowTemplateLiterals: true
+      }
+    ],
+    semi: "off",
+    '@typescript-eslint/semi': ['error', 'never'],
+    '@typescript-eslint/no-unused-vars': 'warn'
   },
 }
