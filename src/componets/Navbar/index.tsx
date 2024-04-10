@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 
 export default function Navbar() {
@@ -6,9 +7,9 @@ export default function Navbar() {
       <a href="/" className={styles.logo}>(LOGO)</a>
 
       <ul className={styles.links}>
-        <li><a href="/galery">GALERY</a></li>
-        <li><a href="/search">SEARCH</a></li>
-        <li><a href="/studio">STUDIO</a></li>
+        <li><Link to='/gallery'>GALERY</Link></li>
+        <li><Link to='/search'>SEARCH</Link></li>
+        <li><Link to='/studio'>STUDIO</Link></li>
       </ul>
 
       <p>LOGIN</p>
