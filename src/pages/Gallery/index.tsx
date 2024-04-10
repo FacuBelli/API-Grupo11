@@ -1,4 +1,5 @@
 import ItemCard from '../../components/ItemCard'
+import CategoryCard from '../../components/CategoryCard'
 import Slider from '../../components/Slider'
 
 export default function Gallery() {
@@ -22,8 +23,34 @@ export default function Gallery() {
       title: 'Producto 4',
       price: 20,
       url: 'https://picsum.photos/300/200'
-    }
+    },
   ]
+  const category = [
+  {
+    title: 'LANDSCAPES',
+    url: 'https://picsum.photos/250/250'
+  },
+  {
+    title: 'PORTRAITS',
+    url: 'https://picsum.photos/250/250'
+  },
+  {
+    title: 'ABSTRACT',
+    url: 'https://picsum.photos/250/250'
+  },
+  {
+    title: 'NATURE',
+    url: 'https://picsum.photos/250/250'
+  },
+  {
+    title: 'URBAN',
+    url: 'https://picsum.photos/250/250'
+  },
+  {
+    title: 'SURREAL',
+    url: 'https://picsum.photos/250/250'
+  },
+]
 
   return (
     <main>
@@ -33,6 +60,15 @@ export default function Gallery() {
           <ItemCard
             title={item.title}
             price={item.price}
+            url={item.url}
+            key={i}
+          />
+        ))}
+      </Slider>
+      <Slider>
+        {category.map((item, i) => (
+          <CategoryCard
+            title={item.title}
             url={item.url}
             key={i}
           />
