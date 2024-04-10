@@ -8,8 +8,10 @@
   margin: 0;
   box-sizing: border-box;
   text-transform: uppercase;
-  word-spacing: 18%;
-  color: #000000;
+  letter-spacing: 1px;
+  color: var(--color-black);
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 body {
@@ -22,4 +24,11 @@ a {
 
 ul, ol {
   list-style-type: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  padding: 40px 80px;
 }
