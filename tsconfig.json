@@ -7,10 +7,9 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "Node10",
+    "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
