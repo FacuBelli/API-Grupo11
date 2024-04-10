@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 export default function Navbar() {
   return (
     <nav className={styles.nav}>
-      <a href="/" className={styles.logo}>(LOGO)</a>
+      <Link to="/" className={styles.logo}>(LOGO)</Link>
 
       <ul className={styles.links}>
         <li><Link to='/gallery'>GALERY</Link></li>
