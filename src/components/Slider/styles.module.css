@@ -4,3 +4,7 @@
   width: 100%;
   overflow-x: scroll;
 }
+
+.slider::-webkit-scrollbar {
+  opacity: 0;
+}
