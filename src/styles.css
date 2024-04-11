@@ -47,6 +47,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-default);
 }
 
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span, p span, li span {
+  font-weight: var(--font-weight-highlight);
+}
+
 a {
   text-decoration: none;
 }
@@ -60,5 +64,5 @@ main {
   flex-direction: column;
   gap: 100px;
   padding-inline: var(--padding-inline-responsive);
-  padding-top: 40px;
+  padding-block: 40px;
 }
