@@ -1,0 +1,63 @@
+/* Línea horizontal */
+.linea {
+    background-color: black;
+    width: 350px;
+    height: 1px;
+    margin: 20px auto;
+}
+
+/* Formulario */
+.form {
+    width: 300px;
+    margin: auto; /* Simplifica el margen a "auto" para centrar horizontalmente */
+    line-height: 2; /* Interlineado */
+}
+
+/* Campos de entrada */
+.input {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    margin-bottom: 10px; /* Espaciado inferior */
+    border: 1px solid #000; /* Borde delgado negro */
+    border-radius: 1px; /* Bordes redondeados */
+    font-size: 10px; /* Tamaño del texto */
+    background-color: #fff; /* Color de fondo negro */
+    color: #000; /* Color del texto blanco */
+}
+
+/* Enlace de inicio de sesión */
+.login {
+    text-decoration: underline;
+}
+
+/* Sección principal */
+.section {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 45px ;
+}
+
+/* Contenedor principal */
+.container {
+    text-align: center;
+    padding: 1px;
+    border: 1px solid #000;
+    border-radius: 1px;
+    width: 40%;
+    height: 550px;
+    margin: auto; /* Simplifica el margen a "auto" para centrar horizontalmente */
+    line: height 5%;
+}
+
+.button {
+    width: '100%';
+    margin-top: '10px';
+    display: 'flex';
+    justify-content: center;
+ }

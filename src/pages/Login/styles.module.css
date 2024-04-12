@@ -1,0 +1,57 @@
+.linea{ 
+    background-color: black;
+    width: 80%;
+    height: 1px;
+    margin: 20px auto;
+   
+}
+
+.form{
+  width: 300px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2%;
+}
+
+.input[type="email"],
+.input[type="password"] {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    margin-bottom: 10px; /* Espaciado inferior */
+    border: 1px solid #000; /* Borde delgado negro */
+    border-radius: 1px; /* Bordes redondeados */
+    font-size: 10px; /* Tamaño del texto */
+    background-color: #fff; /* Color de fondo negro */
+    color: #000; /* Color del texto blanco */
+}
+.signup {
+    text-decoration: underline;
+}
+
+.section {
+    width: 100%; /* O cualquier otro ancho deseado */
+    margin: 0 auto; /* Centrado horizontal */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinear verticalmente */
+    justify-content: center;  /*Alinear horizontalmente */
+    gap: 20px;
+    padding: 45px;
+}
+
+    
+
+/* Contenedor principal */
+.container {
+    text-align:center; /* Alineación central */
+    line: height 5%;
+    padding: 1px; /* Espaciado interno */
+    border: 1px solid #000; /* Borde delgado negro */
+    border-radius: 1px; /* Bordes redondeados */
+    width: 40%; /* Ancho del contenedor NO TOCAR*/
+    height: 450px;  /* ALTO del contenedor NO TOCAR*/
+    margin: 0 auto; /* Centrado horizontal */
+}
