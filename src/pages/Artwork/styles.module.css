@@ -8,3 +8,47 @@
     --font-weight-highlight: 700;
     --padding-inline-responsive: 80px;
 }
+
+.titles{
+    font-size: var(--font-size-title);
+}
+
+.imagePresentation{
+    display: flex;
+    border: 2px solid red;
+    justify-content: space-between;
+    padding:15px;
+
+}
+
+.about{
+    font-size: .7rem;
+     
+}
+.aboutPrice{
+    font-size: var(--font-size-subtitle);
+    font-weight: bold;
+
+     
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    border: 2px solid green;
+    margin-top: 15px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.imageDiv{
+    border: 2px solid blue;
+    width: fit-content;
+    height: fit-content;
+}
+
+.image{
+    width: auto;
+    height: auto;
+}

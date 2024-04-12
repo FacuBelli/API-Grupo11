@@ -1,4 +1,4 @@
-import styles from './styles.css'
+import styles from './styles.module.css'
 
 
 export default function Artwork() {
@@ -17,18 +17,20 @@ export default function Artwork() {
   return (
     <main>
     <h1>Artwork</h1>
-    <section id="imagePresentation">
-      <div className="description">
-        <h1 className={styles.}>{product.title}</h1>
-        <p>{product.artist}</p>
-        <p>{product.description}</p>
-        <p>u$s {product.price}</p>
-        <p>{product.category}</p>
+    <section className={styles.imagePresentation}>
+      <div className={styles.imageDiv}>
+        <img className={styles.image}src={product.image} alt="" />
       </div>
-      <div className="imagen">
-        <img src={product.image} alt="" />
-      </div>
+      <div className={styles.description}>
+        <h1 className={styles.titles}>{product.title}</h1>
+        <p className={styles.aboutPrice}>u$s {product.price}</p>
+        <p className={styles.about}>{product.description}</p>
+        <p className={styles.about}>{product.artist}</p>
+        
 
+        <p className={styles.about}>{product.category}</p>
+      </div>
+     
     </section>
 
     </main>
