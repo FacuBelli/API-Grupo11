@@ -33,4 +33,9 @@
   position: absolute;
   right: 8px;
   top: 8px;
+  opacity: 0;
+}
+
+.card:hover .favorite {
+  opacity: 1;
 }
