@@ -59,6 +59,14 @@ ul, ol {
   list-style-type: none;
 }
 
+button, input {
+  background: transparent;
+  outline: none;
+  padding: 0;
+  border: none;
+  display: flex;
+}
+
 main {
   display: flex;
   flex-direction: column;
