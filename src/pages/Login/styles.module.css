@@ -55,3 +55,16 @@
     height: 450px;  /* ALTO del contenedor NO TOCAR*/
     margin: 0 auto; /* Centrado horizontal */
 }
+
+.password{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    font-size: var(--font-size-subtext);
+
+}
+
+.title{
+    font-size: var(--font-size-subtitle);
+}
