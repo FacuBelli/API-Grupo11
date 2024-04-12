@@ -1,0 +1,10 @@
+:root {
+    --color-black: #000000;
+    --font-size-title: 1.75rem;
+    --font-size-subtitle: 1.25rem;
+    --font-size-text: 0.8125rem;
+    --font-size-subtext: 0.625rem;
+    --font-weight-default: 400;
+    --font-weight-highlight: 700;
+    --padding-inline-responsive: 80px;
+}
