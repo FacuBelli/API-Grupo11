@@ -1,27 +1,31 @@
-import ItemCard from '../../components/ItemCard'
+import ArtworkCard from '../../components/ArtworkCard'
 import Slider from '../../components/Slider'
 
 export default function Gallery() {
   const products = [
     {
-      title: 'Producto 1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      id: '0',
+      title: 'Producto 1',
       price: 100,
-      url: 'https://picsum.photos/300/200'
+      url: '/assets/img/herogallery-horizontal.png'
     },
     {
+      id: '1',
       title: 'Producto 2',
       price: 12,
-      url: 'https://picsum.photos/300/200'
+      url: '/assets/img/herogallery-horizontal.png'
     },
     {
+      id: '2',
       title: 'Producto 3',
       price: 140,
-      url: 'https://picsum.photos/300/200'
+      url: '/assets/img/herogallery-horizontal.png'
     },
     {
+      id: '3',
       title: 'Producto 4',
       price: 20,
-      url: 'https://picsum.photos/300/200'
+      url: '/assets/img/herogallery-horizontal.png'
     }
   ]
 
@@ -30,10 +34,11 @@ export default function Gallery() {
       <h1>Gallery</h1>
       <Slider>
         {products.map((item, i) => (
-          <ItemCard
+          <ArtworkCard
+            id={item.id}
             title={item.title}
             price={item.price}
-            url={item.url}
+            image={item.url}
             key={i}
           />
         ))}
