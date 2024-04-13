@@ -1,74 +1,80 @@
-/* Línea horizontal */
-.linea {
-  background-color: black;
-  width: 350px;
-  height: 1px;
-  margin: 20px auto;
-}
-
-/* Formulario */
-.form {
-  width: 300px;
-  margin: auto; /* Simplifica el margen a "auto" para centrar horizontalmente */
-  line-height: 2; /* Interlineado */
-}
-
-/* Campos de entrada */
-.input {
-  width: 100%; /* Ancho completo */
-  padding: 10px; /* Espaciado interno */
-  margin-bottom: 10px; /* Espaciado inferior */
-  border: 1px solid #000; /* Borde delgado negro */
-  border-radius: 1px; /* Bordes redondeados */
-  font-size: 10px; /* Tamaño del texto */
-  background-color: #fff; /* Color de fondo negro */
-  color: #000; /* Color del texto blanco */
-}
-
-/* Enlace de inicio de sesión */
-.login {
-  text-decoration: underline;
-}
-
-/* Sección principal */
 .section {
+  display: flex;
+  justify-content: center;
+}
+
+.panel {
   width: 100%;
-  margin: 0 auto;
-  text-align: center;
+  max-width: 450px;
+  border: 1px solid #000;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 45px;
-
-}
-
-/* Contenedor principal */
-.container {
+  gap: 40px;
+  padding-inline: var(--padding-inline-responsive);
+  padding-block: 40px;
   text-align: center;
-  padding: 1px;
-  border: 1px solid #000;
-  border-radius: 1px;
-  width: 40%;
-  height: 600px;
-  margin: auto; /* Simplifica el margen a "auto" para centrar horizontalmente */
-
 }
 
-.button {
-  width: 100%;
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
+.title {
+  font-size: var(--font-size-subtitle);
 }
-.confirmation {
+
+.text {
   font-size: var(--font-size-subtext);
 }
 
-.subtitulo{
-    font-size: var(--font-size-text);
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  button {
+    align-self: center;
+  }
 }
-.title{
-    font-size:var(--font-size-subtitle)
+
+.input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #000;
+  font-size: var(--font-size-text);
+  background-color: #fff;
+}
+
+.inputRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  input {
+    flex: 1 120px;
+  }
+}
+
+.confirmation {
+  font-size: var(--font-size-mini);
+}
+
+.linea {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.link {
+  max-width: 250px;
+  font-size: var(--font-size-subtext);
+
+  span {
+    text-decoration: underline;
+  }
 }
