@@ -1,6 +1,7 @@
 import styles from './styles.module.css'
 import { Link } from 'react-router-dom'
 import Button from '../../components/Button/index'
+import Input from '../../components/Input'
 
 export default function Register() {
   return (
@@ -15,12 +16,12 @@ export default function Register() {
           </p>
           <form action="" className={styles.form}>
             <div className={styles.inputRow}>
-              <input className={styles.input} type="text" placeholder="FIRST NAME" />
-              <input className={styles.input} type="text" placeholder="LAST NAME" />
+              <Input name="firstName" type="text" placeholder="FIRST NAME" />
+              <Input name="lastName" type="text" placeholder="LAST NAME" />
             </div>
-            <input className={styles.input} type="email" placeholder="email" />
-            <input className={styles.input} type="password" placeholder="password" />
-            <input className={styles.input} type="password" placeholder="REPEAT PASSWORD" />
+            <Input name="email" type="email" placeholder="EMAIL" />
+            <Input name="password" type="password" placeholder="PASSWORD" />
+            <Input name="passwordRepeat" type="password" placeholder="REPEAT PASSWORD" />
             <Button to="/">REGISTER</Button>
           </form>
           <p className={styles.confirmation}>
