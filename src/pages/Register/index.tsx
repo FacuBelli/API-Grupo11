@@ -2,6 +2,8 @@ import styles from './styles.module.css'
 import { Link } from 'react-router-dom'
 import Button from '../../components/Button/index'
 import Input from '../../components/Input'
+import { emailErrors, firstNameErrors, lastNameErrors, passwordErrors, repeatPasswordErrors } from '../../utils/validation'
+import Form from '../../components/Form'
 
 export default function Register() {
   return (
@@ -14,16 +16,26 @@ export default function Register() {
           <p className={styles.text}>
             join out community of art enthusiast and creators by creating your account
           </p>
-          <form action="" className={styles.form}>
+          <Form action="" className={styles.form}>
             <div className={styles.inputRow}>
-              <Input name="firstName" type="text" placeholder="FIRST NAME" />
-              <Input name="lastName" type="text" placeholder="LAST NAME" />
+              <Input
+                name="firstName"
+                type="text"
+                placeholder="FIRST NAME"
+                errorValidation={firstNameErrors}
+              />
+              <Input
+                name="lastName"
+                type="text"
+                placeholder="LAST NAME"
+                errorValidation={lastNameErrors}
+              />
             </div>
-            <Input name="email" type="email" placeholder="EMAIL" />
-            <Input name="password" type="password" placeholder="PASSWORD" />
-            <Input name="passwordRepeat" type="password" placeholder="REPEAT PASSWORD" />
+            <Input name="email" type="email" placeholder="EMAIL" errorValidation={emailErrors} />
+            <Input name="password" type="password" placeholder="PASSWORD" errorValidation={passwordErrors} />
+            <Input name="repeatPassword" type="password" placeholder="REPEAT PASSWORD" errorValidation={repeatPasswordErrors} />
             <Button to="/">REGISTER</Button>
-          </form>
+          </Form>
           <p className={styles.confirmation}>
             by registering, you agree to our terms of service and privacy policy{' '}
           </p>

@@ -2,6 +2,7 @@ import styles from './styles.module.css'
 import { Link } from 'react-router-dom'
 import Button from '../../components/Button/index'
 import Input from '../../components/Input'
+import { emailErrors } from '../../utils/validation'
 
 export default function Login() {
   return (
@@ -12,7 +13,13 @@ export default function Login() {
             <span>LOGIN TO YOUR ACCOUNT</span>
           </h1>
           <form className={styles.form}>
-            <Input name="email" type="email" placeholder="EMAIL" required />
+            <Input
+              name="email"
+              type="email"
+              placeholder="EMAIL"
+              required
+              errorValidation={emailErrors}
+            />
             <Input
               name="password"
               type="password"
@@ -20,7 +27,7 @@ export default function Login() {
               required
               assistance={{
                 to: '',
-                text: 'FORGOT YOUR PASSWORD?'
+                message: 'FORGOT YOUR PASSWORD?'
               }}
             />
             <Button to="/">Log In</Button>
