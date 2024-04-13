@@ -1,3 +1,9 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -15,4 +21,9 @@
 .icon {
   max-width: 20px;
   max-height: 20px;
+}
+
+.assistance {
+  font-size: var(--font-size-mini);
+  align-self: flex-start;
 }

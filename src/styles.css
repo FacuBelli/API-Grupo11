@@ -4,6 +4,7 @@
   --font-size-subtitle: 1.25rem;
   --font-size-text: 0.8125rem;
   --font-size-subtext: 0.625rem;
+  --font-size-mini: 0.5rem;
   --font-weight-default: 400;
   --font-weight-highlight: 700;
   --padding-inline-responsive: 80px;
@@ -47,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-default);
 }
 
-h1 span, h2 span, h3 span, h4 span, h5 span, h6 span, p span, li span {
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span, p span, li span, a span {
   font-weight: var(--font-weight-highlight);
 }
 

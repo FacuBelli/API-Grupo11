@@ -1,0 +1,67 @@
+.section {
+  display: flex;
+  justify-content: center;
+}
+
+.panel {
+  width: 100%;
+  max-width: 450px;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding-inline: var(--padding-inline-responsive);
+  padding-block: 40px;
+  text-align: center;
+}
+
+.title {
+  font-size: var(--font-size-subtitle);
+}
+
+.text {
+  font-size: var(--font-size-subtext);
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  button {
+    align-self: center;
+  }
+}
+
+.inputRow {
+  display: flex;
+  gap: 20px;
+}
+
+.confirmation {
+  font-size: var(--font-size-mini);
+}
+
+.linea {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.link {
+  max-width: 250px;
+  font-size: var(--font-size-subtext);
+
+  span {
+    text-decoration: underline;
+  }
+}
