@@ -1,10 +1,11 @@
 import { type SvgIconTypeMap } from '@mui/material'
 import { type OverridableComponent } from '@mui/material/OverridableComponent'
-import { createContext, useContext, useState } from 'react'
-import styles from './styles.module.css'
+import { type MouseEvent, createContext, useContext, useState } from 'react'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { Link } from 'react-router-dom'
+import styles from './styles.module.css'
 
-interface Props {
+type Props = {
   type: 'text' | 'email' | 'password'
   name: string
   placeholder?: string
@@ -13,6 +14,10 @@ interface Props {
     muiName: string
   } // MaterialUI Icon Component
   iconPosition?: 'start' | 'end'
+  assistance?: {
+    text: string
+    to: string
+  }
 }
 
 const InputPropsContext = createContext<Pick<Props, 'name' | 'placeholder' | 'required'>>({
@@ -21,20 +26,35 @@ const InputPropsContext = createContext<Pick<Props, 'name' | 'placeholder' | 're
   required: false
 })
 
-export default function Input({ type, name, placeholder, required, icon, iconPosition }: Props) {
+export default function Input({
+  type,
+  name,
+  placeholder,
+  required,
+  icon,
+  iconPosition,
+  assistance
+}: Props) {
   const Icon = icon
-  const isIconStart = (iconPosition === 'start' || iconPosition === undefined) && Icon !== undefined
-  const isIconEnd = iconPosition === 'end' && Icon !== undefined
+  const isIconStart = Icon !== undefined && (iconPosition === 'start' || iconPosition === undefined)
+  const isIconEnd = Icon !== undefined && iconPosition === 'end'
 
   return (
-    <div className={styles.container}>
-      {isIconStart && <Icon className={styles.icon} />}
-      <InputPropsContext.Provider value={{ name, placeholder, required }}>
-        {type === 'text' && <TextInput />}
-        {type === 'email' && <EmailInput />}
-        {type === 'password' && <PasswordInput />}
-      </InputPropsContext.Provider>
-      {isIconEnd && <Icon className={styles.icon} />}
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        {isIconStart && <Icon className={styles.icon} />}
+        <InputPropsContext.Provider value={{ name, placeholder, required }}>
+          {type === 'text' && <TextInput />}
+          {type === 'email' && <EmailInput />}
+          {type === 'password' && <PasswordInput />}
+        </InputPropsContext.Provider>
+        {isIconEnd && <Icon className={styles.icon} />}
+      </div>
+      {assistance !== undefined && (
+        <Link to={assistance.to} className={styles.assistance}>
+          {assistance.text}
+        </Link>
+      )}
     </div>
   )
 }
@@ -58,14 +78,16 @@ function EmailInput() {
 function PasswordInput() {
   const [isVisible, setIsVisible] = useState(false)
 
-  const toggleVisibility = () => {
+  const toggleVisibility = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+
     setIsVisible(!isVisible)
   }
 
   return (
-    <>    
+    <>
       <DefaultInput type={isVisible ? 'text' : 'password'} />
-      <button onClick={toggleVisibility}>
+      <button onClick={(e) => toggleVisibility(e)}>
         {isVisible ? (
           <VisibilityOff className={styles.icon} />
         ) : (
