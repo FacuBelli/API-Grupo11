@@ -1,13 +1,14 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  flex: none;
+  width: 250px;
   position: relative;
 }
 
 .image {
-  width: 300px;
-  height: 200px;
+  width: 100%;
+  aspect-ratio: 3/2;
   object-fit: contain;
 }
 

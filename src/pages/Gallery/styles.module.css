@@ -1,0 +1,20 @@
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; 
+}
+
+.categoryTitle {
+  font-size: var(--font-size-title);
+  max-width: 375px;
+}
+
+.popular {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+}
+
+.popularTitle {
+  font-size: var(--font-size-subtitle);
+}
