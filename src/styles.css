@@ -1,21 +1,55 @@
 :root {
   --color-black: #000000;
-  --fontsize-title: 2rem;
+  --font-size-title: 1.75rem;
+  --font-size-subtitle: 1.25rem;
+  --font-size-text: 0.8125rem;
+  --font-size-subtext: 0.625rem;
+  --font-size-mini: 0.5rem;
+  --font-weight-default: 400;
+  --font-weight-highlight: 700;
+  --padding-inline-responsive: 80px;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --padding-inline-responsive: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    --padding-inline-responsive: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  :root {
+    --padding-inline-responsive: 10px;
+  }
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   color: var(--color-black);
-  font-weight: 400;
-  font-size: 1rem;
 }
 
-body {
+body, button, input, textarea {
   font-family: 'Roboto', sans-serif;
+  font-size: var(--font-size-text);
+  font-weight: var(--font-weight-default);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: var(--font-size-text);
+  font-weight: var(--font-weight-default);
+}
+
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span, p span, li span, a span {
+  font-weight: var(--font-weight-highlight);
 }
 
 a {
@@ -26,9 +60,18 @@ ul, ol {
   list-style-type: none;
 }
 
+button, input {
+  background: transparent;
+  outline: none;
+  padding: 0;
+  border: none;
+  display: flex;
+}
+
 main {
   display: flex;
   flex-direction: column;
   gap: 100px;
-  padding: 40px 80px;
+  padding-inline: var(--padding-inline-responsive);
+  padding-block: 40px;
 }
