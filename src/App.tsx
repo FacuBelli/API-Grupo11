@@ -22,6 +22,7 @@ function App() {
         <Route path="/gallery">
           <Route index element={<Gallery />}/>
           <Route path=":artworkId" element={<Artwork />} />
+          <Route path=":Profile" element={<Artwork />} />
         </Route>
         <Route path="/search" element={<Search />} />
         <Route path="/studio" element={<Studio />} />
