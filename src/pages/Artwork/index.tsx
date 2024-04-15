@@ -17,7 +17,7 @@ export default function Artwork() {
     }
 
   return (
-    <main >
+    <main>
     <section className={styles.imagePresentation}>
       <div className={styles.imageDiv}>
         <img className={styles.image}src={product.image} alt="" />
@@ -25,10 +25,13 @@ export default function Artwork() {
       <div className={styles.description}>
         <h1 className={styles.titles}>{product.title}</h1>
         <p className={styles.aboutPrice}>u$s {product.price}</p>
-        <div className={styles.aboutDescription}><p className={styles.about}>{product.description}</p></div>
+        <div className={styles.aboutDescription}>
+          <p className={styles.about}>{product.description}</p>
+        </div>
         
         
         <p className={styles.about}>{product.category}</p>
+        <Button to="/Cart">Add to cart</Button>
       </div>
      
     </section>
