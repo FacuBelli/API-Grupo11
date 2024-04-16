@@ -9,25 +9,25 @@ export default function Gallery() {
       id: '0',
       title: 'Producto 1',
       price: 100,
-      url: '/assets/img/herogallery-horizontal.png'
+      url: '/assets/img/example-horizontal.png'
     },
     {
       id: '1',
       title: 'Producto 2',
       price: 12,
-      url: '/assets/img/herogallery-horizontal.png'
+      url: '/assets/img/example-horizontal.png'
     },
     {
       id: '2',
       title: 'Producto 3',
       price: 140,
-      url: '/assets/img/herogallery-horizontal.png'
+      url: '/assets/img/example-horizontal.png'
     },
     {
       id: '3',
       title: 'Producto 4',
       price: 20,
-      url: '/assets/img/herogallery-horizontal.png'
+      url: '/assets/img/example-horizontal.png'
     }
   ]
   const category = [
