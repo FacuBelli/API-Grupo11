@@ -1,8 +1,9 @@
 import SearchIcon from '@mui/icons-material/Search'
 import Input from '../../components/Input'
 import styles from './styles.module.css'
-import SearchResults from './components/SearchResults'
 import Filter from '../../components/Filter'
+import ImageGallery from '../../components/ImageGallery'
+import { useEffect, useState } from 'react'
 
 export default function Search() {
   const filterOptions = [
@@ -32,6 +33,25 @@ export default function Search() {
     }
   ]
 
+  const getRandImg = () =>
+    [
+      '/assets/img/example-horizontal.png',
+      '/assets/img/example-square.png',
+      '/assets/img/example-vertical.png'
+    ][Math.floor(Math.random() * 3)]
+
+  const [data, setData] = useState<{ id: string; image: string; price: number; title: string }[]>(
+    []
+  )
+
+  useEffect(() => {
+    setData(
+      [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}].map((_, i) => {
+        return { id: i.toString(), title: `Producto ${i + 1}`, price: 200 * i, image: getRandImg() }
+      })
+    )
+  }, [])
+
   return (
     <main>
       <section className={styles.section}>
@@ -43,11 +63,11 @@ export default function Search() {
             icon={SearchIcon}
             iconPosition="end"
           />
-          {
-            filterOptions.map((filter, i) => <Filter title={filter.value} options={filter.options} key={i} />)
-          }
+          {filterOptions.map((filter, i) => (
+            <Filter title={filter.value} options={filter.options} key={i} />
+          ))}
         </aside>
-        <SearchResults data={[]} />
+        <ImageGallery data={data} />
       </section>
     </main>
   )
