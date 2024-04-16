@@ -32,6 +32,7 @@ export default function Filter({ title, options = [] }: Props) {
                   className={styles.checkbox}
                   value={value}
                   checked={value === selected}
+                  onChange={() => handleClick(value)}
                 />
                 <p>{value}</p>
               </div>
