@@ -71,7 +71,7 @@ button, input {
 main {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 64px;
   padding-inline: var(--padding-inline-responsive);
   padding-block: 40px;
 }

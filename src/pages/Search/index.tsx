@@ -67,7 +67,7 @@ export default function Search() {
             <Filter title={filter.value} options={filter.options} key={i} />
           ))}
         </aside>
-        <ImageGallery data={data} />
+        <ImageGallery data={[]} />
       </section>
     </main>
   )

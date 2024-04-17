@@ -1,60 +1,46 @@
-:root {
-    --color-black: #000000;
-    --font-size-title: 1.75rem;
-    --font-size-subtitle: 1.25rem;
-    --font-size-text: 0.8125rem;
-    --font-size-subtext: 0.625rem;
-    --font-weight-default: 400;
-    --font-weight-highlight: 700;
-    --padding-inline-responsive: 80px;
-}
-
-
-
 .titles{
     font-size: var(--font-size-title);
 }
 
 .imagePresentation{
     display: flex;
-    border: 2px dotted #000;
     justify-content: space-between;
-    padding:15px;
-
+    flex-wrap: wrap;
+    gap: 64px;
 }
 
 .about{
     font-size: .7rem;
-     
 }
+
 .aboutDescription{
     max-width: 85%;
 }
+
 .aboutPrice{
     font-size: var(--font-size-subtitle);
     font-weight: bold;
-
-     
 }
 
 .description{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: start;
     gap: 32px;
-
-    padding: 32px 0 32px 0;    
-    width: 50%;
-    height: fit-content;
+    flex: 1 250px;
 }
 
 .imageDiv{
-    width: fit-content;
-    height: fit-content;
+    flex: 1 250px;
+    display: flex;
+    justify-content: center;
 }
 
 .image{
-    width: auto;
-    height: auto;
+    width: 100%;
+    max-width: 600px;
+    height: fit-content;
 }
 
 /*Artist part*/
@@ -62,12 +48,9 @@
     font-size: .7rem;
     padding: 10px;
 }
+
 .artistPresentation{
     display: flex;
     flex-direction: column;
-    border: 2px dotted #000;
-    padding:15px;
-}
-Button{
-    max-width: fit-content;
+    align-items: flex-start;
 }

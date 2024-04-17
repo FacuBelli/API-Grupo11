@@ -29,7 +29,7 @@ export default function HeroGallery({ children }: Props) {
           const images = []
 
           for (let j = 0; j < column.rows; j++) {
-            const src = Math.round(Math.random()) ? '/assets/img/herogallery-horizontal.png' : '/assets/img/herogallery-vertical.png'
+            const src = Math.round(Math.random()) ? '/assets/img/example-horizontal.png' : '/assets/img/example-vertical.png'
             images.push(<img src={src} width={column.width} key={i + j + 1}/>)
           }
 
