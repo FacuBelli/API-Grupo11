@@ -11,7 +11,7 @@ interface Props {
 
 export default function ArtworkCard({ id, image, price, title }: Props) {
   return (
-    <Link to={id} className={styles.card}>
+    <Link to={`/gallery/${id}`} className={styles.card}>
       <div className={styles.favorite}>
         <FavoriteButton artworkId={id} />
       </div>
