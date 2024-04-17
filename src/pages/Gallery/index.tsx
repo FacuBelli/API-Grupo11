@@ -83,6 +83,20 @@ export default function Gallery() {
           ))}
         </Slider>
       </section>
+      <section className={styles.popular}>
+        <h2 className={styles.popularTitle}><span>MOST</span> RECENT</h2>
+        <Slider>
+          {products.map((item, i) => (
+            <ArtworkCard
+              id={item.id}
+              title={item.title}
+              price={item.price}
+              image={item.url}
+              key={i}
+            />
+          ))}
+        </Slider>
+      </section>
     </main>
   )
 }
