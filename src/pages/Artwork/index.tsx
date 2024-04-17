@@ -1,19 +1,18 @@
 import styles from './styles.module.css'
 import Button from '../../components/Button'
-import { Link } from 'react-router-dom'
 
 
 export default function Artwork() {
   const product = 
     {
       id: 1,
-      title: "Sunset Dream",
-      artist: "Jane Doe",
-      bio: "Born in Jose Marmol, he studies in UADE where met some cool guys that help him to make this page",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti corporis reprehenderit tenetur sint provident, quia nostrum possimus voluptatibus est qui quam magni omnis assumenda libero vitae perspiciatis sunt sit consequuntur!",
-      image: "https://picsum.photos/500/500",
+      title: 'Sunset Dream',
+      artist: 'Jane Doe',
+      bio: 'Born in Jose Marmol, he studies in UADE where met some cool guys that help him to make this page',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti corporis reprehenderit tenetur sint provident, quia nostrum possimus voluptatibus est qui quam magni omnis assumenda libero vitae perspiciatis sunt sit consequuntur!',
+      image: 'https://picsum.photos/500/500',
       price: 200,
-      category: "Painting",
+      category: 'Painting',
     }
 
   return (
