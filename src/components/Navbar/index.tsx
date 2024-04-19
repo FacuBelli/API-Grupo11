@@ -14,7 +14,7 @@ export default function Navbar() {
         </ul>
       </nav>
 
-      <p>LOGIN</p>
+      <Link to='/auth/login'>LOGIN</Link>
     </header>
   )
 }

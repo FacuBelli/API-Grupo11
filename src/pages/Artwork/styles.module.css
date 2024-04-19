@@ -1,0 +1,56 @@
+.titles{
+    font-size: var(--font-size-title);
+}
+
+.imagePresentation{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 64px;
+}
+
+.about{
+    font-size: .7rem;
+}
+
+.aboutDescription{
+    max-width: 85%;
+}
+
+.aboutPrice{
+    font-size: var(--font-size-subtitle);
+    font-weight: bold;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 32px;
+    flex: 1 250px;
+}
+
+.imageDiv{
+    flex: 1 250px;
+    display: flex;
+    justify-content: center;
+}
+
+.image{
+    width: 100%;
+    max-width: 600px;
+    height: fit-content;
+}
+
+/*Artist part*/
+.aboutPresentation{
+    font-size: .7rem;
+    padding: 10px;
+}
+
+.artistPresentation{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

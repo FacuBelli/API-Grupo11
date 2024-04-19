@@ -1,47 +1,52 @@
+import SearchIcon from '@mui/icons-material/Search'
+import Input from '../../components/Input'
+import styles from './styles.module.css'
+import Filter from '../../components/Filter'
+
 export default function Search() {
-  return (
-    <main>
-      <h1>Search</h1>
-    </main>
-  )
-}
-
-import PerfilArtist from '../../components/PerfilArtist'
-
-  const products = [
+  const filterOptions = [
     {
-      title: 'Producto 1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      price: 100,
-      url: 'https://picsum.photos/300/200'
+      value: 'category',
+      options: ['Abstract', 'Landscape', 'Portrait', 'Still Life']
     },
     {
-      title: 'Producto 2',
-      price: 12,
-      url: 'https://picsum.photos/300/200'
+      value: 'style',
+      options: ['Realism', 'Impressionism', 'Abstract', 'Surrealism']
     },
     {
-      title: 'Producto 3',
-      price: 140,
-      url: 'https://picsum.photos/300/200'
+      value: 'color',
+      options: ['Red', 'Blue', 'Green', 'Yellow']
     },
     {
-      title: 'Producto 4',
-      price: 20,
-      url: 'https://picsum.photos/300/200'
+      value: 'price range',
+      options: ['Under $50', '$50 - $100', '$100 - $200', '$200+']
+    },
+    {
+      value: 'theme',
+      options: ['Nature', 'Cityscape', 'People', 'Abstract']
+    },
+    {
+      value: 'orientation',
+      options: ['Horizontal', 'Vertical', 'Square']
     }
   ]
 
   return (
     <main>
-      <h1>Search</h1>
-        {products.map((item, i) => (
-          <PerfilArtist
-            title={item.title}
-            price={item.price}
-            url={item.url}
-            key={i}
+      <section className={styles.section}>
+        <aside className={styles.aside}>
+          <Input
+            type="text"
+            name="search"
+            placeholder="SEARCH"
+            icon={SearchIcon}
+            iconPosition="end"
           />
-        ))}
+          {
+            filterOptions.map((filter, i) => <Filter title={filter.value} options={filter.options} key={i} />)
+          }
+        </aside>
+      </section>
     </main>
   )
 }

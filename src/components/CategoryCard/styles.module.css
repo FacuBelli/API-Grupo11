@@ -1,0 +1,43 @@
+.card {
+  position: relative;
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.div {
+  position: absolute;
+  width: 100%;
+  padding: 16px;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title {
+  width: 100%;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #FFFFFF;
+  font-size: var(--font-size-text);
+  font-weight: var(--font-weight-highlight);
+  text-shadow: 0 0 4px #0000007F;
+}
+
+.arrow {
+  width: 32px;
+  opacity: 0;
+
+  path {
+    color: #FFFFFF;
+  }
+}
+
+.card:hover .arrow {
+  opacity: 1;
+}
