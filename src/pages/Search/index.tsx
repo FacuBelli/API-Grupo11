@@ -1,7 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search'
 import Input from '../../components/Input'
 import styles from './styles.module.css'
-import SearchResults from './components/SearchResults'
 import Filter from '../../components/Filter'
 
 export default function Search() {
@@ -47,7 +46,6 @@ export default function Search() {
             filterOptions.map((filter, i) => <Filter title={filter.value} options={filter.options} key={i} />)
           }
         </aside>
-        <SearchResults data={[]} />
       </section>
     </main>
   )
