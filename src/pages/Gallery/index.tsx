@@ -7,6 +7,7 @@ import useArtworks from '../../hooks/useArtworks'
 export default function Gallery() {
   const popular = useArtworks('popular')
   const recent = useArtworks('recent')
+  console.log(popular)
 
   const category = [
     {
@@ -53,13 +54,7 @@ export default function Gallery() {
         </h2>
         <Slider>
           {popular.map((item, i) => (
-            <ArtworkCard
-              id={item.id}
-              title={item.title}
-              price={item.price}
-              image={item.image}
-              key={i}
-            />
+            <ArtworkCard artwork={item} key={i} />
           ))}
         </Slider>
       </section>
@@ -69,13 +64,7 @@ export default function Gallery() {
         </h2>
         <Slider>
           {recent.map((item, i) => (
-            <ArtworkCard
-              id={item.id}
-              title={item.title}
-              price={item.price}
-              image={item.image}
-              key={i}
-            />
+            <ArtworkCard artwork={item} key={i} />
           ))}
         </Slider>
       </section>
