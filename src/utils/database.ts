@@ -4,6 +4,7 @@ const db: Database = {
   users: [
     {
       id: 1,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user1@example.com',
       password: 'password1',
       username: 'user1',
@@ -13,6 +14,7 @@ const db: Database = {
     },
     {
       id: 2,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user2@example.com',
       password: 'password2',
       username: 'user2',
@@ -22,6 +24,7 @@ const db: Database = {
     },
     {
       id: 3,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist1@example.com',
       password: 'password1',
       username: 'artist1',
@@ -31,6 +34,7 @@ const db: Database = {
     },
     {
       id: 4,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist2@example.com',
       password: 'password2',
       username: 'artist2',
@@ -40,6 +44,7 @@ const db: Database = {
     },
     {
       id: 5,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user3@example.com',
       password: 'password3',
       username: 'user3',
@@ -49,6 +54,7 @@ const db: Database = {
     },
     {
       id: 6,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user4@example.com',
       password: 'password4',
       username: 'user4',
@@ -58,6 +64,7 @@ const db: Database = {
     },
     {
       id: 7,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist3@example.com',
       password: 'password3',
       username: 'artist3',
@@ -67,6 +74,7 @@ const db: Database = {
     },
     {
       id: 8,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist4@example.com',
       password: 'password4',
       username: 'artist4',
@@ -76,6 +84,7 @@ const db: Database = {
     },
     {
       id: 9,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user5@example.com',
       password: 'password5',
       username: 'user5',
@@ -85,6 +94,7 @@ const db: Database = {
     },
     {
       id: 10,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user6@example.com',
       password: 'password6',
       username: 'user6',
@@ -94,6 +104,7 @@ const db: Database = {
     },
     {
       id: 11,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist5@example.com',
       password: 'password5',
       username: 'artist5',
@@ -103,6 +114,7 @@ const db: Database = {
     },
     {
       id: 12,
+      biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist6@example.com',
       password: 'password6',
       username: 'artist6',
