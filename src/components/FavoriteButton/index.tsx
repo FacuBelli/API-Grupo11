@@ -9,13 +9,13 @@ export default function FavoriteButton({ id }: Pick<Artwork, 'id'>) {
 
   const handleFav = async () => {}
 
-  const handleUnfav = async () => {}
+  const handleUnFav = async () => {}
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
     if (isSelected) {
-      handleUnfav().then(() => {
+      handleUnFav().then(() => {
         setIsSelected(false)
       })
     } else {
