@@ -5,6 +5,7 @@ export interface User {
   username: string
   first_name: string
   last_name: string
+  is_artist: boolean
 }
 
 export interface Artwork {
@@ -13,11 +14,11 @@ export interface Artwork {
   category_id: number
   description: string
   image: string
-  name: string
   orientation_id: number
   price: number
   style_id: number
   theme_id: number
+  title: string
 }
 
 export interface Category {
