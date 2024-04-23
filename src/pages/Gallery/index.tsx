@@ -2,34 +2,13 @@ import ArtworkCard from '../../components/ArtworkCard'
 import Slider from '../../components/Slider'
 import CategoryCard from '../../components/CategoryCard'
 import styles from './styles.module.css'
+import useArtworks from '../../hooks/useArtworks'
 
 export default function Gallery() {
-  const products = [
-    {
-      id: '0',
-      title: 'Producto 1',
-      price: 100,
-      url: '/assets/img/example-horizontal.png'
-    },
-    {
-      id: '1',
-      title: 'Producto 2',
-      price: 12,
-      url: '/assets/img/example-horizontal.png'
-    },
-    {
-      id: '2',
-      title: 'Producto 3',
-      price: 140,
-      url: '/assets/img/example-horizontal.png'
-    },
-    {
-      id: '3',
-      title: 'Producto 4',
-      price: 20,
-      url: '/assets/img/example-horizontal.png'
-    }
-  ]
+  const popular = useArtworks('popular')
+  const recent = useArtworks('recent')
+  console.log(popular)
+
   const category = [
     {
       title: 'LANDSCAPES',
@@ -70,30 +49,22 @@ export default function Gallery() {
         </Slider>
       </section>
       <section className={styles.popular}>
-        <h2 className={styles.popularTitle}><span>MOST</span> POPULAR</h2>
+        <h2 className={styles.popularTitle}>
+          <span>MOST</span> POPULAR
+        </h2>
         <Slider>
-          {products.map((item, i) => (
-            <ArtworkCard
-              id={item.id}
-              title={item.title}
-              price={item.price}
-              image={item.url}
-              key={i}
-            />
+          {popular.map((item, i) => (
+            <ArtworkCard artwork={item} key={i} />
           ))}
         </Slider>
       </section>
       <section className={styles.popular}>
-        <h2 className={styles.popularTitle}><span>MOST</span> RECENT</h2>
+        <h2 className={styles.popularTitle}>
+          <span>MOST</span> RECENT
+        </h2>
         <Slider>
-          {products.map((item, i) => (
-            <ArtworkCard
-              id={item.id}
-              title={item.title}
-              price={item.price}
-              image={item.url}
-              key={i}
-            />
+          {recent.map((item, i) => (
+            <ArtworkCard artwork={item} key={i} />
           ))}
         </Slider>
       </section>

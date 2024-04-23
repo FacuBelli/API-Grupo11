@@ -1,9 +1,11 @@
 .section {
   display: flex;
+  gap: 32px;
 }
 
 .aside {
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
   gap: 4px;
 }

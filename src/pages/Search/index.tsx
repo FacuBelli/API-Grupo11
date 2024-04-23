@@ -2,8 +2,12 @@ import SearchIcon from '@mui/icons-material/Search'
 import Input from '../../components/Input'
 import styles from './styles.module.css'
 import Filter from '../../components/Filter'
+import ImageGallery from '../../components/ImageGallery'
+import useArtworks from '../../hooks/useArtworks'
 
 export default function Search() {
+  const artworks = useArtworks()
+
   const filterOptions = [
     {
       value: 'category',
@@ -42,10 +46,11 @@ export default function Search() {
             icon={SearchIcon}
             iconPosition="end"
           />
-          {
-            filterOptions.map((filter, i) => <Filter title={filter.value} options={filter.options} key={i} />)
-          }
+          {filterOptions.map((filter, i) => (
+            <Filter title={filter.value} options={filter.options} key={i} />
+          ))}
         </aside>
+        <ImageGallery artworks={artworks} />
       </section>
     </main>
   )
