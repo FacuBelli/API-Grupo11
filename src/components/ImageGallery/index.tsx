@@ -1,25 +1,20 @@
+import type { Artwork } from '../../types/database'
 import ArtworkCard from '../ArtworkCard'
 import styles from './styles.module.css'
 
 interface Props {
-  data: {
-    id: string
-    image: string
-    price: number
-    title: string
-  }[]
+  artworks: Artwork[]
 }
 
-export default function ImageGallery({ data }: Props) {
-  console.log(data)
+export default function ImageGallery({ artworks }: Props) {
   return (
     <div className={styles.gallery}>
-      {data.map((prod, i) => (
+      {artworks.map((artwork, i) => (
         <ArtworkCard
-          id={prod.id}
-          image={prod.image}
-          price={prod.price}
-          title={prod.title}
+          id={artwork.id}
+          image={artwork.image}
+          price={artwork.price}
+          title={artwork.title}
           key={i}
         />
       ))}

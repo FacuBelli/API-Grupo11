@@ -3,9 +3,11 @@ import Input from '../../components/Input'
 import styles from './styles.module.css'
 import Filter from '../../components/Filter'
 import ImageGallery from '../../components/ImageGallery'
-import { useEffect, useState } from 'react'
+import useArtworks from '../../hooks/useArtworks'
 
 export default function Search() {
+  const artworks = useArtworks()
+
   const filterOptions = [
     {
       value: 'category',
@@ -33,25 +35,6 @@ export default function Search() {
     }
   ]
 
-  const getRandImg = () =>
-    [
-      '/assets/img/example-horizontal.png',
-      '/assets/img/example-square.png',
-      '/assets/img/example-vertical.png'
-    ][Math.floor(Math.random() * 3)]
-
-  const [data, setData] = useState<{ id: string; image: string; price: number; title: string }[]>(
-    []
-  )
-
-  useEffect(() => {
-    setData(
-      [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}].map((_, i) => {
-        return { id: i.toString(), title: `Producto ${i + 1}`, price: 200 * i, image: getRandImg() }
-      })
-    )
-  }, [])
-
   return (
     <main>
       <section className={styles.section}>
@@ -67,7 +50,7 @@ export default function Search() {
             <Filter title={filter.value} options={filter.options} key={i} />
           ))}
         </aside>
-        <ImageGallery data={data} />
+        <ImageGallery artworks={artworks} />
       </section>
     </main>
   )

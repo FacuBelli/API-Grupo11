@@ -2,11 +2,11 @@ import ArtworkCard from '../../components/ArtworkCard'
 import Slider from '../../components/Slider'
 import CategoryCard from '../../components/CategoryCard'
 import styles from './styles.module.css'
-import usePopular from '../../hooks/usePopular'
+import useArtworks from '../../hooks/useArtworks'
 
 export default function Gallery() {
-  const popular = usePopular()
-  console.log(popular)
+  const popular = useArtworks('popular')
+  const recent = useArtworks('recent')
 
   const category = [
     {
@@ -48,7 +48,9 @@ export default function Gallery() {
         </Slider>
       </section>
       <section className={styles.popular}>
-        <h2 className={styles.popularTitle}><span>MOST</span> POPULAR</h2>
+        <h2 className={styles.popularTitle}>
+          <span>MOST</span> POPULAR
+        </h2>
         <Slider>
           {popular.map((item, i) => (
             <ArtworkCard
@@ -62,9 +64,11 @@ export default function Gallery() {
         </Slider>
       </section>
       <section className={styles.popular}>
-        <h2 className={styles.popularTitle}><span>MOST</span> RECENT</h2>
+        <h2 className={styles.popularTitle}>
+          <span>MOST</span> RECENT
+        </h2>
         <Slider>
-          {popular.map((item, i) => (
+          {recent.map((item, i) => (
             <ArtworkCard
               id={item.id}
               title={item.title}
