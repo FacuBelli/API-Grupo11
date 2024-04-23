@@ -11,7 +11,7 @@ import {
 import { Report, Visibility, VisibilityOff } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
-import { useForm } from '../../hooks/useForm'
+import useForm from '../../hooks/useForm'
 
 export type InputAssistance = {
   message: string

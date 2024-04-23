@@ -2,23 +2,20 @@ import { useState } from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import styles from './styles.module.css'
+import type { Artwork } from '../../types/database'
 
-interface Props {
-  artworkId: string
-}
-
-export default function FavoriteButton({ artworkId }: Props) {
+export default function FavoriteButton({ id }: Pick<Artwork, 'id'>) {
   const [isSelected, setIsSelected] = useState(false)
 
   const handleFav = async () => {}
 
-  const handleUnfav = async () => {}
+  const handleUnFav = async () => {}
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
     if (isSelected) {
-      handleUnfav().then(() => {
+      handleUnFav().then(() => {
         setIsSelected(false)
       })
     } else {
