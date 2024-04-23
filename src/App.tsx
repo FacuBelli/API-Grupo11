@@ -36,7 +36,7 @@ function App() {
         <Route path="/profile">
           <Route index element={<Profile />} />
           {/* <Route path="edit" element={<Profile />} /> */}
-          <Route path="/profile/:userId" element={<Profile />} />
+          <Route path=":userId" element={<Profile />} />
         </Route>
         <Route path="/settings" element={<Settings />} />
       </Routes>
