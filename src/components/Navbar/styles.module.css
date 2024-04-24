@@ -19,6 +19,19 @@
   position: relative;
 }
 
+.name {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  svg {
+    width: 20px;
+    position: absolute;
+    right: 0;
+    transform: translateX(100%);
+  }
+}
+
 .menu {
   display: none;
   width: 150px;
