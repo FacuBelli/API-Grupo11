@@ -37,6 +37,7 @@ export default function Login() {
               placeholder="EMAIL"
               required
               errorValidation={emailErrors}
+              defaultValue="user1@example.com"
             />
             <Input
               name="password"
@@ -47,6 +48,7 @@ export default function Login() {
                 to: '',
                 message: 'FORGOT YOUR PASSWORD?'
               }}
+              defaultValue="password1"
             />
             <Button type="submit">Log In</Button>
           </Form>
