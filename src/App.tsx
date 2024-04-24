@@ -13,6 +13,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Settings from './pages/Settings'
 import AuthProvider from './contexts/AuthContext'
+import RequireAuth from './pages/RequirePath'
 
 function App() {
   return (
@@ -23,23 +24,64 @@ function App() {
         <Route path="/gallery">
           <Route index element={<Gallery />} />
           <Route path=":artworkId" element={<Artwork />} />
-          <Route path=":Profile" element={<Artwork />} />
         </Route>
         <Route path="/search" element={<Search />} />
-        <Route path="/studio" element={<Studio />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/studio"
+          element={
+            <RequireAuth>
+              <Studio />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/favorites"
+          element={
+            <RequireAuth>
+              <Favorites />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <RequireAuth>
+              <Cart />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <RequireAuth>
+              <Checkout />
+            </RequireAuth>
+          }
+        />
         <Route path="/auth">
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
         <Route path="/profile">
-          <Route index element={<Profile />} />
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
           {/* <Route path="edit" element={<Profile />} /> */}
           <Route path=":userId" element={<Profile />} />
         </Route>
-        <Route path="/settings" element={<Settings />} />
+        <Route
+          path="/settings"
+          element={
+            <RequireAuth>
+              <Settings />
+            </RequireAuth>
+          }
+        />
       </Routes>
     </AuthProvider>
   )
