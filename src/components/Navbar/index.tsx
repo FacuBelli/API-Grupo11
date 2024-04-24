@@ -7,7 +7,7 @@ export default function Navbar() {
 
   return (
     <header className={styles.header}>
-      <Link to="/" className={styles.logo}>(LOGO)</Link>
+      <Link to="/" className={styles.logo}><img src="/assets/img/Logoo.png" alt="" className={styles.logo}/></Link>
 
       <nav>
         <ul className={styles.links}>

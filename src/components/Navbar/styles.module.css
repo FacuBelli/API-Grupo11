@@ -39,3 +39,8 @@
 .profile:hover .menu {
   display: flex;
 }
+
+.logo {
+  height: 100%;
+  display: flex;
+}
