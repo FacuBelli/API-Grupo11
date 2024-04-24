@@ -23,7 +23,7 @@ export default function Form({ children, ...formProps }: Props) {
   }, [])
 
   return (
-    <form {...formProps} ref={ref}>
+    <form ref={ref} {...formProps}>
       <FormContext.Provider value={formElements}>{children}</FormContext.Provider>
     </form>
   )
