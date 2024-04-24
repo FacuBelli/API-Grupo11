@@ -96,6 +96,7 @@ function DefaultInput({ type }: { type: 'text' | 'email' | 'password' }) {
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
+    inputProps.onChange && inputProps.onChange(e)
   }
 
   const onBlur = () => {
@@ -103,7 +104,6 @@ function DefaultInput({ type }: { type: 'text' | 'email' | 'password' }) {
 
     const handleError = (error: InputError) => {
       const isValid = error.validate(value, form)
-      console.log(isValid, error.message)
       setIsValid(isValid)
       setErrorMessage(isValid ? '' : error.message)
       return isValid
@@ -125,7 +125,6 @@ function DefaultInput({ type }: { type: 'text' | 'email' | 'password' }) {
         className={styles.input}
         type={type}
         {...inputProps}
-        value={value}
         onChange={(e) => onChange(e)}
         onBlur={onBlur}
       />
