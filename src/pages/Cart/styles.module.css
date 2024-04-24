@@ -10,12 +10,12 @@
     display: flex;
     flex-direction: column;
     gap: 75px;
-    border: 2px solid green;
+
 }
 
 /*Este nombre lo eligio martu*/
 .pepito{
-    border: 2px solid red;
+
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -24,6 +24,27 @@
 .rumba{
     font-size: var(--font-size-title);
     display: flex;
-    flex-direction: row;
-    border: 2px solid yellow;
+    flex-direction: column;
+}
+
+
+.container{
+    display: flex;
+    padding: 20px;
+}
+
+.title{
+    font-size:var(--font-size-subtitle) ;
+}
+
+.description{
+    font-size:var(--font-size-text) ;
+}
+
+.Acomodador{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+
 }

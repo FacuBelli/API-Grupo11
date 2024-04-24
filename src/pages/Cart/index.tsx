@@ -24,10 +24,17 @@ export default function Cart() {
           <section className={styles.rumba}>
             <h2>Manage your Cart "aca van los items"</h2>
             {artworks.map((artwork, i) => (
-              <div>
-                <img src={artwork.image} alt="" />
-                <p>{artwork.title}</p>title=  key={i}
+              <div className={styles.container}>
+                <img src={artwork.image} alt=""/>
+                <div className={styles.Acomodador}>
+                <p className={styles.title}>{artwork.title}</p> 
+                <p className={styles.description}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, amet quia dolorum blanditiis deserunt assumenda, rerum rem natus earum molestiae aut neque maiores quos nihil odio incidunt, vitae tempora asperiores.</p> 
+                <p>{artwork.price}</p>
+                </div>
+                <div><Button>Cantidad</Button></div>  
+
               </div>
+             
             
           ))}
         </section>
