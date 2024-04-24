@@ -29,7 +29,7 @@ export default function Home() {
               <li><span>4. Sell Your Art:</span> Once you're happy with your creation, you can choose to sell it in our marketplace and earn from your artistry</li>
             </ol>
             <p>Create an account today and start expressing your creativity with AI-generated art!</p>
-            <Button to='/login'>GET STARTED</Button>
+            <Button to='/auth/login'>GET STARTED</Button>
           </div>
           <div className={styles.aiArtStepsVideoContainer}>
 
