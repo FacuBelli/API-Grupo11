@@ -1,0 +1,19 @@
+.titles{
+    font-size: var(--font-size-title);
+}
+
+.description{
+    font-size:  var(--font-size-text);
+}
+
+/*Este nombre lo eligio martu*/
+.pepito{
+    border: 2px solid red;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+/*Este tambien*/
+.rumba{
+    font-size: var(--font-size-title);
+}
