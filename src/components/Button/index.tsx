@@ -1,18 +1,16 @@
-import type { MouseEvent, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, DetailedHTMLProps, MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './styles.module.css'
 
-interface Props {
-  children?: ReactNode
-  onClick?: (e: MouseEvent<HTMLButtonElement>) => void
+interface Props
+  extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   to?: string
 }
 
-export default function Button({ children, onClick, to }: Props) {
+export default function Button({ children, onClick, to, ...buttonProps }: Props) {
   const navigate = useNavigate()
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
     if (onClick !== undefined) {
       onClick(e)
     }
@@ -22,6 +20,8 @@ export default function Button({ children, onClick, to }: Props) {
   }
 
   return (
-    <button className={styles.button} onClick={(e) => handleClick(e)}>{ children }</button>
+    <button className={styles.button} onClick={(e) => handleClick(e)} {...buttonProps}>
+      {children}
+    </button>
   )
 }
