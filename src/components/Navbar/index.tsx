@@ -8,7 +8,9 @@ export default function Navbar() {
 
   return (
     <header className={styles.header}>
-      <Link to="/" className={styles.logo}><img src="/assets/img/Logoo.png" alt="" className={styles.logo}/></Link>
+      <Link to="/" className={styles.logo}>
+        <img src="/assets/img/logo.png" alt="" />
+      </Link>
 
       <nav>
         <ul className={styles.links}>
@@ -33,7 +35,10 @@ function Profile() {
   const { user } = useAuth()
   return (
     <div className={styles.profile}>
-      <Link to="/profile" className={styles.name}>MR. {user?.first_name}<KeyboardArrowDown /></Link>
+      <Link to="/profile" className={styles.name}>
+        MR. {user?.first_name}
+        <KeyboardArrowDown />
+      </Link>
       <div className={styles.menu}>
         <ul>
           <Link to="/profile">PROFILE</Link>

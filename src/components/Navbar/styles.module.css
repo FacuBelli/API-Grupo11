@@ -7,6 +7,12 @@
   border-bottom: 1px solid var(--color-black);
 }
 
+.logo {
+  height: 100%;
+  padding: 10px 0;
+  display: flex;
+}
+
 .links {
   display: flex;
   gap: 16px;
@@ -50,10 +56,5 @@
 }
 
 .profile:hover .menu {
-  display: flex;
-}
-
-.logo {
-  height: 100%;
   display: flex;
 }
