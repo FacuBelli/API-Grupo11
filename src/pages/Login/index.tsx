@@ -8,21 +8,19 @@ import { type FormEvent } from 'react'
 import useAuth from '../../hooks/useAuth'
 
 export default function Login() {
-  const navigator = useNavigate()
+  const navigate = useNavigate()
   const { login } = useAuth()
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const emailInput = e.currentTarget.elements.namedItem('email')
-    const passwordInput = e.currentTarget.elements.namedItem('password')
+    const emailInput = e.currentTarget.elements.namedItem('email') as HTMLInputElement
+    const passwordInput = e.currentTarget.elements.namedItem('password') as HTMLInputElement
 
-    if (emailInput instanceof HTMLInputElement && passwordInput instanceof HTMLInputElement) {
-      const email = emailInput.value
-      const password = passwordInput.value
+    const email = emailInput.value
+    const password = passwordInput.value
 
-      login(email, password)
-      navigator('/')
-    }
+    login(email, password)
+    navigate('/')
   }
 
   return (
