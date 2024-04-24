@@ -7,7 +7,6 @@ import useArtworks from '../../hooks/useArtworks'
 export default function Gallery() {
   const popular = useArtworks('popular')
   const recent = useArtworks('recent')
-  console.log(popular)
 
   const category = [
     {
