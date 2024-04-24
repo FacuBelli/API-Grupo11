@@ -6,6 +6,13 @@
     font-size:  var(--font-size-text);
 }
 
+.greatContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+    border: 2px solid green;
+}
+
 /*Este nombre lo eligio martu*/
 .pepito{
     border: 2px solid red;
@@ -16,4 +23,7 @@
 /*Este tambien*/
 .rumba{
     font-size: var(--font-size-title);
+    display: flex;
+    flex-direction: row;
+    border: 2px solid yellow;
 }
