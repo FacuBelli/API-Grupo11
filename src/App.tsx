@@ -12,15 +12,16 @@ import Checkout from './pages/Checkout'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Settings from './pages/Settings'
+import AuthProvider from './contexts/AuthContext'
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/gallery">
-          <Route index element={<Gallery />}/>
+          <Route index element={<Gallery />} />
           <Route path=":artworkId" element={<Artwork />} />
           <Route path=":Profile" element={<Artwork />} />
         </Route>
@@ -40,7 +41,7 @@ function App() {
         </Route>
         <Route path="/settings" element={<Settings />} />
       </Routes>
-    </>
+    </AuthProvider>
   )
 }
 
