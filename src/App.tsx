@@ -12,12 +12,13 @@ import Checkout from './pages/Checkout'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Settings from './pages/Settings'
-import AuthProvider from './contexts/AuthContext'
 import RequireAuth from './pages/RequirePath'
+import { Provider } from 'react-redux'
+import store from './redux'
 
 function App() {
   return (
-    <AuthProvider>
+    <Provider store={store}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -83,7 +84,7 @@ function App() {
           }
         />
       </Routes>
-    </AuthProvider>
+    </Provider>
   )
 }
 
