@@ -7,11 +7,16 @@ import db from '../../utils/database'
 import useAuth from '../../hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
 
-export default function FavoriteButton({ id }: Pick<Artwork, 'id'>) {
+interface Props {
+  id: Artwork['id']
+  isFav?: boolean
+}
+
+export default function FavoriteButton({ id, isFav = false }: Props) {
   const { isLogged, user } = useAuth()
   const navigate = useNavigate()
 
-  const [isSelected, setIsSelected] = useState(false)
+  const [isSelected, setIsSelected] = useState(isFav)
 
   const handleFav = async () => {
     db.favorites.push({ user_id: user!.id, artwork_id: id })
