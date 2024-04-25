@@ -113,3 +113,32 @@ export const repeatPasswordErrors: InputError[] = [
     }
   }
 ]
+
+type ValidationType = 'firstName' | 'lastName' | 'email' | 'password' | 'repeatPassword' | InputError[]
+
+export const validateInput = (validation: ValidationType, input: string, formElements?: HTMLFormControlsCollection) => {
+  const validate = (errors: InputError[]) => {
+    for (const error of errors) {
+      if (!error.validate(input, formElements)) {
+        return { isValid: false, message: error.message }
+      }
+    }
+
+    return { isValid: true, message: '' }
+  }
+
+  switch (validation) {
+    case ('firstName'):
+      return validate(firstNameErrors)
+    case ('lastName'): 
+      return validate(lastNameErrors)
+    case ('email'):
+      return validate(emailErrors)
+    case ('password'):
+      return validate(passwordErrors)
+    case ('repeatPassword'):
+      return validate(repeatPasswordErrors)
+    default:
+      return validate(validation)
+  }
+}
