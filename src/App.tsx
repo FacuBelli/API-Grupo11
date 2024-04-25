@@ -15,6 +15,7 @@ import Settings from './pages/Settings'
 import RequireAuth from './pages/RequirePath'
 import { Provider } from 'react-redux'
 import store from './redux'
+import Logout from './pages/Logout'
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
         <Route path="/auth">
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="logout" element={<Logout />} />
         </Route>
         <Route path="/profile">
           <Route

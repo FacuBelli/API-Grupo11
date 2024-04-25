@@ -56,7 +56,7 @@ function Profile() {
           <Link to="/settings">SETTINGS</Link>
         </ul>
         <ul>
-          <Link to="">LOG OUT</Link>
+          <Link to="/auth/logout">LOG OUT</Link>
         </ul>
       </div>
     </div>
