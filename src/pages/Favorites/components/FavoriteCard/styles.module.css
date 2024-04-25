@@ -1,0 +1,64 @@
+.card {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  height: 168px;
+  position: relative;
+  padding-bottom: 21px;
+  box-sizing: content-box;
+}
+
+.card:not(:last-child) {
+  &::after {
+    content: '';
+    width: 100%;
+    display: block;
+    height: 1px;
+    background-color: var(--color-black);
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.image {
+  min-width: 100px;
+  max-width: 250px;
+  flex: 1;
+  object-fit: contain;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 2 0;
+  overflow: hidden;
+}
+
+.data {
+  width: 100%;
+  height: 100%;
+  max-height: inherit;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: var(--font-size-subtitle);  
+}
+
+.description {
+  font-size: var(--font-size-subtext);
+  text-overflow: ellipsis;
+  text-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.price {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-highlight);
+}

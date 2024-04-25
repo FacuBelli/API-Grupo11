@@ -1,0 +1,15 @@
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: var(--font-size-title);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
