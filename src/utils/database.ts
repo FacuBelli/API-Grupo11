@@ -7,7 +7,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user1@example.com',
       password: 'password1',
-      username: 'user1',
       first_name: 'John',
       last_name: 'Doe',
       is_artist: false
@@ -17,7 +16,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user2@example.com',
       password: 'password2',
-      username: 'user2',
       first_name: 'Jane',
       last_name: 'Smith',
       is_artist: false
@@ -27,7 +25,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist1@example.com',
       password: 'password1',
-      username: 'artist1',
       first_name: 'Alice',
       last_name: 'Johnson',
       is_artist: true
@@ -37,7 +34,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist2@example.com',
       password: 'password2',
-      username: 'artist2',
       first_name: 'Bob',
       last_name: 'Williams',
       is_artist: true
@@ -47,7 +43,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user3@example.com',
       password: 'password3',
-      username: 'user3',
       first_name: 'Emily',
       last_name: 'Brown',
       is_artist: false
@@ -57,7 +52,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user4@example.com',
       password: 'password4',
-      username: 'user4',
       first_name: 'Michael',
       last_name: 'Jones',
       is_artist: false
@@ -67,7 +61,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist3@example.com',
       password: 'password3',
-      username: 'artist3',
       first_name: 'Sophia',
       last_name: 'Lee',
       is_artist: true
@@ -77,7 +70,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist4@example.com',
       password: 'password4',
-      username: 'artist4',
       first_name: 'William',
       last_name: 'Davis',
       is_artist: true
@@ -87,7 +79,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user5@example.com',
       password: 'password5',
-      username: 'user5',
       first_name: 'Olivia',
       last_name: 'Martinez',
       is_artist: false
@@ -97,7 +88,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user6@example.com',
       password: 'password6',
-      username: 'user6',
       first_name: 'Liam',
       last_name: 'Garcia',
       is_artist: false
@@ -107,7 +97,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist5@example.com',
       password: 'password5',
-      username: 'artist5',
       first_name: 'Emma',
       last_name: 'Rodriguez',
       is_artist: true
@@ -117,7 +106,6 @@ const db: Database = {
       biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist6@example.com',
       password: 'password6',
-      username: 'artist6',
       first_name: 'Noah',
       last_name: 'Hernandez',
       is_artist: true
