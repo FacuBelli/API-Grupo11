@@ -118,11 +118,11 @@ type ValidationType = 'firstName' | 'lastName' | 'email' | 'password' | 'repeatP
 
 export const validateInput = (validation: ValidationType, input: string, formElements?: HTMLFormControlsCollection) => {
   const validate = (errors: InputError[]) => {
-    errors.forEach((error) => {
+    for (const error of errors) {
       if (!error.validate(input, formElements)) {
         return { isValid: false, message: error.message }
       }
-    })
+    }
 
     return { isValid: true, message: '' }
   }
