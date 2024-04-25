@@ -1,0 +1,50 @@
+.titles{
+    font-size: var(--font-size-title);
+}
+
+.description{
+    font-size:  var(--font-size-text);
+}
+
+.greatContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+
+}
+
+/*Este nombre lo eligio martu*/
+.pepito{
+
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+/*Este tambien*/
+.rumba{
+    font-size: var(--font-size-title);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.container{
+    display: flex;
+    padding: 20px;
+}
+
+.title{
+    font-size:var(--font-size-subtitle) ;
+}
+
+.description{
+    font-size:var(--font-size-text) ;
+}
+
+.Acomodador{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+
+}
