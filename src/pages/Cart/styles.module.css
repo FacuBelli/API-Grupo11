@@ -48,3 +48,15 @@
     padding: 20px;
 
 }
+
+.border{
+    border-bottom: 1px solid #000;
+}
+
+/*Botones*/
+.masYMenos{
+    text-decoration: none;
+    font-size: var(--font-size-subtitle);
+    margin:5px;
+    text-align: center;
+}

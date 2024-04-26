@@ -26,12 +26,15 @@ export default function Cart() {
             {artworks.map((artwork, i) => (
               <div className={styles.container}>
                 <img src={artwork.image} alt=""/>
-                <div className={styles.Acomodador}>
-                <p className={styles.title}>{artwork.title}</p> 
-                <p className={styles.description}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, amet quia dolorum blanditiis deserunt assumenda, rerum rem natus earum molestiae aut neque maiores quos nihil odio incidunt, vitae tempora asperiores.</p> 
-                <p>{artwork.price}</p>
-                </div>
-                <div><Button>Cantidad</Button></div>  
+                    <div className={styles.Acomodador}>
+                    <p className={styles.title}>{artwork.title}</p> 
+                    <p className={styles.description}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, amet quia dolorum blanditiis deserunt assumenda, rerum rem natus earum molestiae aut neque maiores quos nihil odio incidunt, vitae tempora asperiores.</p> 
+                    <p>{artwork.price}</p>
+                    <div className={styles.border}></div>
+                  </div>
+                
+                <div className={styles.buttonContainer}><Button><Button className={styles.masYMenos}>-</Button>Cantidad <Button className={styles.masYMenos}>+</Button></Button></div>  
+
 
               </div>
              
