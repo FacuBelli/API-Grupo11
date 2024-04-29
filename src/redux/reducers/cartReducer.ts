@@ -13,7 +13,7 @@ const initialState: CartReducer = {
   isLoaded: false
 }
 
-const favoriteReducer: Reducer<CartReducer, PayloadAction<CustomPayload<CartItem>, keyof typeof CartActionTypes>> =
+const cartReducer: Reducer<CartReducer, PayloadAction<CustomPayload<CartItem>, keyof typeof CartActionTypes>> =
   (state = initialState, action) => {
     switch (action.type) {
     case CartActionTypes.ADD_CART_ITEM: {
@@ -54,4 +54,4 @@ const favoriteReducer: Reducer<CartReducer, PayloadAction<CustomPayload<CartItem
     }
   }
 
-export default favoriteReducer
+export default cartReducer
