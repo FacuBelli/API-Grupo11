@@ -14,5 +14,5 @@ export default function Logout() {
     navigate('/')
   }, [isLogged, logout, navigate])
 
-  return <main></main>
+  return <></>
 }

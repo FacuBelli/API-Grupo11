@@ -2,12 +2,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { type RootState } from '../redux'
 import db from '../utils/database'
 import { validateInput } from '../utils/validation'
-import { userLogin, userLogout } from '../redux/actions/userActions'
+import { authLogin, authLogout } from '../redux/actions/authActions'
+import { userAdd } from '../redux/actions/userActions'
 
 const useAuth = () => {
   const dispatch = useDispatch()
+  const users = useSelector((state: RootState) => state.user.users)
 
-  const { user, isLogged } = useSelector((state: RootState) => state.user)
+  const { user, isLogged } = useSelector((state: RootState) => state.auth)
 
   const login = (email: string, password: string) => {
     const emailValidation = validateInput('email', email)
@@ -20,10 +22,10 @@ const useAuth = () => {
     //   throw new Error(emailValidation.message)
     // }
 
-    const user = db.users.find((user) => user.email === email && user.password === password)
+    const user = users.find((user) => user.email === email && user.password === password)
     if (user === undefined) throw new Error('User not found.')
 
-    dispatch(userLogin(user))
+    dispatch(authLogin(user))
   }
 
   const register = (firstName: string, lastName: string, email: string, password: string) => {
@@ -58,12 +60,12 @@ const useAuth = () => {
       is_artist: false
     }
 
-    db.users.push(user)
-    dispatch(userLogin(user))
+    dispatch(userAdd(user))
+    dispatch(authLogin(user))
   }
 
   const logout = () => {
-    dispatch(userLogout())
+    dispatch(authLogout())
   }
 
   return {
