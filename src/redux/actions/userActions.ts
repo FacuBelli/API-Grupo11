@@ -1,15 +1,30 @@
 import type { User } from '../../types/database'
+import type { CustomAction } from '../../types/redux'
 
 export enum UserActionTypes {
-  USER_LOGIN = 'USER_LOGIN',
-  USER_LOGOUT = 'USER_LOGOUT'
+  ADD_USER = 'ADD_USER',
+  EDIT_USER = 'EDIT_USER',
+  REMOVE_USER = 'REMOVE_USER'
 }
 
-export const userLogin = (userData: User) => ({
-  type: UserActionTypes.USER_LOGIN,
-  payload: userData
+export const userAdd = (userData: User): CustomAction<User> => ({
+  type: UserActionTypes.ADD_USER,
+  payload: {
+    body: userData
+  }
 })
 
-export const userLogout = () => ({
-  type: UserActionTypes.USER_LOGOUT
+export const userEdit = (id: User['id'], userData: User): CustomAction<User> => ({
+  type: UserActionTypes.EDIT_USER,
+  payload: {
+    id,
+    body: userData
+  }
+})
+
+export const userRemove = (id: User['id']): CustomAction<User> => ({
+  type: UserActionTypes.REMOVE_USER,
+  payload: {
+    id
+  }
 })
