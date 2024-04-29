@@ -1,13 +1,12 @@
 import useAuth from '../../hooks/useAuth'
-import useFavorites from '../../hooks/useFavorites'
 import FavoriteCard from './components/FavoriteCard'
 import styles from './styles.module.css'
 
 export default function Favorites() {
   const { user } = useAuth()
 
-  const favorites = useFavorites(user?.id ?? 0)
-  console.log(favorites)
+  // const favorites = useSelector
+  // console.log(favorites)
 
   return (
     <main>
@@ -15,15 +14,15 @@ export default function Favorites() {
         <h1 className={styles.title}>
           YOUR <span>FAVORITES</span>
         </h1>
-        <p>
+        {/* <p>
           You currently have <span>{favorites.length} artworks</span> in your favorites list.
-        </p>
+        </p> */}
       </div>
-      <section className={styles.section}>
+      {/* <section className={styles.section}>
         {favorites.map((artwork, i) => (
           <FavoriteCard artwork={artwork} key={i} />
         ))}
-      </section>
+      </section> */}
     </main>
   )
 }

@@ -3,10 +3,11 @@ import Input from '../../components/Input'
 import styles from './styles.module.css'
 import Filter from '../../components/Filter'
 import ImageGallery from '../../components/ImageGallery'
-import useArtworks from '../../hooks/useArtworks'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../../redux'
 
 export default function Search() {
-  const artworks = useArtworks()
+  const artworks = useSelector((state: RootState) => state.artwork.artworks)
 
   const filterOptions = [
     {

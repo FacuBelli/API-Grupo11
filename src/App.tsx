@@ -13,13 +13,36 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Settings from './pages/Settings'
 import RequireAuth from './pages/RequirePath'
-import { Provider } from 'react-redux'
-import store from './redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Logout from './pages/Logout'
+import { useEffect } from 'react'
+import db from './utils/database'
+import { artworkAdd } from './redux/actions/artworkActions'
+import type { RootState } from './redux'
+import { userAdd } from './redux/actions/userActions'
 
 function App() {
+  const dispatch = useDispatch()
+  const isArtworkLoaded = useSelector((state: RootState) => state.artwork.isLoaded)
+  const isUserLoaded = useSelector((state: RootState) => state.user.isLoaded)
+
+  useEffect(() => {
+    // fetch the db.
+    if (!isArtworkLoaded) {
+      db.artworks.forEach((artwork) => {
+        dispatch(artworkAdd(artwork))
+      })
+    }
+    if (!isUserLoaded) {
+      // fetch the db.
+      db.users.forEach((user) => {
+        dispatch(userAdd(user))
+      })
+    }
+  }, [dispatch, isArtworkLoaded, isUserLoaded])
+
   return (
-    <Provider store={store}>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -86,7 +109,7 @@ function App() {
           }
         />
       </Routes>
-    </Provider>
+    </>
   )
 }
 
