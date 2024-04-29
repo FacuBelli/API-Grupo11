@@ -7,7 +7,7 @@ export enum UserActionTypes {
   REMOVE_USER = 'REMOVE_USER'
 }
 
-export const userAdd = (userData: User): CustomAction<User> => ({
+export const userAdd = (userData: Omit<User, 'id'> & Partial<Pick<User, 'id'>>): CustomAction<User> => ({
   type: UserActionTypes.ADD_USER,
   payload: {
     body: userData

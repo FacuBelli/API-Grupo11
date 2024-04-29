@@ -7,7 +7,7 @@ export enum ArtworkActionTypes {
   REMOVE_ARTWORK = 'REMOVE_ARTWORK'
 }
 
-export const artworkAdd = (artworkData: Artwork): CustomAction<Artwork> => ({
+export const artworkAdd = (artworkData: Omit<Artwork, 'id'> & Partial<Pick<Artwork, 'id'>>): CustomAction<Artwork> => ({
   type: ArtworkActionTypes.ADD_ARTWORK,
   payload: {
     body: artworkData

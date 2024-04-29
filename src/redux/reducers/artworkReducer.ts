@@ -20,7 +20,7 @@ const artworkReducer: Reducer<ArtworkReducer, PayloadAction<CustomPayload<Artwor
       if (!action.payload.body) return state
       return {
         artworks: [...state.artworks, {
-          id: state.artworks.length + 1,
+          id: action.payload.body.id ?? state.artworks.length + 1,
           artist_id: action.payload.body.artist_id,
           category_id: action.payload.body.category_id,
           description: action.payload.body.description,

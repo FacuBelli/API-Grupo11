@@ -20,7 +20,7 @@ const userReducer: Reducer<UserReducer, PayloadAction<CustomPayload<User>, keyof
       if (!action.payload.body) return state
       return {
         users: [...state.users, {
-          id: state.users.length + 1,
+          id: action.payload.body.id ?? state.users.length + 1,
           biography: action.payload.body.biography,
           email: action.payload.body.email,
           password: action.payload.body.password,
