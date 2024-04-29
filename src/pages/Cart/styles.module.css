@@ -54,9 +54,10 @@
 }
 
 /*Botones*/
-.masYMenos{
-    text-decoration: none;
-    font-size: var(--font-size-subtitle);
-    margin:5px;
-    text-align: center;
+
+
+.buttonContainer{
+    display: flex;
+    height: fit-content;
 }
+

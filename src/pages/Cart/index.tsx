@@ -1,8 +1,7 @@
 import db from '../../utils/database'
 import styles from './styles.module.css'
 import Button from '../../components/Button'
-import Slider from '../../components/Slider'
-import CategoryCard from '../../components/CategoryCard'
+
 
 
 export default function Cart() {
@@ -33,7 +32,14 @@ export default function Cart() {
                     <div className={styles.border}></div>
                   </div>
                 
-                <div className={styles.buttonContainer}><Button><Button className={styles.masYMenos}>-</Button>Cantidad <Button className={styles.masYMenos}>+</Button></Button></div>  
+                  <div className={styles.buttonContainer}>
+                    
+                    
+                    
+
+                  </div>
+
+
 
 
               </div>
@@ -41,6 +47,9 @@ export default function Cart() {
             
           ))}
         </section>
+
+          <section></section>
+
       </section>
     
     </main>
