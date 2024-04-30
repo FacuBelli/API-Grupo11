@@ -1,29 +1,36 @@
-import { useState } from 'react'
+import { useMemo } from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import styles from './styles.module.css'
 import type { Artwork } from '../../types/database'
-import db from '../../utils/database'
-import useAuth from '../../hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from '../../redux'
+import { favoriteAdd, favoriteRemove } from '../../redux/actions/favoriteActions'
 
 interface Props {
   id: Artwork['id']
   isFav?: boolean
 }
 
-export default function FavoriteButton({ id, isFav = false }: Props) {
-  const { isLogged, user } = useAuth()
+export default function FavoriteButton({ id }: Props) {
   const navigate = useNavigate()
-
-  const [isSelected, setIsSelected] = useState(isFav)
+  const dispatch = useDispatch()
+  const { isLogged, user } = useSelector((state: RootState) => state.auth)
+  const favorites = useSelector((state: RootState) => state.favorite.favorites)
+  const favorite = useMemo(() => {
+    if (!isLogged) return
+    return favorites.find((favorite) => favorite.user_id === user!.id && favorite.artwork_id === id)
+  }, [favorites, isLogged, user, id])
 
   const handleFav = async () => {
-    db.favorites.push({ user_id: user!.id, artwork_id: id })
+    dispatch(favoriteAdd({ user_id: user!.id, artwork_id: id }))
   }
 
   const handleUnFav = async () => {
-    db.favorites = db.favorites.filter((fav) => !(fav.user_id === user!.id && fav.artwork_id === id))
+    if (favorite === undefined) return
+
+    dispatch(favoriteRemove(favorite.id))
   }
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,20 +40,16 @@ export default function FavoriteButton({ id, isFav = false }: Props) {
       return
     }
 
-    if (isSelected) {
-      handleUnFav().then(() => {
-        setIsSelected(false)
-      })
+    if (favorite !== undefined) {
+      handleUnFav()
     } else {
-      handleFav().then(() => {
-        setIsSelected(true)
-      })
+      handleFav()
     }
   }
 
   return (
     <button className={styles.button} onClick={(e) => handleClick(e)}>
-      {isSelected ? (
+      {favorite ? (
         <FavoriteIcon
           sx={{
             stroke: 'white',

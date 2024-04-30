@@ -12,7 +12,7 @@ import Checkout from './pages/Checkout'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Settings from './pages/Settings'
-import RequireAuth from './pages/RequirePath'
+import RequireAuth from './pages/RequireAuth'
 import { useDispatch, useSelector } from 'react-redux'
 import Logout from './pages/Logout'
 import { useEffect } from 'react'
@@ -20,26 +20,34 @@ import db from './utils/database'
 import { artworkAdd } from './redux/actions/artworkActions'
 import type { RootState } from './redux'
 import { userAdd } from './redux/actions/userActions'
+import { favoriteAdd } from './redux/actions/favoriteActions'
 
 function App() {
   const dispatch = useDispatch()
   const isArtworkLoaded = useSelector((state: RootState) => state.artwork.isLoaded)
   const isUserLoaded = useSelector((state: RootState) => state.user.isLoaded)
+  const isFavoriteLoaded = useSelector((state: RootState) => state.favorite.isLoaded)
 
   useEffect(() => {
-    // fetch the db.
+    // simulando un fetch
     if (!isArtworkLoaded) {
       db.artworks.forEach((artwork) => {
         dispatch(artworkAdd(artwork))
       })
     }
     if (!isUserLoaded) {
-      // fetch the db.
+      // simulando un fetch
       db.users.forEach((user) => {
         dispatch(userAdd(user))
       })
     }
-  }, [dispatch, isArtworkLoaded, isUserLoaded])
+    if (!isFavoriteLoaded) {
+      // simulando un fetch
+      db.favorites.forEach((favorite) => {
+        dispatch(favoriteAdd(favorite))
+      })
+    }
+  }, [dispatch, isArtworkLoaded, isUserLoaded, isFavoriteLoaded])
 
   return (
     <>
