@@ -1,18 +1,21 @@
 import { useEffect } from 'react'
-import useAuth from '../../hooks/useAuth'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import type { RootState } from '../../redux'
+import { authLogout } from '../../redux/actions/authActions'
 
 export default function Logout() {
-  const { isLogged, logout } = useAuth()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { isLogged } = useSelector((state: RootState) => state.auth)
 
   useEffect(() => {
     if (isLogged) {
-      logout()
+      dispatch(authLogout())
     }
 
     navigate('/')
-  }, [isLogged, logout, navigate])
+  }, [dispatch, navigate, isLogged])
 
   return <></>
 }
