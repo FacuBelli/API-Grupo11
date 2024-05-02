@@ -26,7 +26,9 @@ const userReducer: Reducer<UserReducer, PayloadAction<CustomPayload<User>, keyof
           password: action.payload.body.password,
           first_name: action.payload.body.first_name,
           last_name: action.payload.body.last_name,
-          is_artist: action.payload.body.is_artist
+          is_artist: action.payload.body.is_artist,
+          created_artworks: action.payload.body.created_artworks,
+          bought_artworks: action.payload.body.bought_artworks
         }],
         isLoaded: true,
       }
@@ -41,6 +43,8 @@ const userReducer: Reducer<UserReducer, PayloadAction<CustomPayload<User>, keyof
       user.first_name = action.payload.body.first_name ?? user.first_name
       user.last_name = action.payload.body.last_name ?? user.last_name
       user.is_artist = action.payload.body.is_artist ?? user.is_artist
+      user.created_artworks = action.payload.body.created_artworks ?? user.created_artworks
+      user.bought_artworks = action.payload.body.bought_artworks ?? user.bought_artworks
       return state
     }
     case UserActionTypes.REMOVE_USER: {

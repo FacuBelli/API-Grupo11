@@ -29,7 +29,8 @@ const artworkReducer: Reducer<ArtworkReducer, PayloadAction<CustomPayload<Artwor
           price: action.payload.body.price,
           style_id: action.payload.body.style_id,
           theme_id: action.payload.body.theme_id,
-          title: action.payload.body.title
+          title: action.payload.body.title,
+          is_sold: action.payload.body.is_sold
         }],
         isLoaded: true,
       }
@@ -47,6 +48,7 @@ const artworkReducer: Reducer<ArtworkReducer, PayloadAction<CustomPayload<Artwor
       artwork.style_id = action.payload.body.style_id ?? artwork.style_id
       artwork.theme_id = action.payload.body.theme_id ?? artwork.theme_id
       artwork.title = action.payload.body.title ?? artwork.title
+      artwork.is_sold = action.payload.body.is_sold ?? artwork.is_sold
       return state
     }
     case ArtworkActionTypes.REMOVE_ARTWORK: {
