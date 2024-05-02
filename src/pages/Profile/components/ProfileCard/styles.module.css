@@ -1,0 +1,63 @@
+.container {
+  width: 100%;
+  border: 1px solid var(--color-black);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  button {
+    align-self: flex-start;
+  }
+}
+
+.username {
+  font-size: var(--font-size-subtitle);
+}
+
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-black);
+}
+
+.statsTitle {
+  padding: 8px;
+}
+
+.stats {
+  display: flex;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-top: 1px solid var(--color-black);
+  border-right: 1px solid var(--color-black);
+  flex: 1;
+
+  &:last-child {
+    border-right: none;   
+  }
+}
+
+.statTitle {
+  font-size: var(--font-size-subtext);
+}
+
+.statValue {
+  font-weight: 700;
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
