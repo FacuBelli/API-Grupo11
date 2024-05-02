@@ -1,27 +1,27 @@
-.shopping-cart-button {
-    display: flex;
-    align-items: center;
-  }
-  
-  .decrement-button,
-  .increment-button {
-    background-color: #007bff; /* Color de fondo */
-    color: #fff; /* Color del texto */
-    border: none; /* Quitamos el borde para que se vea como un botón */
-    border-radius: 50%; /* Hacemos que el botón sea circular */
-    padding: 8px 12px; /* Ajustamos el tamaño del botón */
-    cursor: pointer; /* Cambiamos el cursor al pasar sobre el botón */
-    outline: none; /* Quitamos el contorno al hacer clic */
-    transition: background-color 0.3s; /* Agregamos una transición para suavizar los cambios */
-  }
-  
-  .decrement-button:hover,
-  .increment-button:hover {
-    background-color: #0056b3; /* Cambiamos el color al pasar el cursor sobre el botón */
-  }
-  
-  .quantity {
-    margin: 0 10px; /* Margen entre los botones y la cantidad */
-    font-size: 16px; /* Tamaño del texto */
-  }
-  
+/* QuantitySelector.css */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+}
+
+.decrement-button,
+.increment-button {
+  background-color: #007bff; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  border: none; /* Quitamos el borde para que se vea como un botón */
+  border-radius: 50%; /* Hacemos que el botón sea circular */
+  padding: 8px 12px; /* Ajustamos el tamaño del botón */
+  cursor: pointer; /* Cambiamos el cursor al pasar sobre el botón */
+  outline: none; /* Quitamos el contorno al hacer clic */
+  transition: background-color 0.3s; /* Agregamos una transición para suavizar los cambios */
+}
+
+.decrement-button:hover,
+.increment-button:hover {
+  background-color: #0056b3; /* Cambiamos el color al pasar el cursor sobre el botón */
+}
+
+.quantity {
+  margin: 0 10px; /* Margen entre los botones y la cantidad */
+  font-size: 16px; /* Tamaño del texto */
+}
