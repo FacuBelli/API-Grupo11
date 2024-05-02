@@ -7,15 +7,17 @@ import {
   firstNameErrors,
   lastNameErrors,
   passwordErrors,
-  repeatPasswordErrors
+  repeatPasswordErrors,
+  validateInput
 } from '../../utils/validation'
 import Form from '../../components/Form'
-import useAuth from '../../hooks/useAuth'
 import { type FormEvent } from 'react'
+import { useDispatch } from 'react-redux'
+import { userAdd } from '../../redux/actions/userActions'
 
 export default function Register() {
   const navigate = useNavigate()
-  const { register } = useAuth()
+  const dispatch = useDispatch()
 
   const handleRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -31,10 +33,43 @@ export default function Register() {
     const password = passwordInput.value
     const repeatPassword = repeatInput.value
 
-    if (password !== repeatPassword) return
+    const firstNameValidation = validateInput('firstName', firstName)
+    console.log(firstNameValidation)
+    if (!firstNameValidation.isValid) {
+      throw Error(firstNameValidation.message)
+    }
 
-    register(firstName, lastName, email, password)
-    navigate('/')
+    const lastNameValidation = validateInput('lastName', lastName)
+    if (!lastNameValidation.isValid) {
+      throw new Error(lastNameValidation.message)
+    }
+
+    const emailValidation = validateInput('email', email)
+    if (!emailValidation.isValid) {
+      throw new Error(emailValidation.message)
+    }
+
+    const passwordValidation = validateInput('password', password)
+    if (!passwordValidation.isValid) {
+      throw new Error(passwordValidation.message)
+    }
+
+    const repeatPassValidation = validateInput('repeatPassword', repeatPassword, e.currentTarget.elements)
+    if (!repeatPassValidation.isValid) {
+      throw new Error(repeatPassValidation.message)
+    }
+
+    const user = {
+      biography: '',
+      email,
+      password,
+      first_name: firstName,
+      last_name: lastName,
+      is_artist: false
+    }
+
+    dispatch(userAdd(user))
+    navigate('/auth/login')
   }
 
   return (

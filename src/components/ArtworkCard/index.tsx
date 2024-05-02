@@ -9,7 +9,7 @@ interface Props {
 
 export default function ArtworkCard({ artwork }: Props) {
   return (
-    <Link to={`/gallery/${artwork.id}`} className={styles.card}>
+    <Link to={`/gallery/${artwork.id}`} className={artwork.is_sold ? `${styles.card} ${styles.disabled}` : styles.card}>
       <div className={styles.favorite}>
         <FavoriteButton id={artwork.id} />
       </div>

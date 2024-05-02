@@ -2,14 +2,17 @@ import styles from './styles.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/index'
 import Input from '../../components/Input'
-import { emailErrors } from '../../utils/validation'
+import { emailErrors, validateInput } from '../../utils/validation'
 import Form from '../../components/Form'
 import { type FormEvent } from 'react'
-import useAuth from '../../hooks/useAuth'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from '../../redux'
+import { authLogin } from '../../redux/actions/authActions'
 
 export default function Login() {
   const navigate = useNavigate()
-  const { login } = useAuth()
+  const dispatch = useDispatch()
+  const users = useSelector((state: RootState) => state.user.users)
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -19,8 +22,16 @@ export default function Login() {
     const email = emailInput.value
     const password = passwordInput.value
 
-    login(email, password)
-    navigate('/')
+    const emailValidation = validateInput('email', email)
+    if (!emailValidation.isValid) {
+      throw new Error(emailValidation.message)
+    }
+
+    const user = users.find((user) => user.email === email && user.password === password)
+    if (user === undefined) throw new Error('User not found.')
+
+    dispatch(authLogin(user))
+    navigate(-1)
   }
 
   return (

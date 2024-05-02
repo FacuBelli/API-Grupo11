@@ -1,13 +1,16 @@
-import useAuth from '../../hooks/useAuth'
-import useFavorites from '../../hooks/useFavorites'
+import { useSelector } from 'react-redux'
 import FavoriteCard from './components/FavoriteCard'
 import styles from './styles.module.css'
+import type { RootState } from '../../redux'
+import { useMemo } from 'react'
 
 export default function Favorites() {
-  const { user } = useAuth()
-
-  const favorites = useFavorites(user?.id ?? 0)
-  console.log(favorites)
+  const { user, isLogged } = useSelector((state: RootState) => state.auth)
+  const { favorites } = useSelector((state: RootState) => state.favorite)
+  const userFavorites = useMemo(() => {
+    if (!isLogged) return []
+    return favorites.filter((favorite) => favorite.user_id === user!.id)}
+  , [user, isLogged, favorites])
 
   return (
     <main>
@@ -16,12 +19,12 @@ export default function Favorites() {
           YOUR <span>FAVORITES</span>
         </h1>
         <p>
-          You currently have <span>{favorites.length} artworks</span> in your favorites list.
+          You currently have <span>{userFavorites.length} artworks</span> in your favorites list.
         </p>
       </div>
       <section className={styles.section}>
-        {favorites.map((artwork, i) => (
-          <FavoriteCard artwork={artwork} key={i} />
+        {userFavorites.map((favorite, i) => (
+          <FavoriteCard favorite={favorite} key={i} />
         ))}
       </section>
     </main>

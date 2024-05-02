@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
-import useAuth from '../../hooks/useAuth'
 import { KeyboardArrowDown } from '@mui/icons-material'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../../redux'
 
 export default function Navbar() {
-  const { isLogged } = useAuth()
+  const { isLogged } = useSelector((state: RootState) => state.auth)
 
   return (
     <header className={styles.header}>
@@ -32,7 +33,7 @@ export default function Navbar() {
 }
 
 function Profile() {
-  const { user } = useAuth()
+  const { user } = useSelector((state: RootState) => state.auth)
   return (
     <div className={styles.profile}>
       <Link to="/profile" className={styles.name}>
