@@ -1,13 +1,14 @@
 import { useEffect, type ReactNode } from 'react'
-import useAuth from '../../hooks/useAuth'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import type { RootState } from '../../redux'
 
 interface Props {
   children: ReactNode
 }
 
 export default function RequireAuth({ children }: Props) {
-  const { isLogged } = useAuth()
+  const { isLogged } = useSelector((state: RootState) => state.auth)
   const navigate = useNavigate()
 
   useEffect(() => {

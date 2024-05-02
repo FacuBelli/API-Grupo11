@@ -2,11 +2,12 @@ import ArtworkCard from '../../components/ArtworkCard'
 import Slider from '../../components/Slider'
 import CategoryCard from '../../components/CategoryCard'
 import styles from './styles.module.css'
-import useArtworks from '../../hooks/useArtworks'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../../redux'
 
 export default function Gallery() {
-  const popular = useArtworks('popular')
-  const recent = useArtworks('recent')
+  const popular = useSelector((state: RootState) => state.artwork.artworks)
+  const recent = useSelector((state: RootState) => state.artwork.artworks)
 
   const category = [
     {

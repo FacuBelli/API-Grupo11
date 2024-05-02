@@ -1,34 +1,62 @@
 import type { PayloadAction, Reducer } from '@reduxjs/toolkit'
 import type { User } from '../../types/database'
+import type { CustomPayload } from '../../types/redux'
 import { UserActionTypes } from '../actions/userActions'
 
 interface UserReducer {
-  isLogged: boolean
-  user: User | null
+  users: User[]
+  isLoaded: boolean
 }
 
 const initialState: UserReducer = {
-  isLogged: false,
-  user: null
+  users: [],
+  isLoaded: false
 }
 
-const userReducer: Reducer<UserReducer, PayloadAction<User, keyof typeof UserActionTypes>> =
+const userReducer: Reducer<UserReducer, PayloadAction<CustomPayload<User>, keyof typeof UserActionTypes>> =
   (state = initialState, action) => {
     switch (action.type) {
-    case UserActionTypes.USER_LOGIN:
+    case UserActionTypes.ADD_USER: {
+      if (!action.payload.body) return state
       return {
-        ...state,
-        isLogged: true,
-        user: action.payload
+        users: [...state.users, {
+          id: action.payload.body.id ?? state.users.length + 1,
+          biography: action.payload.body.biography,
+          email: action.payload.body.email,
+          password: action.payload.body.password,
+          first_name: action.payload.body.first_name,
+          last_name: action.payload.body.last_name,
+          is_artist: action.payload.body.is_artist,
+          created_artworks: action.payload.body.created_artworks,
+          bought_artworks: action.payload.body.bought_artworks
+        }],
+        isLoaded: true,
       }
-    case UserActionTypes.USER_LOGOUT:
-      return {
-        ...state,
-        isLogged: false,
-        user: null
-      }
-    default:
+    }
+    case UserActionTypes.EDIT_USER: {
+      if (!state.isLoaded || !action.payload.id || !action.payload.body) return state
+      const user = state.users.find((user) => user.id === action.payload.id)
+      if (user === undefined) return state
+      user.biography = action.payload.body.biography ?? user.biography
+      user.email = action.payload.body.email ?? user.email
+      user.password = action.payload.body.password ?? user.password
+      user.first_name = action.payload.body.first_name ?? user.first_name
+      user.last_name = action.payload.body.last_name ?? user.last_name
+      user.is_artist = action.payload.body.is_artist ?? user.is_artist
+      user.created_artworks = action.payload.body.created_artworks ?? user.created_artworks
+      user.bought_artworks = action.payload.body.bought_artworks ?? user.bought_artworks
       return state
+    }
+    case UserActionTypes.REMOVE_USER: {
+      if (!state.isLoaded || !action.payload.id) return state
+      return {
+        ...state,
+        users: state.users.filter((user) => user.id !== action.payload.id)
+      }
+    }
+    default: {
+      return state
+    }
     }
   }
 

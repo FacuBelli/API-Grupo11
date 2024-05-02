@@ -1,17 +1,17 @@
 import styles from './styles.module.css'
 import Button from '../../components/Button'
-import useArtwork from '../../hooks/useArtwork'
 import { useParams } from 'react-router-dom'
-import useUser from '../../hooks/useUser'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../../redux'
 
 
 export default function Artwork() {
   const { artworkId } = useParams()
   const id = artworkId ? parseInt(artworkId) : 0
 
-  const artwork = useArtwork(id)!
+  const artwork = useSelector((state: RootState) => state.artwork.artworks.find((artwork) => artwork.id === id))!
 
-  const artist = useUser(artwork.artist_id)!
+  // const artist = useUser(artwork.artist_id)!
 
   return (
     <main>
@@ -33,8 +33,8 @@ export default function Artwork() {
      
     </section>
     <section className={styles.artistPresentation}>
-      <p className={styles.aboutPresentation}>{artist.first_name + ' ' + artist.last_name}</p>
-      <p className={styles.aboutPresentation}>{artist.biography}</p>
+      {/* <p className={styles.aboutPresentation}>{artist.first_name + ' ' + artist.last_name}</p>
+      <p className={styles.aboutPresentation}>{artist.biography}</p> */}
       <Button to="/Profile">Meet the Artist</Button>
     </section>
 
