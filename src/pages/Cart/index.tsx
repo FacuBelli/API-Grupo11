@@ -52,17 +52,18 @@ export default function Cart() {
       <section className={styles.greatContainer}>
         <section className={styles.pepito}>
           <h2 className={styles.titles}>Your Shopping Cart</h2>
-          <p className={styles.description}>
+          <p>
             Welcome to your shopping cart! Here you can review and manage all the items you've added.
           </p>
         </section>
 
         <section className={styles.rumba}>
           <h2>Manage your Cart</h2>
+          <div className={styles.productView}>
           {artworks.map((artwork, i) => (
             <div className={styles.container} key={i}>
               <img src={artwork.image} alt="" />
-              <div className={styles.Acomodador}>
+              <div className={styles.productInfo}>
                 <p className={styles.title}>{artwork.title}</p>
                 <p className={styles.description}>{artwork.description}</p>
                 <p>{artwork.price}</p>
@@ -75,7 +76,9 @@ export default function Cart() {
                 <button className={styles.button} onClick={() => increaseQuantity(artwork.id)}>+</button>
               </div>
             </div>
+            
           ))}
+          </div>
           <button onClick={removeAllItems}>Remove All Items</button>
         </section>
       </section>
