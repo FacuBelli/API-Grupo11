@@ -22,13 +22,13 @@ const artworkReducer: Reducer<ArtworkReducer, PayloadAction<CustomPayload<Artwor
         artworks: [...state.artworks, {
           id: action.payload.body.id ?? state.artworks.length + 1,
           artist_id: action.payload.body.artist_id,
-          category_id: action.payload.body.category_id,
+          category: action.payload.body.category,
           description: action.payload.body.description,
           image: action.payload.body.image,
-          orientation_id: action.payload.body.orientation_id,
+          orientation: action.payload.body.orientation,
           price: action.payload.body.price,
-          style_id: action.payload.body.style_id,
-          theme_id: action.payload.body.theme_id,
+          style: action.payload.body.style,
+          theme: action.payload.body.theme,
           title: action.payload.body.title,
           is_sold: action.payload.body.is_sold
         }],
@@ -40,13 +40,13 @@ const artworkReducer: Reducer<ArtworkReducer, PayloadAction<CustomPayload<Artwor
       const artwork = state.artworks.find((artwork) => artwork.id === action.payload.id)
       if (artwork === undefined) return state
       artwork.artist_id = action.payload.body.artist_id ?? artwork.artist_id
-      artwork.category_id = action.payload.body.category_id ?? artwork.category_id
+      artwork.category = action.payload.body.category ?? artwork.category
       artwork.description = action.payload.body.description ?? artwork.description
       artwork.image = action.payload.body.image ?? artwork.image
-      artwork.orientation_id = action.payload.body.orientation_id ?? artwork.orientation_id
+      artwork.orientation = action.payload.body.orientation ?? artwork.orientation
       artwork.price = action.payload.body.price ?? artwork.price
-      artwork.style_id = action.payload.body.style_id ?? artwork.style_id
-      artwork.theme_id = action.payload.body.theme_id ?? artwork.theme_id
+      artwork.style = action.payload.body.style ?? artwork.style
+      artwork.theme = action.payload.body.theme ?? artwork.theme
       artwork.title = action.payload.body.title ?? artwork.title
       artwork.is_sold = action.payload.body.is_sold ?? artwork.is_sold
       return state
