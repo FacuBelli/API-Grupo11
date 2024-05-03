@@ -2,6 +2,9 @@ import Button from '../../../../components/Button'
 import BrushIcon from '@mui/icons-material/Brush'
 import type { User } from '../../../../types/database'
 import styles from './styles.module.css'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../../../../redux'
 
 interface Props {
   user: User
@@ -13,6 +16,12 @@ interface Props {
 }
 
 export default function ProfileCard({ user, stats }: Props) {
+  const { userId: userIdParam } = useParams()
+  const userId = userIdParam ? parseInt(userIdParam) : undefined
+
+  const { user: authUser } = useSelector((state: RootState) => state.auth)
+  const isAuthUser = userId === undefined || userId === authUser?.id
+
   return (
     <div className={styles.container}>
       <h3 className={styles.username}>
@@ -35,12 +44,14 @@ export default function ProfileCard({ user, stats }: Props) {
           </div>
         </div>
       </div>
-      <Button to="/studio">
-        <span className={styles.buttonContent}>
-          {user.is_artist ? 'NEW DESIGN' : 'BECOME A CREATOR'}
-          <BrushIcon />
-        </span>
-      </Button>
+      {isAuthUser && (
+        <Button to="/studio">
+          <span className={styles.buttonContent}>
+            {user.is_artist ? 'NEW DESIGN' : 'BECOME A CREATOR'}
+            <BrushIcon />
+          </span>
+        </Button>
+      )}
     </div>
   )
 }
