@@ -9,7 +9,7 @@ import type { RootState } from '../../redux'
 import { favoriteAdd, favoriteRemove } from '../../redux/actions/favoriteActions'
 
 interface Props {
-  id: Artwork['id']
+  id: Artwork['id'] | undefined
   isFav?: boolean
 }
 
@@ -24,6 +24,7 @@ export default function FavoriteButton({ id }: Props) {
   }, [favorites, isLogged, user, id])
 
   const handleFav = async () => {
+    if (id === undefined) return
     dispatch(favoriteAdd({ user_id: user!.id, artwork_id: id }))
   }
 
