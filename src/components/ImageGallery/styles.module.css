@@ -1,8 +1,8 @@
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  align-items: flex-start;
+  width: 100%;
   height: min-content;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+  grid-gap: 40px;
+  justify-items: center;
 }
