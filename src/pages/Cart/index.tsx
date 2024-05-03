@@ -29,11 +29,13 @@ export default function Cart() {
 
   const decreaseQuantity = (artworkId) => {
     const updatedCart = cart.map((item) => {
-      if (item.artwork_id === artworkId && item.quantity > 1) {
+      if (item.artwork_id === artworkId && item.quantity > 2) {
         return { ...item, quantity: item.quantity - 1 };
+        
       }
+
       return item;
-    });
+    })
     setCart(updatedCart);
   };
 
@@ -70,16 +72,19 @@ export default function Cart() {
                 <div className={styles.border}></div>
               </div>
               <div className={styles.buttonContainer}>
-                {/* <button className={styles.button} onClick={() => removeFromCart(artwork.id)}>Remove</button> */}
+                
                 <button className={styles.button} onClick={() => decreaseQuantity(artwork.id)}>-</button>
                 <span>{cart.find((item) => item.artwork_id === artwork.id)?.quantity || 1}</span>
                 <button className={styles.button} onClick={() => increaseQuantity(artwork.id)}>+</button>
+                
               </div>
+              <button className={styles.button} onClick={() => removeFromCart(artwork.id)}>Remove</button> 
+               
             </div>
             
           ))}
           </div>
-          <button onClick={removeAllItems}>Remove All Items</button>
+          <button className={styles.remove}onClick={removeAllItems}>Remove All Items</button>
         </section>
       </section>
     </main>
