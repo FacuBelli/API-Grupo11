@@ -1,43 +1,83 @@
 import styles from './styles.module.css'
 import Button from '../../components/Button'
-import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
-
+import { formatPrice } from '../../utils/format'
+import { CartItemAdd } from '../../redux/actions/cartActions'
+import FavoriteButton from '../../components/FavoriteButton'
+import Slider from '../../components/Slider'
+import ArtworkCard from '../../components/ArtworkCard'
 
 export default function Artwork() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { user, isLogged } = useSelector((state: RootState) => state.auth)
+
   const { artworkId } = useParams()
   const id = artworkId ? parseInt(artworkId) : 0
 
-  const artwork = useSelector((state: RootState) => state.artwork.artworks.find((artwork) => artwork.id === id))!
+  const artworks = useSelector((state: RootState) => state.artwork.artworks)
+  const artwork = artworks.find((artwork) => artwork.id === id)
 
-  // const artist = useUser(artwork.artist_id)!
+  const users = useSelector((state: RootState) => state.user.users)
+  const artist = users.find((user) => user.id === artwork?.artist_id)
+  const userArtworks = artworks.filter((artwork) => artwork.artist_id === artist?.id)
+
+  const handleAddToCart = () => {
+    if (artwork === undefined) return
+    if (!isLogged) {
+      navigate('/auth/login')
+      return
+    }
+
+    dispatch(
+      CartItemAdd({
+        artwork_id: artwork.id,
+        user_id: user!.id,
+        quantity: 1
+      })
+    )
+  }
 
   return (
     <main>
-    <section className={styles.imagePresentation}>
-      <div className={styles.imageDiv}>
-        <img className={styles.image}src={artwork.image} alt="" />
-      </div>
-      <div className={styles.description}>
-        <h1 className={styles.titles}>{artwork.title}</h1>
-        <p className={styles.aboutPrice}>u$s {artwork.price}</p>
-        <div className={styles.aboutDescription}>
-          <p className={styles.about}>{artwork.description}</p>
+      <section className={styles.artworkSection}>
+        <img
+          className={styles.image}
+          src={artwork?.image}
+          alt={`Image of artwork "${artwork?.title}"`}
+        />
+        <div className={styles.dataContainer}>
+          <div className={styles.dataHeader}>
+            <h1 className={styles.title}>{artwork?.title}</h1>
+            <FavoriteButton id={artwork?.id} />
+          </div>
+          <p className={styles.price}>{formatPrice(artwork?.price ?? 0)}</p>
+          <p className={styles.description}>{artwork?.description}</p>
+          <div className={styles.categoryContainer}>
+            {artwork?.category?.map((category, i) => (
+              <Link to={`/search?category_id=${category.id}`} className={styles.category} key={i}>
+                {category.name}
+              </Link>
+            ))}
+          </div>
+          {artwork && <Button onClick={handleAddToCart}>Add to cart</Button>}
         </div>
-        
-        
-        {/* <p className={styles.about}>{artwork.category}</p> */}
-        <Button to="/Cart">Add to cart</Button>
-      </div>
-     
-    </section>
-    <section className={styles.artistPresentation}>
-      {/* <p className={styles.aboutPresentation}>{artist.first_name + ' ' + artist.last_name}</p>
-      <p className={styles.aboutPresentation}>{artist.biography}</p> */}
-      <Button to="/Profile">Meet the Artist</Button>
-    </section>
-
+      </section>
+      <section className={styles.artistSection}>
+        <h2 className={styles.artistTitle}>ARTIST</h2>
+        <p className={styles.artistName}>{artist?.first_name + ' ' + artist?.last_name}</p>
+        <h3 className={styles.artistTitle}>ABOUT THE ARTIST</h3>
+        <p className={styles.artistBiography}>{artist?.biography}</p>
+        <h4 className={styles.artistTitle}>MORE ABOUT THE ARTIST</h4>
+        <Slider>
+          {userArtworks.map((artwork) => (
+            <ArtworkCard artwork={artwork} />
+          ))}
+        </Slider>
+        {artist && <Button to={`/profile/${artist?.id}`}>Meet the Artist</Button>}
+      </section>
     </main>
   )
 }

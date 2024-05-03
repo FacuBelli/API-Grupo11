@@ -7,9 +7,9 @@ interface Props {
   url: string
 }
 
-export default function ItemCard({title, url}: Props) {
+export default function CategoryCard({title, url}: Props) {
   return (
-    <Link to="" className={styles.card}>
+    <Link to={`/search?category=${title}`} className={styles.card}>
       <img className={styles.image} src={url}/>
       <div className={styles.div}>
         <h3 className={styles.title}>{title}</h3>

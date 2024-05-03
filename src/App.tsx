@@ -21,6 +21,7 @@ import { artworkAdd } from './redux/actions/artworkActions'
 import type { RootState } from './redux'
 import { userAdd } from './redux/actions/userActions'
 import { favoriteAdd } from './redux/actions/favoriteActions'
+import Auth from './pages/Auth'
 
 function App() {
   const dispatch = useDispatch()
@@ -91,7 +92,7 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="/auth">
+        <Route path="/auth" element={<Auth />} >
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="logout" element={<Logout />} />

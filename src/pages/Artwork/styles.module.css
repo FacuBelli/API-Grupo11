@@ -1,56 +1,70 @@
-.titles{
-    font-size: var(--font-size-title);
+.artworkSection {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 64px;
 }
 
-.imagePresentation{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 64px;
+.image {
+  flex: 1;
+  aspect-ratio: 3/2;
+  object-fit: contain;
 }
 
-.about{
-    font-size: .7rem;
+.dataContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
 }
 
-.aboutDescription{
-    max-width: 85%;
+.dataHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.aboutPrice{
-    font-size: var(--font-size-subtitle);
-    font-weight: bold;
+.title {
+  font-size: var(--font-size-subtitle);
 }
 
-.description{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 32px;
-    flex: 1 250px;
+.price {
+  font-size: var(--font-size-title);
+  font-weight: bold;
 }
 
-.imageDiv{
-    flex: 1 250px;
-    display: flex;
-    justify-content: center;
+.description {
+  font-size: var(--font-size-subtext);
+  text-wrap: wrap;
 }
 
-.image{
-    width: 100%;
-    max-width: 600px;
-    height: fit-content;
+.categoryContainer {
+  font-size: var(--font-size-subtext);
+  display: flex;
+  gap: 24px;
 }
 
-/*Artist part*/
-.aboutPresentation{
-    font-size: .7rem;
-    padding: 10px;
+.category {
+  text-decoration: underline;
 }
 
-.artistPresentation{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.artistSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.artistTitle {
+  font-weight: var(--font-weight-highlight);
+}
+
+.artistName {
+  font-size: var(--font-size-subtitle);
+}
+
+.artistBiography {
+  font-size: var(--font-size-subtext);
 }

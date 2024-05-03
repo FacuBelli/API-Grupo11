@@ -1,8 +1,8 @@
 .card {
   display: flex;
   flex-direction: column;
-  flex: none;
-  width: 250px;
+  width: 200px;
+  min-width: 200px;
   position: relative;
 }
 
@@ -41,6 +41,6 @@
   opacity: 0;
 }
 
-.card:hover .favorite {
+.card:hover .favorite, .isFavorite {
   opacity: 1;
 }
