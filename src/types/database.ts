@@ -12,7 +12,6 @@ export interface User extends DatabaseTable {
   first_name?: string
   last_name?: string
   is_artist?: boolean
-  created_artworks?: Artwork['id'][]
   bought_artworks?: Artwork['id'][]
 }
 
