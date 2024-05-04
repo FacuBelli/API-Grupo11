@@ -1,6 +1,7 @@
 .section {
   display: flex;
   gap: 32px;
+  flex-wrap: wrap;
 }
 
 .aside {
@@ -9,4 +10,58 @@
   flex-direction: column;
   align-self: flex-start;
   gap: 4px;
+  flex: 1;
+}
+
+.filtersOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filtersToggleButton {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-subtext);
+  cursor: pointer;
+  position: relative;
+
+  svg {
+    height: 20px;
+    stroke: #ffffff;
+  }
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-black);
+  border-radius: 2px;
+  position: absolute;
+  top: 2px;
+  right: -8px;
+}
+
+.filtersClearButton {
+  font-size: var(--font-size-subtext);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.filtersWrapper {
+  transition: 200ms ease-in-out;
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  &.isOpen {
+    grid-template-rows: 1fr;
+  }
+}
+
+.filters {
+  overflow: hidden;
+}
+
+.galleryContainer {
+  flex: 4 500px;
 }

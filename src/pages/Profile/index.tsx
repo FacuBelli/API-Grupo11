@@ -20,10 +20,7 @@ export default function Profile() {
   const { artworks } = useSelector((state: RootState) => state.artwork)
 
   const createdArtworks = useMemo(
-    () =>
-      user?.created_artworks?.map(
-        (artworkId) => artworks.find((artwork) => artwork.id === artworkId)!
-      ),
+    () => artworks.filter((artwork) => artwork.artist_id === user?.id),
     [user, artworks]
   )
 

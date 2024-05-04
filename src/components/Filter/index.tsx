@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { KeyboardArrowDown } from '@mui/icons-material'
+import { useSearchParams } from 'react-router-dom'
 
 interface Props {
   title: string
@@ -8,12 +9,24 @@ interface Props {
 }
 
 export default function Filter({ title, options = [] }: Props) {
+  const [searchParams, setSearchParams] = useSearchParams()
   const [selected, setSelected] = useState<string | null>(null)
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = (value: string) => {
     setSelected(value !== selected ? value : null)
   }
+
+  useEffect(() => {
+    const param = searchParams.get(title)
+    setSelected(param)
+  }, [searchParams, title])
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams)
+    selected ? params.set(title, selected) : params.delete(title)
+    setSearchParams(params)
+  }, [selected, title, searchParams, setSearchParams])
 
   return (
     <div className={styles.container}>

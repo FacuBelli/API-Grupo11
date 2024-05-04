@@ -10,8 +10,7 @@ const db: Database = {
       first_name: 'John',
       last_name: 'Doe',
       is_artist: false,
-      created_artworks: [],
-      bought_artworks: [1]
+      bought_artworks: [3, 6]
     },
     {
       id: 2,
@@ -21,8 +20,7 @@ const db: Database = {
       first_name: 'Jane',
       last_name: 'Smith',
       is_artist: false,
-      created_artworks: [],
-      bought_artworks: [4]
+      bought_artworks: [8]
     },
     {
       id: 3,
@@ -32,7 +30,6 @@ const db: Database = {
       first_name: 'Alice',
       last_name: 'Johnson',
       is_artist: true,
-      created_artworks: [1, 2],
       bought_artworks: []
     },
     {
@@ -43,7 +40,6 @@ const db: Database = {
       first_name: 'Bob',
       last_name: 'Williams',
       is_artist: true,
-      created_artworks: [3, 5],
       bought_artworks: []
     },
     {
@@ -53,8 +49,7 @@ const db: Database = {
       password: 'password3',
       first_name: 'Emily',
       last_name: 'Brown',
-      is_artist: false,
-      created_artworks: [],
+      is_artist: true,
       bought_artworks: []
     },
     {
@@ -65,7 +60,6 @@ const db: Database = {
       first_name: 'Michael',
       last_name: 'Jones',
       is_artist: false,
-      created_artworks: [],
       bought_artworks: []
     },
     {
@@ -76,8 +70,7 @@ const db: Database = {
       first_name: 'Sophia',
       last_name: 'Lee',
       is_artist: true,
-      created_artworks: [4, 6],
-      bought_artworks: [5]
+      bought_artworks: [11]
     },
     {
       id: 8,
@@ -87,7 +80,6 @@ const db: Database = {
       first_name: 'William',
       last_name: 'Davis',
       is_artist: true,
-      created_artworks: [],
       bought_artworks: []
     },
     {
@@ -98,7 +90,6 @@ const db: Database = {
       first_name: 'Olivia',
       last_name: 'Martinez',
       is_artist: false,
-      created_artworks: [],
       bought_artworks: []
     },
     {
@@ -109,7 +100,6 @@ const db: Database = {
       first_name: 'Liam',
       last_name: 'Garcia',
       is_artist: false,
-      created_artworks: [],
       bought_artworks: []
     },
     {
@@ -120,7 +110,6 @@ const db: Database = {
       first_name: 'Emma',
       last_name: 'Rodriguez',
       is_artist: true,
-      created_artworks: [],
       bought_artworks: []
     },
     {
@@ -131,7 +120,6 @@ const db: Database = {
       first_name: 'Noah',
       last_name: 'Hernandez',
       is_artist: true,
-      created_artworks: [],
       bought_artworks: []
     }
   ],
@@ -217,7 +205,7 @@ const db: Database = {
     {
       id: 7,
       title: 'Industrial Elegance',
-      artist_id: 6,
+      artist_id: 5,
       category: [{ id: 4, name: 'Cityscape' }],
       style: [{ id: 6, name: 'Modernism' }],
       theme: [{ id: 7, name: 'Urban Architecture' }],
@@ -230,7 +218,7 @@ const db: Database = {
     {
       id: 8,
       title: 'Dreamy Waters',
-      artist_id: 6,
+      artist_id: 7,
       category: [{ id: 1, name: 'Landscape' }],
       style: [{ id: 7, name: 'Impressionism' }],
       theme: [{ id: 2, name: 'Harmony' }],
@@ -295,7 +283,7 @@ const db: Database = {
     {
       id: 13,
       title: 'Mindscapes',
-      artist_id: 9,
+      artist_id: 11,
       category: [{ id: 3, name: 'Abstract' }],
       style: [{ id: 5, name: 'Surrealism' }],
       theme: [{ id: 10, name: 'Dreams' }],
@@ -308,7 +296,7 @@ const db: Database = {
     {
       id: 14,
       title: 'Urban Jungle',
-      artist_id: 9,
+      artist_id: 11,
       category: [{ id: 4, name: 'Cityscape' }],
       style: [{ id: 10, name: 'Futurism' }],
       theme: [{ id: 11, name: 'Urban Jungle' }],
@@ -321,7 +309,7 @@ const db: Database = {
     {
       id: 15,
       title: 'Ocean Serenity',
-      artist_id: 10,
+      artist_id: 12,
       category: [{ id: 10, name: 'Seascape' }],
       style: [{ id: 1, name: 'Realism' }],
       theme: [{ id: 12, name: 'Ocean' }],
