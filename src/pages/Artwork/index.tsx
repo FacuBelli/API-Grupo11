@@ -57,7 +57,7 @@ export default function Artwork() {
           <p className={styles.description}>{artwork?.description}</p>
           <div className={styles.categoryContainer}>
             {artwork?.category?.map((category, i) => (
-              <Link to={`/search?category_id=${category.id}`} className={styles.category} key={i}>
+              <Link to={`/search?category=${category.name}`} className={styles.category} key={i}>
                 {category.name}
               </Link>
             ))}
@@ -72,8 +72,8 @@ export default function Artwork() {
         <p className={styles.artistBiography}>{artist?.biography}</p>
         <h4 className={styles.artistTitle}>MORE ABOUT THE ARTIST</h4>
         <Slider>
-          {userArtworks.map((artwork) => (
-            <ArtworkCard artwork={artwork} />
+          {userArtworks.map((artwork, i) => (
+            <ArtworkCard artwork={artwork} key={i} />
           ))}
         </Slider>
         {artist && <Button to={`/profile/${artist?.id}`}>Meet the Artist</Button>}
