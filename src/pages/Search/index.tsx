@@ -5,36 +5,71 @@ import Filter from '../../components/Filter'
 import ImageGallery from '../../components/ImageGallery'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
+import { useEffect, useMemo, useState } from 'react'
+import { Tune } from '@mui/icons-material'
+import { useSearchParams } from 'react-router-dom'
+import type { Artwork } from '../../types/database'
+
+const filterOptions = [
+  {
+    value: 'category',
+    options: ['Abstract', 'Landscape', 'Portrait', 'Still Life']
+  },
+  {
+    value: 'style',
+    options: ['Realism', 'Impressionism', 'Abstract', 'Surrealism']
+  },
+  {
+    value: 'color',
+    options: ['Red', 'Blue', 'Green', 'Yellow']
+  },
+  {
+    value: 'price range',
+    options: ['Under $50', '$50 - $100', '$100 - $200', '$200+']
+  },
+  {
+    value: 'theme',
+    options: ['Nature', 'Cityscape', 'People', 'Abstract']
+  },
+  {
+    value: 'orientation',
+    options: ['Horizontal', 'Vertical', 'Square']
+  }
+]
 
 export default function Search() {
+  const [searchParams, setSearchParams] = useSearchParams()
   const artworks = useSelector((state: RootState) => state.artwork.artworks)
-
-  const filterOptions = [
-    {
-      value: 'category',
-      options: ['Abstract', 'Landscape', 'Portrait', 'Still Life']
-    },
-    {
-      value: 'style',
-      options: ['Realism', 'Impressionism', 'Abstract', 'Surrealism']
-    },
-    {
-      value: 'color',
-      options: ['Red', 'Blue', 'Green', 'Yellow']
-    },
-    {
-      value: 'price range',
-      options: ['Under $50', '$50 - $100', '$100 - $200', '$200+']
-    },
-    {
-      value: 'theme',
-      options: ['Nature', 'Cityscape', 'People', 'Abstract']
-    },
-    {
-      value: 'orientation',
-      options: ['Horizontal', 'Vertical', 'Square']
-    }
-  ]
+  const [isFiltersOpen, setIsFilterOpen] = useState(searchParams.size !== 0)
+  // const filteredArtworks = useMemo(
+  //   () =>
+  //     artworks.filter((artwork) => {
+  //       // Check if the artwork matches all selected options
+  //       return Array.from(searchParams.entries()).every(([selectedOption, selectedValue]) => {
+  //         const propertyValue = artwork[selectedOption as keyof typeof artwork]
+  //         if (Array.isArray(propertyValue)) {
+  //           return propertyValue.includes(selectedValue)
+  //         } else if (propertyValue === selectedValue) {
+  //           return true
+  //         } else if (selectedOption === 'price range' && propertyValue) {
+  //           switch (selectedValue) {
+  //             case 'Under $50':
+  //               return propertyValue < 50
+  //             case '$50 - $100':
+  //               return propertyValue >= 50 && propertyValue < 100
+  //             case '$100 - $200':
+  //               return propertyValue >= 100 && propertyValue < 200
+  //             case '$200+':
+  //               return propertyValue >= 200
+  //             default:
+  //               return false
+  //           }
+  //         }
+  //         return false
+  //       })
+  //     }),
+  //   [artworks, searchParams]
+  // )
 
   return (
     <main>
@@ -47,11 +82,37 @@ export default function Search() {
             icon={SearchIcon}
             iconPosition="end"
           />
-          {filterOptions.map((filter, i) => (
-            <Filter title={filter.value} options={filter.options} key={i} />
-          ))}
+          <div className={styles.filtersOptions}>
+            <button
+              className={styles.filtersToggleButton}
+              onClick={() => setIsFilterOpen(!isFiltersOpen)}
+            >
+              <Tune />
+              FILTERS
+              {searchParams.size !== 0 && <span className={styles.dot} />}
+            </button>
+            <button
+              className={styles.filtersClearButton}
+              onClick={() => setSearchParams(new URLSearchParams())}
+            >
+              CLEAR
+            </button>
+          </div>
+          <div
+            className={
+              isFiltersOpen ? `${styles.filtersWrapper} ${styles.isOpen}` : styles.filtersWrapper
+            }
+          >
+            <div className={styles.filters}>
+              {filterOptions.map((filter, i) => (
+                <Filter title={filter.value} options={filter.options} key={i} />
+              ))}
+            </div>
+          </div>
         </aside>
-        <ImageGallery artworks={artworks} />
+        <div className={styles.galleryContainer}>
+          <ImageGallery artworks={artworks} />
+        </div>
       </section>
     </main>
   )
