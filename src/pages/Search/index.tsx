@@ -5,7 +5,7 @@ import Filter from '../../components/Filter'
 import ImageGallery from '../../components/ImageGallery'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
-import { useMemo, useState } from 'react'
+import { type ChangeEvent, useMemo, useState } from 'react'
 import { Tune } from '@mui/icons-material'
 import { useSearchParams } from 'react-router-dom'
 
@@ -58,7 +58,9 @@ export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams()
   const artworks = useSelector((state: RootState) => state.artwork.artworks)
   const [isFiltersOpen, setIsFilterOpen] = useState(searchParams.size !== 0)
-  const filteredArtworks = useMemo(
+  const [searchInput, setSearchInput] = useState('')
+
+  const filterArtworks = useMemo(
     () =>
       artworks.filter((artwork) =>
         Array.from(searchParams.entries()).every(([selectedOption, selectedValue]) => {
@@ -97,6 +99,21 @@ export default function Search() {
       ),
     [artworks, searchParams]
   )
+  
+  const searchFilterArtworks = useMemo(() => {
+    if (searchInput.length === 0) return filterArtworks
+
+    return filterArtworks.sort((artworkA, artworkB) => {
+      const regex = new RegExp(searchInput, 'i')
+      const a = artworkA.title?.search(regex) ?? Number.MIN_VALUE
+      const b = artworkB.title?.search(regex) ?? Number.MIN_VALUE
+      return b - a
+    })
+  }, [filterArtworks, searchInput])
+
+  const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value)
+  }
 
   return (
     <main>
@@ -108,6 +125,7 @@ export default function Search() {
             placeholder="SEARCH"
             icon={SearchIcon}
             iconPosition="end"
+            onChange={(e) => handleSearchInputChange(e)}
           />
           <div className={styles.filtersOptions}>
             <button
@@ -138,7 +156,7 @@ export default function Search() {
           </div>
         </aside>
         <div className={styles.galleryContainer}>
-          <ImageGallery artworks={filteredArtworks} />
+          <ImageGallery artworks={searchFilterArtworks} />
         </div>
       </section>
     </main>
