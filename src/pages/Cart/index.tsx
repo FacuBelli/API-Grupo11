@@ -51,6 +51,8 @@ export default function Cart() {
     setCart(updatedCart);
   };
 
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <main>
       <section className={styles.pepito}>
@@ -101,7 +103,7 @@ export default function Cart() {
         <div className={styles.cartSummary}>
           <h3 className={styles.summaryTitle}>Cart Summary</h3>
           <div className={styles.border}></div>
-          <p className={styles.items}>Number of items</p>
+          <p className={styles.items}>Number of items: {totalItems}</p>
         </div>
 
       </section>
