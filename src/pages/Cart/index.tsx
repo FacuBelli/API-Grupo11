@@ -103,7 +103,10 @@ export default function Cart() {
         <div className={styles.cartSummary}>
           <h3 className={styles.summaryTitle}>Cart Summary</h3>
           <div className={styles.border}></div>
-          <p className={styles.items}>Number of items: {totalItems}</p>
+          <div className={styles.items}>
+            <p>Number of items </p>
+            <p>{totalItems}</p>
+          </div>
         </div>
 
       </section>
