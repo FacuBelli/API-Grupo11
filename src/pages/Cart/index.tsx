@@ -99,7 +99,9 @@ export default function Cart() {
           <button className={styles.remove} onClick={removeAllItems}>Remove All Items</button>
         </div>
         <div className={styles.cartSummary}>
-          <h3>Cart Summary</h3>
+          <h3 className={styles.summaryTitle}>Cart Summary</h3>
+          <div className={styles.border}></div>
+          <p className={styles.items}>Number of items</p>
         </div>
 
       </section>

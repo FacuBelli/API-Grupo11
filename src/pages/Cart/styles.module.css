@@ -117,10 +117,19 @@
 /*Cart Summary*/
 .cartSummary{
     display: flex;
+    flex-direction: column;
     flex: 1;
     border: 1px solid #000;
     height: fit-content;
+    justify-content: left;
+    margin-left: 40px;
 }
+
+.summaryTitle{
+    font-size: var(--font-size-text);
+    font-weight: var(--font-weight-highlight);
+}
+
 
 /*Image*/
 .image{
