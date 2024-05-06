@@ -12,23 +12,41 @@ import { useSearchParams } from 'react-router-dom'
 const filterOptions = [
   {
     value: 'category',
-    options: ['Abstract', 'Landscape', 'Portrait', 'Still Life']
+    options: ['Landscape', 'Nature', 'Abstract', 'Cityscape', 'Floral', 'Gardens', 'Seascape']
   },
   {
     value: 'style',
-    options: ['Realism', 'Impressionism', 'Abstract', 'Surrealism']
+    options: [
+      'Realism',
+      'Abstract Expressionism',
+      'Impressionism',
+      'Surrealism',
+      'Modernism',
+      'Symbolism',
+      'Cubism',
+      'Futurism'
+    ]
   },
   {
-    value: 'color',
-    options: ['Red', 'Blue', 'Green', 'Yellow']
+    value: 'theme',
+    options: [
+      'Sunsets',
+      'Harmony',
+      'Urban Life',
+      'Nature',
+      'Inner Power',
+      'Wilderness',
+      'Urban Architecture',
+      'Celestial',
+      'Tranquility',
+      'Dreams',
+      'Urban Jungle',
+      'Ocean'
+    ]
   },
   {
     value: 'price range',
     options: ['Under $50', '$50 - $100', '$100 - $200', '$200+']
-  },
-  {
-    value: 'theme',
-    options: ['Nature', 'Cityscape', 'People', 'Abstract']
   },
   {
     value: 'orientation',
@@ -42,14 +60,23 @@ export default function Search() {
   const [isFiltersOpen, setIsFilterOpen] = useState(searchParams.size !== 0)
   const filteredArtworks = useMemo(
     () =>
-      artworks.filter((artwork) => {
-        return Array.from(searchParams.entries()).every(([selectedOption, selectedValue]) => {
+      artworks.filter((artwork) =>
+        Array.from(searchParams.entries()).every(([selectedOption, selectedValue]) => {
           const propertyValue = artwork[selectedOption as keyof typeof artwork]
+
           if (Array.isArray(propertyValue)) {
             return propertyValue.some((prop) => prop.name === selectedValue)
-          } else if (propertyValue === selectedValue) {
+          }
+
+          if (
+            typeof propertyValue === 'object' &&
+            !(propertyValue instanceof Date) &&
+            propertyValue?.name === selectedValue
+          ) {
             return true
-          } else if (selectedOption === 'price range') {
+          }
+
+          if (selectedOption === 'price range') {
             const price = artwork.price ?? 0
             switch (selectedValue) {
               case 'Under $50':
@@ -64,9 +91,10 @@ export default function Search() {
                 return false
             }
           }
-          return false
+
+          return propertyValue === selectedValue
         })
-      }),
+      ),
     [artworks, searchParams]
   )
 
