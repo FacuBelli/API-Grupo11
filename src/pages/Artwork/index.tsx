@@ -62,7 +62,8 @@ export default function Artwork() {
               </Link>
             ))}
           </div>
-          {artwork && <Button onClick={handleAddToCart}>Add to cart</Button>}
+          <h4><span>UNITS LEFT:</span> {artwork?.stock}</h4>
+          {artwork && artwork.stock !== 0 ? <Button onClick={handleAddToCart}>Add to cart</Button> : <Button disabled>SOLD OUT</Button>}
         </div>
       </section>
       <section className={styles.artistSection}>
