@@ -140,8 +140,26 @@
 
 .items{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding: 10px;
+}
+
+.cartImage{
+    max-width:75px;
+    margin: 10px;
+
+}
+
+.cartContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.cartDescription{
+    margin: 10px;
+    border: 2px solid red;
 }
 
 /*Image*/
