@@ -55,9 +55,15 @@ export default function Cart() {
     setCart(updatedCart);
   };
 
-  const compraExitosa = () =>{
-    alert("Compra exitosa, se lo redirigira al inicio.");
-    navigate('/gallery');
+  const compra = () =>{
+    if (cart.length >= 1) {
+      alert("Compra exitosa, se lo redirigira al inicio.");
+      navigate('/gallery');
+
+    }else{
+      alert("Carrito vacio.");
+    }
+
   }
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
@@ -128,7 +134,7 @@ export default function Cart() {
  
           </div>
           <div className={styles.botonComprarContainer}>
-            <Button  onClick={compraExitosa}>Comprar</Button>
+            <Button  onClick={compra}>Comprar</Button>
  
           </div>
  
