@@ -8,41 +8,20 @@ import type { RootState } from '../../redux'
 import { type ChangeEvent, useMemo, useState } from 'react'
 import { Tune } from '@mui/icons-material'
 import { useSearchParams } from 'react-router-dom'
+import db from '../../utils/database'
 
 const filterOptions = [
   {
     value: 'category',
-    options: ['Landscape', 'Nature', 'Abstract', 'Cityscape', 'Floral', 'Gardens', 'Seascape']
+    options: db.categories.map((category) => category.name!)
   },
   {
     value: 'style',
-    options: [
-      'Realism',
-      'Abstract Expressionism',
-      'Impressionism',
-      'Surrealism',
-      'Modernism',
-      'Symbolism',
-      'Cubism',
-      'Futurism'
-    ]
+    options: db.styles.map((style) => style.name!)
   },
   {
     value: 'theme',
-    options: [
-      'Sunsets',
-      'Harmony',
-      'Urban Life',
-      'Nature',
-      'Inner Power',
-      'Wilderness',
-      'Urban Architecture',
-      'Celestial',
-      'Tranquility',
-      'Dreams',
-      'Urban Jungle',
-      'Ocean'
-    ]
+    options: db.themes.map((theme) => theme.name!)
   },
   {
     value: 'price range',
@@ -50,7 +29,7 @@ const filterOptions = [
   },
   {
     value: 'orientation',
-    options: ['Horizontal', 'Vertical', 'Square']
+    options: db.orientations.map((orientation) => orientation.name!)
   }
 ]
 
@@ -99,7 +78,7 @@ export default function Search() {
       ),
     [artworks, searchParams]
   )
-  
+
   const searchFilterArtworks = useMemo(() => {
     if (searchInput.length === 0) return filterArtworks
 

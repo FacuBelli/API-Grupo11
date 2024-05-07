@@ -8,30 +8,29 @@ import type { RootState } from '../../redux'
 export default function Gallery() {
   const popular = useSelector((state: RootState) => state.artwork.artworks)
   const recent = useSelector((state: RootState) => state.artwork.artworks)
-
   const category = [
     {
-      title: 'LANDSCAPES',
+      title: 'Landscape',
       url: 'https://learn.ncartmuseum.org/wp-content/uploads/2017/06/COLE-Romantic-Landscape-52_9_7-1024x743.jpg'
     },
     {
-      title: 'PORTRAITS',
+      title: 'Portrait',
       url: 'https://i.pinimg.com/736x/15/69/f8/1569f89a84f73ed2b5648a127c5e9c86.jpg'
     },
     {
-      title: 'ABSTRACT',
+      title: 'Abstract',
       url: 'https://artsandyou.net/cdn/shop/articles/el-arte-abstracto-lo-puede-hacer-cualquiera-467550.jpg?v=1701795623'
     },
     {
-      title: 'NATURE',
+      title: 'Nature',
       url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2n8eSIaDliaScSaEHYAaRv7tKXiumjuSz85dBptoaSQ&s'
     },
     {
-      title: 'URBAN',
+      title: 'Urban',
       url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSht0ZTJFkGryniuyMkSeSNTZcm6nzv-tiiKhId-Lqw8Q&s'
     },
     {
-      title: 'SURREAL',
+      title: 'Abstract',
       url: 'https://concepto.de/wp-content/uploads/2018/02/surrealismo-obra-min-e1519327827783.jpg'
     }
   ]
