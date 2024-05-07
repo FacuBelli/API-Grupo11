@@ -4,6 +4,9 @@ import styles from './styles.module.css';
 import { formatPrice } from '../../utils/format';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
+
 
 
 export default function Cart() {
@@ -11,8 +14,14 @@ export default function Cart() {
   const navigate = useNavigate()
 
 
-  const [cart, setCart] = useState(db.cart.filter((cartItem) => cartItem.user_id === userId));
-  const artworks = db.artworks.filter((artwork) => cart.some((cartItem) => cartItem.artwork_id === artwork.id));
+  const cart = useSelector( (state: RootState) => state.cart.cartItems)
+
+  
+  const artworks = useSelector((state: RootState) => state.artwork.artworks)
+
+  const cartArtworks = artworks.filter( (artwork) =>{
+      cart.some ((cartItem) => cartItem.artwork_id === artwork.id )
+  } )
 
   const removeFromCart = (artworkId) => {
     const newCart = cart.filter((item) => item.artwork_id !== artworkId);
@@ -89,7 +98,7 @@ export default function Cart() {
         <div className={styles.rumba}>
 
           <div className={styles.productView}>
-            {artworks.map((artwork, i) => (
+            {cartArtworks.map((artwork, i) => (
               <div className={styles.container} key={i}>
                 <img className={styles.image} src={artwork.image} alt="" />
                 <div className={styles.productInfo}>
