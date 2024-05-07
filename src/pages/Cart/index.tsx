@@ -51,6 +51,11 @@ export default function Cart() {
     setCart(updatedCart);
   };
 
+  const compraExitosa = () =>{
+    alert("Compra exitosa, se lo redirigira al inicio.")
+    window.location.href = './gallery'
+  }
+
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
 
@@ -110,11 +115,23 @@ export default function Cart() {
           <h3 className={styles.summaryTitle}>Cart Summary</h3>
           <div className={styles.border}></div>
           <div className={styles.items}>
-            <p className={styles.cartInfo}>Number of items </p>
-            <p>{totalItems}</p>
+            {artworks.map((artwork, i) => (
+              <div className={styles.cartContainer} key={i}>
 
+                <img className={styles.cartImage} src={artwork.image} alt="" />
+
+                <div className={styles.cartDescription}>
+                  <p className={styles.cartInfo}>{artwork.title}</p>
+                  <p className={styles.cartInfo}>{formatPrice(artwork.price!)}</p>
+                  {/* Aca quiero poner el botoncito de remove desde el carrito */}
+                </div>
+
+              </div>
+            ))}
+            <p className={styles.cartInfo}>Number of items: {totalItems}</p>
             <p className={styles.cartInfo}>Subtotal: {formatPrice(subtotal)}</p>
           </div>
+          <button onClick={compraExitosa}>Comprar</button>
         </div>
 
       </section>
