@@ -8,8 +8,10 @@
 
 .greatContainer{
     display: flex;
-    flex-direction: column;
-    gap: 75px;
+    align-items: center;
+    gap:20px;
+    border: 2px solid red;
+
 
 }
 
@@ -25,35 +27,38 @@
     font-size: var(--font-size-title);
     display: flex;
     flex-direction: column;
+    flex: 3;
 }
 
 
 .container{
     display: flex;
     padding: 20px;
-    gap: 30px;
+    gap: 15px;
 
     justify-content: space-between;
 }
 
 .title{
-    font-size:var(--font-size-subtitle) ;
+    font-size:var(--font-size-text) ;
 }
 
 .description{
-    font-size:var(--font-size-text) ;
+    font-size:var(--font-size-subtext) ;
     max-width: 500px;
     
 }
+.price{
+    font-size: var(--font-size-subtitle);
+    font-weight: var(--font-weight-highlight);
+}
+
 
 .productInfo{
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-
-
-
 
 }
 
@@ -64,6 +69,7 @@
 /*Productos*/
 .productView{
     width: fit-content;
+
 }
 
 /*Botones*/
@@ -74,19 +80,27 @@
     flex-direction: row;
     border: 0.5px solid #000;
     height: fit-content;
-    font-size: var(--font-size-title);
+    font-size: var(--font-size-subtitle);
     align-items: center;
     justify-content: flex-end;
+    width: fit-content;
 
 }
 
 .button{
-    margin: 15px;
+    margin: 10px;
 
 }
 
 .button:hover{
     font-weight: bold;
+}
+
+.productAcomodo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .remove{
@@ -100,3 +114,57 @@
     font-weight: bold;
 }
 
+/*Cart Summary*/
+.cartSummary{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border: 1px solid #000;
+    height: fit-content;
+    margin-left: 40px;
+}
+
+
+
+.cartInfo{
+    font-size: var(--font-size-subtext);
+    font-weight: var(--font-weight-highlight);
+}
+
+.summaryTitle{
+    font-size: var(--font-size-text);
+    font-weight: var(--font-weight-highlight);
+    text-align: center;
+    margin: 10px;
+}
+
+.items{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.cartImage{
+    max-width:75px;
+    margin: 10px;
+
+}
+
+.cartContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.cartDescription{
+    margin: 10px;
+    border: 2px solid red;
+}
+
+/*Image*/
+.image{
+    max-width: 200px;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+}
