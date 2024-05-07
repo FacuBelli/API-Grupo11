@@ -37,19 +37,18 @@ const artworkReducer: Reducer<ArtworkReducer, PayloadAction<CustomPayload<Artwor
     }
     case ArtworkActionTypes.EDIT_ARTWORK: {
       if (!state.isLoaded || !action.payload.id || !action.payload.body) return state
-      const artwork = state.artworks.find((artwork) => artwork.id === action.payload.id)
-      if (artwork === undefined) return state
-      artwork.artist_id = action.payload.body.artist_id ?? artwork.artist_id
-      artwork.category = action.payload.body.category ?? artwork.category
-      artwork.description = action.payload.body.description ?? artwork.description
-      artwork.image = action.payload.body.image ?? artwork.image
-      artwork.orientation = action.payload.body.orientation ?? artwork.orientation
-      artwork.price = action.payload.body.price ?? artwork.price
-      artwork.style = action.payload.body.style ?? artwork.style
-      artwork.theme = action.payload.body.theme ?? artwork.theme
-      artwork.title = action.payload.body.title ?? artwork.title
-      artwork.is_sold = action.payload.body.is_sold ?? artwork.is_sold
-      return state
+      return {
+        ...state,
+        artworks: state.artworks.map((artwork) => {
+          if (artwork.id === action.payload.id) {
+            return {
+              ...artwork,
+              ...action.payload.body
+            }
+          }
+          return artwork
+        })
+      }
     }
     case ArtworkActionTypes.REMOVE_ARTWORK: {
       if (!state.isLoaded || !action.payload.id) return state

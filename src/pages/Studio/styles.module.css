@@ -1,0 +1,88 @@
+.title {
+  font-size: var(--font-size-title);
+  align-self: center;
+  text-align: center;
+}
+
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px;
+}
+
+.imageContainer {
+  flex: 1 320px;
+  aspect-ratio: 3/2;
+  border: 1px solid var(--color-black);
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subtitleContainer {
+  text-align: center;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  p {
+    font-size: var(--font-size-subtext);
+  }
+}
+
+.image {
+  width: 100%;
+  object-fit: contain;
+}
+
+.inputsContainer {
+  flex: 1 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  
+  button {
+    align-self: start;
+    align-items: center;
+    
+    svg {
+      height: 20px;
+      stroke: #FFFFFF;
+    }
+  }
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputContainer:first-of-type {
+  max-width: 300px;
+}
+
+.inputTitle {
+  font-size: var(--font-size-subtext);
+}
+
+.properties {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-black);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: var(--font-size-subtext);
+}

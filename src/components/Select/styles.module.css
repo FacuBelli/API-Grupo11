@@ -1,0 +1,15 @@
+.select {
+  width: 100px;
+  border: 1px solid var(--color-black);
+  appearance: none;
+  font-size: var(--font-size-text);
+  text-transform: uppercase;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.option {
+  font-size: var(--font-size-text);
+  text-transform: uppercase;
+  padding: 8px;
+}

@@ -29,17 +29,33 @@ const cartReducer: Reducer<CartReducer, PayloadAction<CustomPayload<CartItem>, k
     }
     case CartActionTypes.INCREASE_CART_ITEM: {
       if (!state.isLoaded || !action.payload.id) return state
-      const cartItem = state.cartItems.find((cartItem) => cartItem.id === action.payload.id)
-      if (cartItem === undefined) return state
-      cartItem.quantity = (cartItem.quantity ?? 0) + 1
-      return state
+      return {
+        ...state,
+        cartItems: state.cartItems.map((cartItem) => {
+          if (cartItem.id === action.payload.id) {
+            return {
+              ...cartItem,
+              quantity: (cartItem.quantity ?? 0) + 1
+            }
+          }
+          return cartItem
+        })
+      }
     }
     case CartActionTypes.DECREASE_CART_ITEM: {
       if (!state.isLoaded || !action.payload.id) return state
-      const cartItem = state.cartItems.find((cartItem) => cartItem.id === action.payload.id)
-      if (cartItem === undefined) return state
-      cartItem.quantity = (cartItem.quantity ?? 0) > 0 ? (cartItem.quantity ?? 0) - 1 : 0
-      return state
+      return {
+        ...state,
+        cartItems: state.cartItems.map((cartItem) => {
+          if (cartItem.id === action.payload.id) {
+            return {
+              ...cartItem,
+              quantity: (cartItem.quantity ?? 0) > 0 ? (cartItem.quantity ?? 0) - 1 : 0
+            }
+          }
+          return cartItem
+        })
+      }
     }
     case CartActionTypes.REMOVE_CART_ITEM: {
       if (!state.isLoaded || !action.payload.id) return state

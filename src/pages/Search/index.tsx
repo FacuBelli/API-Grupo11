@@ -5,31 +5,48 @@ import Filter from '../../components/Filter'
 import ImageGallery from '../../components/ImageGallery'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
-import { useEffect, useMemo, useState } from 'react'
+import { type ChangeEvent, useMemo, useState } from 'react'
 import { Tune } from '@mui/icons-material'
 import { useSearchParams } from 'react-router-dom'
-import type { Artwork } from '../../types/database'
 
 const filterOptions = [
   {
     value: 'category',
-    options: ['Abstract', 'Landscape', 'Portrait', 'Still Life']
+    options: ['Landscape', 'Nature', 'Abstract', 'Cityscape', 'Floral', 'Gardens', 'Seascape']
   },
   {
     value: 'style',
-    options: ['Realism', 'Impressionism', 'Abstract', 'Surrealism']
+    options: [
+      'Realism',
+      'Abstract Expressionism',
+      'Impressionism',
+      'Surrealism',
+      'Modernism',
+      'Symbolism',
+      'Cubism',
+      'Futurism'
+    ]
   },
   {
-    value: 'color',
-    options: ['Red', 'Blue', 'Green', 'Yellow']
+    value: 'theme',
+    options: [
+      'Sunsets',
+      'Harmony',
+      'Urban Life',
+      'Nature',
+      'Inner Power',
+      'Wilderness',
+      'Urban Architecture',
+      'Celestial',
+      'Tranquility',
+      'Dreams',
+      'Urban Jungle',
+      'Ocean'
+    ]
   },
   {
     value: 'price range',
     options: ['Under $50', '$50 - $100', '$100 - $200', '$200+']
-  },
-  {
-    value: 'theme',
-    options: ['Nature', 'Cityscape', 'People', 'Abstract']
   },
   {
     value: 'orientation',
@@ -41,35 +58,62 @@ export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams()
   const artworks = useSelector((state: RootState) => state.artwork.artworks)
   const [isFiltersOpen, setIsFilterOpen] = useState(searchParams.size !== 0)
-  // const filteredArtworks = useMemo(
-  //   () =>
-  //     artworks.filter((artwork) => {
-  //       // Check if the artwork matches all selected options
-  //       return Array.from(searchParams.entries()).every(([selectedOption, selectedValue]) => {
-  //         const propertyValue = artwork[selectedOption as keyof typeof artwork]
-  //         if (Array.isArray(propertyValue)) {
-  //           return propertyValue.includes(selectedValue)
-  //         } else if (propertyValue === selectedValue) {
-  //           return true
-  //         } else if (selectedOption === 'price range' && propertyValue) {
-  //           switch (selectedValue) {
-  //             case 'Under $50':
-  //               return propertyValue < 50
-  //             case '$50 - $100':
-  //               return propertyValue >= 50 && propertyValue < 100
-  //             case '$100 - $200':
-  //               return propertyValue >= 100 && propertyValue < 200
-  //             case '$200+':
-  //               return propertyValue >= 200
-  //             default:
-  //               return false
-  //           }
-  //         }
-  //         return false
-  //       })
-  //     }),
-  //   [artworks, searchParams]
-  // )
+  const [searchInput, setSearchInput] = useState('')
+
+  const filterArtworks = useMemo(
+    () =>
+      artworks.filter((artwork) =>
+        Array.from(searchParams.entries()).every(([selectedOption, selectedValue]) => {
+          const propertyValue = artwork[selectedOption as keyof typeof artwork]
+
+          if (Array.isArray(propertyValue)) {
+            return propertyValue.some((prop) => prop.name === selectedValue)
+          }
+
+          if (
+            typeof propertyValue === 'object' &&
+            !(propertyValue instanceof Date) &&
+            propertyValue?.name === selectedValue
+          ) {
+            return true
+          }
+
+          if (selectedOption === 'price range') {
+            const price = artwork.price ?? 0
+            switch (selectedValue) {
+              case 'Under $50':
+                return price < 50
+              case '$50 - $100':
+                return price >= 50 && price < 100
+              case '$100 - $200':
+                return price >= 100 && price < 200
+              case '$200+':
+                return price >= 200
+              default:
+                return false
+            }
+          }
+
+          return propertyValue === selectedValue
+        })
+      ),
+    [artworks, searchParams]
+  )
+  
+  const searchFilterArtworks = useMemo(() => {
+    if (searchInput.length === 0) return filterArtworks
+
+    return filterArtworks.sort((artworkA, artworkB) => {
+      const regex = new RegExp(searchInput, 'i')
+      const a = artworkA.title?.search(regex) ?? Number.MIN_VALUE
+      const b = artworkB.title?.search(regex) ?? Number.MIN_VALUE
+      return b - a
+    })
+  }, [filterArtworks, searchInput])
+
+  const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value)
+  }
 
   return (
     <main>
@@ -81,6 +125,7 @@ export default function Search() {
             placeholder="SEARCH"
             icon={SearchIcon}
             iconPosition="end"
+            onChange={(e) => handleSearchInputChange(e)}
           />
           <div className={styles.filtersOptions}>
             <button
@@ -111,7 +156,7 @@ export default function Search() {
           </div>
         </aside>
         <div className={styles.galleryContainer}>
-          <ImageGallery artworks={artworks} />
+          <ImageGallery artworks={searchFilterArtworks} />
         </div>
       </section>
     </main>
