@@ -61,7 +61,7 @@ const cartReducer: Reducer<CartReducer, PayloadAction<CustomPayload<CartItem>, k
       if (!state.isLoaded || !action.payload.id) return state
       return {
         ...state,
-        users: state.cartItems.filter((cartItem) => cartItem.id !== action.payload.id)
+        cartItems: state.cartItems.filter((cartItem) => cartItem.id !== action.payload.id)
       }
     }
     default: {
