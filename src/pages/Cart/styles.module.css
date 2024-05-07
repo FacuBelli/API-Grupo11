@@ -127,6 +127,7 @@
 .cartSummary{
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
     flex: 1;
 
     border: 1px solid #000;

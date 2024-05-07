@@ -4,28 +4,33 @@ import styles from './styles.module.css';
 import { formatPrice } from '../../utils/format';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
+import { Artwork } from '../../types/database';
+import { cartItemRemove } from '../../redux/actions/cartActions';
 
 
 
 export default function Cart() {
   const userId = 1;
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
 
   const cart = useSelector( (state: RootState) => state.cart.cartItems)
 
-  
   const artworks = useSelector((state: RootState) => state.artwork.artworks)
 
-  const cartArtworks = artworks.filter( (artwork) =>{
+  const cartArtworks = artworks.filter( (artwork) =>
       cart.some ((cartItem) => cartItem.artwork_id === artwork.id )
-  } )
+   )
 
-  const removeFromCart = (artworkId) => {
-    const newCart = cart.filter((item) => item.artwork_id !== artworkId);
-    setCart(newCart);
+
+
+  const removeFromCart = (artworkId:Artwork['id']) => {
+    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId )!
+    dispatch(cartItemRemove(cartItem.id))
+    
   };
 
   const updateQuantity = (artworkId, newQuantity) => {
