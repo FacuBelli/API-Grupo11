@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
 
 export default function Gallery() {
-  const popular = useSelector((state: RootState) => state.artwork.artworks)
-  const recent = useSelector((state: RootState) => state.artwork.artworks)
+  const artworks = useSelector((state: RootState) => state.artwork.artworks.filter((artwork) => !artwork.hidden))
+
   const category = [
     {
       title: 'Landscape',
@@ -52,7 +52,7 @@ export default function Gallery() {
           <span>MOST</span> POPULAR
         </h2>
         <Slider>
-          {popular.map((item, i) => (
+          {artworks.map((item, i) => (
             <ArtworkCard artwork={item} key={i} />
           ))}
         </Slider>
@@ -62,7 +62,7 @@ export default function Gallery() {
           <span>MOST</span> RECENT
         </h2>
         <Slider>
-          {recent.map((item, i) => (
+          {artworks.map((item, i) => (
             <ArtworkCard artwork={item} key={i} />
           ))}
         </Slider>

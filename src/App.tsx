@@ -109,14 +109,14 @@ function App() {
           {/* <Route path="edit" element={<Profile />} /> */}
           <Route path=":userId" element={<Profile />} />
         </Route>
-        <Route
+        {/* <Route
           path="/settings"
           element={
             <RequireAuth>
               <Settings />
             </RequireAuth>
           }
-        />
+        /> */}
       </Routes>
     </>
   )

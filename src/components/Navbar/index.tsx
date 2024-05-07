@@ -53,9 +53,9 @@ function Profile() {
         <ul>
           <Link to="/profile/edit">BECOME A CREATOR</Link>
         </ul>
-        <ul>
+        {/* <ul>
           <Link to="/settings">SETTINGS</Link>
-        </ul>
+        </ul> */}
         <ul>
           <Link to="/auth/logout">LOG OUT</Link>
         </ul>

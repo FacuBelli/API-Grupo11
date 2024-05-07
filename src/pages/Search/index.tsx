@@ -35,7 +35,7 @@ const filterOptions = [
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const artworks = useSelector((state: RootState) => state.artwork.artworks)
+  const artworks = useSelector((state: RootState) => state.artwork.artworks.filter((artwork) => !artwork.hidden))
   const [isFiltersOpen, setIsFilterOpen] = useState(searchParams.size !== 0)
   const [searchInput, setSearchInput] = useState('')
 

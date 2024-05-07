@@ -51,6 +51,17 @@
   text-decoration: underline;
 }
 
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+
+  button svg {
+    height: 20px;
+    stroke: #FFFFFF;
+    stroke-width: 0.8px;
+  }
+}
+
 .artistSection {
   display: flex;
   flex-direction: column;

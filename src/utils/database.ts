@@ -325,7 +325,8 @@ const db: Database = {
       image: '/assets/artworks/94f5d624-db8c-4828-89b5-7db6ec8baf12.png',
       price: 250,
       stock: 1,
-      artist_id: 3
+      artist_id: 3,
+      hidden: false
     },
     {
       id: 2,
@@ -339,7 +340,8 @@ const db: Database = {
       image: '/assets/artworks/83ac23d1-984b-40cd-ba6c-f24ee835d8d7.png',
       price: 180,
       stock: 1,
-      artist_id: 3
+      artist_id: 3,
+      hidden: false
     },
     {
       id: 3,
@@ -353,7 +355,8 @@ const db: Database = {
       image: '/assets/artworks/67958afc-ba37-4285-94cd-f403b8f80031.png',
       price: 300,
       stock: 1,
-      artist_id: 4
+      artist_id: 4,
+      hidden: false
     },
     {
       id: 4,
@@ -367,7 +370,8 @@ const db: Database = {
       image: '/assets/artworks/0ad80f70-bf05-4099-ada1-5b369c57a21e.png',
       price: 150,
       stock: 1,
-      artist_id: 4
+      artist_id: 4,
+      hidden: false
     },
     {
       id: 5,
@@ -381,7 +385,8 @@ const db: Database = {
       image: '/assets/artworks/5d91dc0a-c67f-40b6-aba2-454bf740fc7a.png',
       price: 200,
       stock: 1,
-      artist_id: 5
+      artist_id: 5,
+      hidden: false
     },
     {
       id: 6,
@@ -395,7 +400,8 @@ const db: Database = {
       image: '/assets/artworks/56ed1a22-bf19-4a88-a074-4488c731bd8c.png',
       price: 280,
       stock: 1,
-      artist_id: 5
+      artist_id: 5,
+      hidden: false
     },
     {
       id: 7,
@@ -409,7 +415,8 @@ const db: Database = {
       image: '/assets/artworks/24061b4e-b66d-43d6-8783-224dc0b08cc4.png',
       price: 320,
       stock: 1,
-      artist_id: 5
+      artist_id: 5,
+      hidden: false
     },
     {
       id: 8,
@@ -423,7 +430,8 @@ const db: Database = {
       image: '/assets/artworks/76952603-243c-48cf-a958-7c3f79ea0580.png',
       price: 180,
       stock: 1,
-      artist_id: 7
+      artist_id: 7,
+      hidden: false
     },
     {
       id: 9,
@@ -437,7 +445,8 @@ const db: Database = {
       image: '/assets/artworks/b8b2f041-f4bf-4297-902f-3dae46b6e83a.png',
       price: 200,
       stock: 1,
-      artist_id: 7
+      artist_id: 7,
+      hidden: false
     },
     {
       id: 10,
@@ -451,7 +460,8 @@ const db: Database = {
       image: '/assets/artworks/8feebdbc-3b3a-4102-8670-7e1a50e64468.png',
       price: 300,
       stock: 1,
-      artist_id: 7
+      artist_id: 7,
+      hidden: false
     },
     {
       id: 11,
@@ -465,7 +475,8 @@ const db: Database = {
       image: '/assets/artworks/d2aa970b-e48a-4bee-84e9-c93617ae2e77.png',
       price: 350,
       stock: 1,
-      artist_id: 8
+      artist_id: 8,
+      hidden: false
     },
     {
       id: 12,
@@ -479,7 +490,8 @@ const db: Database = {
       image: '/assets/artworks/4973f6ad-f18b-4b4e-8368-55ee1e6ff9d3.png',
       price: 180,
       stock: 1,
-      artist_id: 8
+      artist_id: 8,
+      hidden: false
     },
     {
       id: 13,
@@ -493,7 +505,8 @@ const db: Database = {
       image: '/assets/artworks/0a94c42c-9d40-496d-9269-a52826dde7dd.png',
       price: 220,
       stock: 1,
-      artist_id: 11
+      artist_id: 11,
+      hidden: false
     },
     {
       id: 14,
@@ -507,7 +520,8 @@ const db: Database = {
       image: '/assets/artworks/889cdb7c-3bb5-4127-a6ad-4cb1a206d827.png',
       price: 400,
       stock: 1,
-      artist_id: 11
+      artist_id: 11,
+      hidden: false
     },
     {
       id: 15,
@@ -521,7 +535,8 @@ const db: Database = {
       image: '/assets/artworks/262b4933-6d0a-4a90-940b-6f67b2fbc993.png',
       price: 280,
       stock: 1,
-      artist_id: 12
+      artist_id: 12,
+      hidden: false
     },
     {
       id: 16,
@@ -535,7 +550,8 @@ const db: Database = {
       image: '/assets/artworks/e857a7d5-2c9a-4e41-aca7-4f657f01d5b7.png',
       price: 250,
       stock: 1,
-      artist_id: 3
+      artist_id: 3,
+      hidden: false
     },
     {
       id: 17,
@@ -552,7 +568,8 @@ const db: Database = {
       image: '/assets/artworks/4c3f7e04-7b8a-4802-9a67-b6c4b97f5145.png',
       price: 350,
       stock: 1,
-      artist_id: 5
+      artist_id: 5,
+      hidden: false
     },
     {
       id: 18,
@@ -566,7 +583,8 @@ const db: Database = {
       image: '/assets/artworks/b545ccf5-28b6-4547-820e-907eb7e77e1e.png',
       price: 200,
       stock: 1,
-      artist_id: 4
+      artist_id: 4,
+      hidden: false
     },
     {
       id: 19,
@@ -580,7 +598,8 @@ const db: Database = {
       image: '/assets/artworks/e27129b8-595a-4254-9140-e96190a2f596.png',
       price: 300,
       stock: 1,
-      artist_id: 2
+      artist_id: 2,
+      hidden: false
     },
     {
       id: 20,
@@ -594,7 +613,8 @@ const db: Database = {
       image: '/assets/artworks/57ca43cd-2647-4410-8ed3-274e554af458.png',
       price: 400,
       stock: 1,
-      artist_id: 1
+      artist_id: 1,
+      hidden: false
     },
     {
       id: 21,
@@ -611,7 +631,8 @@ const db: Database = {
       image: '/assets/artworks/3e447dbd-aa74-463d-ab71-3f51ee4cc770.png',
       price: 280,
       stock: 1,
-      artist_id: 3
+      artist_id: 3,
+      hidden: false
     },
     {
       id: 22,
@@ -625,7 +646,8 @@ const db: Database = {
       image: '/assets/artworks/fdd5f215-c9f1-4b1e-b58f-fa07fc57e61c.png',
       price: 320,
       stock: 1,
-      artist_id: 5
+      artist_id: 5,
+      hidden: false
     },
     {
       id: 23,
@@ -639,7 +661,8 @@ const db: Database = {
       image: '/assets/artworks/0d25d55d-1dee-42cb-8b65-e1760ef228e3.png',
       price: 180,
       stock: 1,
-      artist_id: 4
+      artist_id: 4,
+      hidden: false
     },
     {
       id: 24,
@@ -653,7 +676,8 @@ const db: Database = {
       image: '/assets/artworks/ad181335-92ab-4a66-a554-613ab9b93ff7.png',
       price: 260,
       stock: 1,
-      artist_id: 2
+      artist_id: 2,
+      hidden: false
     },
     {
       id: 25,
@@ -667,7 +691,8 @@ const db: Database = {
       image: '/assets/artworks/c48057cd-a16a-4f78-bf7c-a7b20d9c0c98.png',
       price: 290,
       stock: 1,
-      artist_id: 1
+      artist_id: 1,
+      hidden: false
     },
     {
       id: 26,
@@ -681,7 +706,8 @@ const db: Database = {
       image: '/assets/artworks/1dc94558-abc5-466c-964b-e70daa8544f0.png',
       price: 270,
       stock: 1,
-      artist_id: 3
+      artist_id: 3,
+      hidden: false
     },
     {
       id: 27,
@@ -695,7 +721,8 @@ const db: Database = {
       image: '/assets/artworks/cede437f-bf5d-47df-b116-bac2516b7a5b.png',
       price: 320,
       stock: 1,
-      artist_id: 5
+      artist_id: 5,
+      hidden: false
     },
     {
       id: 28,
@@ -709,7 +736,8 @@ const db: Database = {
       image: '/assets/artworks/680b2603-81b9-487c-a37e-453f2792ee7f.png',
       price: 380,
       stock: 1,
-      artist_id: 4
+      artist_id: 4,
+      hidden: false
     },
     {
       id: 29,
@@ -723,7 +751,8 @@ const db: Database = {
       image: '/assets/artworks/1cbb13a9-fc5b-4127-809b-73c02ff8a90e.png',
       price: 300,
       stock: 1,
-      artist_id: 2
+      artist_id: 2,
+      hidden: false
     },
     {
       id: 30,
@@ -737,7 +766,8 @@ const db: Database = {
       image: '/assets/artworks/c10d65f6-677e-42bb-a95c-766519386400.png',
       price: 350,
       stock: 1,
-      artist_id: 1
+      artist_id: 1,
+      hidden: false
     },
     {
       id: 31,
@@ -751,7 +781,8 @@ const db: Database = {
       image: '/assets/artworks/0fb224ca-c987-49aa-81aa-40edd055272e.png',
       price: 270,
       stock: 1,
-      artist_id: 3
+      artist_id: 3,
+      hidden: false
     },
     {
       id: 32,
@@ -765,7 +796,8 @@ const db: Database = {
       image: '/assets/artworks/7c6d3ca6-6b34-4331-9fca-c100e01c57bb.png',
       price: 230,
       stock: 1,
-      artist_id: 5
+      artist_id: 5,
+      hidden: false
     },
     {
       id: 33,
@@ -779,7 +811,8 @@ const db: Database = {
       image: '/assets/artworks/f04ea099-0ff9-4826-b048-046f84f62504.png',
       price: 290,
       stock: 1,
-      artist_id: 2
+      artist_id: 2,
+      hidden: false
     },
     {
       id: 34,
@@ -793,7 +826,8 @@ const db: Database = {
       image: '/assets/artworks/4942bc75-2b92-427a-89c8-16dd883dc0ba.png',
       price: 380,
       stock: 1,
-      artist_id: 4
+      artist_id: 4,
+      hidden: false
     },
     {
       id: 35,
@@ -807,7 +841,8 @@ const db: Database = {
       image: '/assets/artworks/f8379614-2323-452a-8708-146fe38bd591.png',
       price: 320,
       stock: 1,
-      artist_id: 1
+      artist_id: 1,
+      hidden: false
     }
   ],
   categories: categories.map((name, i) => ({ id: i + 1, name })),
