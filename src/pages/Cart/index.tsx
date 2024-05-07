@@ -53,6 +53,12 @@ export default function Cart() {
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
+
+  const subtotal = cart.reduce((total, item) => {
+    const artwork = artworks.find((artwork) => artwork.id === item.artwork_id);
+    return total + (artwork.price * item.quantity);
+  }, 0);
+
   return (
     <main>
       <section className={styles.pepito}>
@@ -104,8 +110,10 @@ export default function Cart() {
           <h3 className={styles.summaryTitle}>Cart Summary</h3>
           <div className={styles.border}></div>
           <div className={styles.items}>
-            <p>Number of items </p>
+            <p className={styles.cartInfo}>Number of items </p>
             <p>{totalItems}</p>
+
+            <p className={styles.cartInfo}>Subtotal: {formatPrice(subtotal)}</p>
           </div>
         </div>
 
