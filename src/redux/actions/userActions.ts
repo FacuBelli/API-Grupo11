@@ -14,7 +14,7 @@ export const userAdd = (userData: Omit<User, 'id'> & Partial<Pick<User, 'id'>>):
   }
 })
 
-export const userEdit = (id: User['id'], userData: User): CustomAction<User> => ({
+export const userEdit = (id: User['id'], userData: Partial<User>): CustomAction<User> => ({
   type: UserActionTypes.EDIT_USER,
   payload: {
     id,

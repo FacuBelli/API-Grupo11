@@ -34,16 +34,18 @@ const userReducer: Reducer<UserReducer, PayloadAction<CustomPayload<User>, keyof
     }
     case UserActionTypes.EDIT_USER: {
       if (!state.isLoaded || !action.payload.id || !action.payload.body) return state
-      const user = state.users.find((user) => user.id === action.payload.id)
-      if (user === undefined) return state
-      user.biography = action.payload.body.biography ?? user.biography
-      user.email = action.payload.body.email ?? user.email
-      user.password = action.payload.body.password ?? user.password
-      user.first_name = action.payload.body.first_name ?? user.first_name
-      user.last_name = action.payload.body.last_name ?? user.last_name
-      user.is_artist = action.payload.body.is_artist ?? user.is_artist
-      user.bought_artworks = action.payload.body.bought_artworks ?? user.bought_artworks
-      return state
+      return {
+        ...state,
+        users: state.users.map((user) => {
+          if (user.id === action.payload.id) {
+            return {
+              ...user,
+              ...action.payload.body
+            }
+          }
+          return user
+        })
+      }
     }
     case UserActionTypes.REMOVE_USER: {
       if (!state.isLoaded || !action.payload.id) return state
