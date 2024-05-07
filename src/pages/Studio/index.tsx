@@ -7,33 +7,7 @@ import Select from '../../components/Select'
 import Button from '../../components/Button'
 import { RocketOutlined } from '@mui/icons-material'
 import { useState } from 'react'
-
-const CATEGORIES = ['Landscape', 'Nature', 'Abstract', 'Cityscape', 'Floral', 'Gardens', 'Seascape']
-const STYLES = [
-  'Realism',
-  'Abstract Expressionism',
-  'Impressionism',
-  'Surrealism',
-  'Modernism',
-  'Symbolism',
-  'Cubism',
-  'Futurism'
-]
-const THEMES = [
-  'Sunsets',
-  'Harmony',
-  'Urban Life',
-  'Nature',
-  'Inner Power',
-  'Wilderness',
-  'Urban Architecture',
-  'Celestial',
-  'Tranquility',
-  'Dreams',
-  'Urban Jungle',
-  'Ocean'
-]
-const ORIENTATIONS = ['Horizontal', 'Vertical', 'Square']
+import db from '../../utils/database'
 
 export default function Studio() {
   const user = useSelector((state: RootState) => state.auth.user)
@@ -51,7 +25,9 @@ export default function Studio() {
               <img src="/assets/img/example-horizontal.png" className={styles.image} />
             ) : (
               <div className={styles.subtitleContainer}>
-                <h2><span>Explore endless possibilities!</span></h2>
+                <h2>
+                  <span>Explore endless possibilities!</span>
+                </h2>
                 <p>Enter your choices and see how AI transforms them into a unique artwork.</p>
               </div>
             )}
@@ -76,26 +52,26 @@ export default function Studio() {
               <h3 className={styles.inputTitle}>
                 <span>ORIENTATION</span>
               </h3>
-              <Select options={ORIENTATIONS} />
+              <Select options={[...db.orientations.map((orientation) => orientation.name!)]} />
             </div>
             <div className={styles.properties}>
               <div className={styles.inputContainer}>
                 <h3 className={styles.inputTitle}>
                   <span>CATEGORY</span>
                 </h3>
-                <Select options={['none', ...CATEGORIES]} />
+                <Select options={['Any', ...db.categories.map((category) => category.name!)]} />
               </div>
               <div className={styles.inputContainer}>
                 <h3 className={styles.inputTitle}>
                   <span>STYLE</span>
                 </h3>
-                <Select options={['none', ...STYLES]} />
+                <Select options={['Any', ...db.styles.map((style) => style.name!)]} />
               </div>
               <div className={styles.inputContainer}>
                 <h3 className={styles.inputTitle}>
                   <span>THEME</span>
                 </h3>
-                <Select options={['none', ...THEMES]} />
+                <Select options={['Any', ...db.themes.map((theme) => theme.name!)]} />
               </div>
             </div>
             <span className={styles.separator} />

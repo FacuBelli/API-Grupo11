@@ -2,12 +2,15 @@ import { useState, type ReactNode } from 'react'
 import styles from './styles.module.css'
 import { Close as CloseIcon } from '@mui/icons-material'
 import Button from '../../../../components/Button'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../../../../redux'
 
 interface Props {
   children?: ReactNode
 }
 
 export default function HeroGallery({ children }: Props) {
+  const { artworks, isLoaded } = useSelector((state: RootState) => state.artwork)
   const [isOpen, setIsOpen] = useState(true)
 
   const columns = [
@@ -29,8 +32,8 @@ export default function HeroGallery({ children }: Props) {
           const images = []
 
           for (let j = 0; j < column.rows; j++) {
-            const src = Math.round(Math.random()) ? '/assets/img/example-horizontal.png' : '/assets/img/example-vertical.png'
-            images.push(<img src={src} width={column.width} key={i + j + 1}/>)
+            const src = isLoaded ? artworks[i * column.rows + j].image : ''
+            images.push(<img src={src} width={column.width} key={i * column.rows + j}/>)
           }
 
           return <div className={styles.column} key={i}>{images}</div>

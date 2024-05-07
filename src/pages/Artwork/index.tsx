@@ -8,6 +8,9 @@ import { CartItemAdd } from '../../redux/actions/cartActions'
 import FavoriteButton from '../../components/FavoriteButton'
 import Slider from '../../components/Slider'
 import ArtworkCard from '../../components/ArtworkCard'
+import { useMemo } from 'react'
+import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material'
+import { artworkEdit } from '../../redux/actions/artworkActions'
 
 export default function Artwork() {
   const dispatch = useDispatch()
@@ -23,6 +26,8 @@ export default function Artwork() {
   const users = useSelector((state: RootState) => state.user.users)
   const artist = users.find((user) => user.id === artwork?.artist_id)
   const userArtworks = artworks.filter((artwork) => artwork.artist_id === artist?.id)
+
+  const isAuthUserArtwork = useMemo(() => user?.id === artwork?.artist_id, [user, artwork])
 
   const handleAddToCart = () => {
     if (artwork === undefined) return
@@ -40,6 +45,14 @@ export default function Artwork() {
     )
   }
 
+  const handleHide = () => {
+    dispatch(artworkEdit(id, { hidden: true }))
+  }
+
+  const handleUnHide = () => {
+    dispatch(artworkEdit(id, { hidden: false }))
+  }
+
   return (
     <main>
       <section className={styles.artworkSection}>
@@ -51,7 +64,7 @@ export default function Artwork() {
         <div className={styles.dataContainer}>
           <div className={styles.dataHeader}>
             <h1 className={styles.title}>{artwork?.title}</h1>
-            <FavoriteButton id={artwork?.id} />
+            {!isAuthUserArtwork && <FavoriteButton id={artwork?.id} />}
           </div>
           <p className={styles.price}>{formatPrice(artwork?.price ?? 0)}</p>
           <p className={styles.description}>{artwork?.description}</p>
@@ -62,7 +75,26 @@ export default function Artwork() {
               </Link>
             ))}
           </div>
-          {artwork && <Button onClick={handleAddToCart}>Add to cart</Button>}
+          <h4>
+            <span>UNITS LEFT:</span> {artwork?.stock}
+          </h4>
+          <div className={styles.buttonContainer}>
+            {artwork && !isAuthUserArtwork ? (
+              artwork.stock !== 0 ? (
+                <Button onClick={handleAddToCart}>Add to cart</Button>
+              ) : (
+                <Button disabled>SOLD OUT</Button>
+              )
+            ) : artwork?.hidden ? (
+              <Button onClick={handleUnHide}>
+                <VisibilityOutlined /> RE-PUBLISH ARTWORK
+              </Button>
+            ) : (
+              <Button onClick={handleHide}>
+                <VisibilityOffOutlined /> HIDE ARTWORK
+              </Button>
+            )}
+          </div>
         </div>
       </section>
       <section className={styles.artistSection}>

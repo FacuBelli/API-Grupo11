@@ -30,7 +30,8 @@ const artworkReducer: Reducer<ArtworkReducer, PayloadAction<CustomPayload<Artwor
           style: action.payload.body.style,
           theme: action.payload.body.theme,
           title: action.payload.body.title,
-          is_sold: action.payload.body.is_sold
+          stock: action.payload.body.stock,
+          hidden: action.payload.body.hidden
         }],
         isLoaded: true,
       }

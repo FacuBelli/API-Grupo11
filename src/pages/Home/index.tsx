@@ -29,11 +29,12 @@ export default function Home() {
               <li><span>4. Sell Your Art:</span> Once you're happy with your creation, you can choose to sell it in our marketplace and earn from your artistry</li>
             </ol>
             <p>Create an account today and start expressing your creativity with AI-generated art!</p>
-            <Button to='/auth/login'>GET STARTED</Button>
+            <Button to='/studio'>GET STARTED</Button>
           </div>
           <div className={styles.aiArtStepsVideoContainer}>
-
-            {/* video */}
+            <video autoPlay loop muted>
+              <source src='/assets/video/studio-demo.mp4' type='video/mp4' />
+            </video>
           </div>
         </div>
       </section>

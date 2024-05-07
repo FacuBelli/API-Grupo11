@@ -12,10 +12,10 @@ export default function ArtworkCard({ artwork }: Props) {
   return (
     <Link
       to={`/gallery/${artwork.id}`}
-      className={artwork.is_sold ? `${styles.card} ${styles.disabled}` : styles.card}
+      className={artwork.stock === 0 ? `${styles.card} ${styles.disabled}` : styles.card}
     >
       <div className={styles.favorite}>
-        {!artwork.is_sold && <FavoriteButton id={artwork.id} />}
+        {artwork.stock !== 0 && <FavoriteButton id={artwork.id} />}
       </div>
       <img className={styles.image} src={artwork.image} />
       <div className={styles.dataContainer}>
