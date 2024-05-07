@@ -25,7 +25,7 @@ export default function Profile() {
   )
 
   const soldArtworks = useMemo(
-    () => createdArtworks?.filter((artwork) => artwork?.is_sold),
+    () => createdArtworks?.filter((artwork) => artwork?.stock === 0),
     [createdArtworks]
   )
 

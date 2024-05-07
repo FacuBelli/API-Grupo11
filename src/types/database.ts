@@ -39,7 +39,8 @@ export interface Artwork extends DatabaseTable {
   style?: Style[]
   theme?: Theme[]
   title?: string
-  is_sold?: boolean
+  stock?: number
+  hidden?: boolean
 }
 
 
