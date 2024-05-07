@@ -4,19 +4,33 @@ import styles from './styles.module.css';
 import { formatPrice } from '../../utils/format';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux';
+import { Artwork } from '../../types/database';
+import { cartItemRemove } from '../../redux/actions/cartActions';
+
 
 
 export default function Cart() {
   const userId = 1;
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
 
-  const [cart, setCart] = useState(db.cart.filter((cartItem) => cartItem.user_id === userId));
-  const artworks = db.artworks.filter((artwork) => cart.some((cartItem) => cartItem.artwork_id === artwork.id));
+  const cart = useSelector( (state: RootState) => state.cart.cartItems)
 
-  const removeFromCart = (artworkId) => {
-    const newCart = cart.filter((item) => item.artwork_id !== artworkId);
-    setCart(newCart);
+  const artworks = useSelector((state: RootState) => state.artwork.artworks)
+
+  const cartArtworks = artworks.filter( (artwork) =>
+      cart.some ((cartItem) => cartItem.artwork_id === artwork.id )
+   )
+
+
+
+  const removeFromCart = (artworkId:Artwork['id']) => {
+    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId )!
+    dispatch(cartItemRemove(cartItem.id))
+    
   };
 
   const updateQuantity = (artworkId, newQuantity) => {
@@ -89,7 +103,7 @@ export default function Cart() {
         <div className={styles.rumba}>
 
           <div className={styles.productView}>
-            {artworks.map((artwork, i) => (
+            {cartArtworks.map((artwork, i) => (
               <div className={styles.container} key={i}>
                 <img className={styles.image} src={artwork.image} alt="" />
                 <div className={styles.productInfo}>

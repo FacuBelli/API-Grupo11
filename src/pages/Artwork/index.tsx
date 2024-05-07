@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
 import { formatPrice } from '../../utils/format'
-import { CartItemAdd } from '../../redux/actions/cartActions'
+import { cartItemAdd } from '../../redux/actions/cartActions'
 import FavoriteButton from '../../components/FavoriteButton'
 import Slider from '../../components/Slider'
 import ArtworkCard from '../../components/ArtworkCard'
@@ -37,7 +37,7 @@ export default function Artwork() {
     }
 
     dispatch(
-      CartItemAdd({
+      cartItemAdd({
         artwork_id: artwork.id,
         user_id: user!.id,
         quantity: 1
