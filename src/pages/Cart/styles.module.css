@@ -8,10 +8,9 @@
 
 .greatContainer{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap:20px;
-    border: 2px solid red;
-
 
 }
 
@@ -114,14 +113,25 @@
     font-weight: bold;
 }
 
+.botonComprarContainer{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+
+
+
+
 /*Cart Summary*/
 .cartSummary{
     display: flex;
     flex-direction: column;
     flex: 1;
+
     border: 1px solid #000;
     height: fit-content;
-    margin-left: 40px;
+
 }
 
 
@@ -153,14 +163,16 @@
 
 .cartContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
 }
 
-.cartDescription{
-    margin: 10px;
-    border: 2px solid red;
+
+.manageCart{
+    font-size: var(--font-size-subtitle);
+    font-weight: var(--font-weight-highlight);
 }
+
 
 /*Image*/
 .image{

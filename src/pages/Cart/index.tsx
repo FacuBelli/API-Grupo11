@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import db from '../../utils/database';
 import styles from './styles.module.css';
 import { formatPrice } from '../../utils/format';
+import { Navigate, useNavigate } from 'react-router-dom';
+import Button from '../../components/Button';
 
 
 export default function Cart() {
   const userId = 1;
+  const navigate = useNavigate()
+
 
   const [cart, setCart] = useState(db.cart.filter((cartItem) => cartItem.user_id === userId));
   const artworks = db.artworks.filter((artwork) => cart.some((cartItem) => cartItem.artwork_id === artwork.id));
@@ -31,7 +35,7 @@ export default function Cart() {
 
   const decreaseQuantity = (artworkId) => {
     const updatedCart = cart.map((item) => {
-      if (item.artwork_id === artworkId && item.quantity > 2) {
+      if (item.artwork_id === artworkId && item.quantity > 1) {
         return { ...item, quantity: item.quantity - 1 };
 
       }
@@ -52,8 +56,8 @@ export default function Cart() {
   };
 
   const compraExitosa = () =>{
-    alert("Compra exitosa, se lo redirigira al inicio.")
-    window.location.href = './gallery'
+    alert("Compra exitosa, se lo redirigira al inicio.");
+    navigate('/gallery');
   }
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
@@ -71,7 +75,7 @@ export default function Cart() {
         <p>
           Welcome to your shopping cart! Here you can review and manage all the items you've added.
         </p>
-        <h2>Manage your Cart</h2>
+        <h2 className={styles.manageCart}>Your Cart {cart.length} items</h2>
       </section>
       <section className={styles.greatContainer}>
 
@@ -92,50 +96,46 @@ export default function Cart() {
                 <div className={styles.productAcomodo}>
                   <div className={styles.buttonContainer}>
 
-                    <button className={styles.button} onClick={() => decreaseQuantity(artwork.id)}>-</button>
+                  <Button className={styles.button} onClick={() => decreaseQuantity(artwork.id)}>-</Button>
                     <span>{cart.find((item) => item.artwork_id === artwork.id)?.quantity || 1}</span>
-                    <button className={styles.button} onClick={() => increaseQuantity(artwork.id)}>+</button>
-
+                    <Button className={styles.button} onClick={() => increaseQuantity(artwork.id)}>+</Button>
+ 
                   </div>
-                  <button className={styles.button} onClick={() => removeFromCart(artwork.id)}>Remove</button>
+                  <Button className={styles.button} onClick={() => removeFromCart(artwork.id)}>Remove</Button>
                 </div>
-
-
-
+ 
+ 
+ 
               </div>
-
-
-
+ 
+ 
+ 
             ))}
           </div>
-
-          <button className={styles.remove} onClick={removeAllItems}>Remove All Items</button>
+ 
+          {cart.length != 0 && <button className={styles.remove} onClick={removeAllItems}>Remove All Items</button>}
         </div>
         <div className={styles.cartSummary}>
           <h3 className={styles.summaryTitle}>Cart Summary</h3>
           <div className={styles.border}></div>
           <div className={styles.items}>
-            {artworks.map((artwork, i) => (
-              <div className={styles.cartContainer} key={i}>
-
-                <img className={styles.cartImage} src={artwork.image} alt="" />
-
-                <div className={styles.cartDescription}>
-                  <p className={styles.cartInfo}>{artwork.title}</p>
-                  <p className={styles.cartInfo}>{formatPrice(artwork.price!)}</p>
-                  {/* Aca quiero poner el botoncito de remove desde el carrito */}
-                </div>
-
+     
+              <div className={styles.cartContainer}>
+              <p className={styles.cartInfo}>Number of items: {totalItems}</p>
+              <p className={styles.cartInfo}>Subtotal: {formatPrice(subtotal)}</p>
               </div>
-            ))}
-            <p className={styles.cartInfo}>Number of items: {totalItems}</p>
-            <p className={styles.cartInfo}>Subtotal: {formatPrice(subtotal)}</p>
+ 
+ 
           </div>
-          <button onClick={compraExitosa}>Comprar</button>
+          <div className={styles.botonComprarContainer}>
+            <Button  onClick={compraExitosa}>Comprar</Button>
+ 
+          </div>
+ 
         </div>
-
+ 
       </section>
-
+ 
     </main>
   );
 }
