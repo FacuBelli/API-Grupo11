@@ -43,6 +43,7 @@ export default function Artwork() {
         quantity: 1
       })
     )
+    navigate('/cart')
   }
 
   const handleHide = () => {

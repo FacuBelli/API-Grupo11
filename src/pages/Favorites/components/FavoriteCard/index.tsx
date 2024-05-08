@@ -4,6 +4,7 @@ import type { Favorite } from '../../../../types/database'
 import styles from './styles.module.css'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../../../redux'
+import { Link } from 'react-router-dom'
 
 interface Props {
   favorite: Favorite
@@ -17,7 +18,7 @@ export default function FavoriteCard({ favorite }: Props) {
   }, [artworks, favorite])
 
   return (
-    <div className={styles.card}>
+    <Link to={`/gallery/${artwork?.id}`} className={styles.card}>
       <img className={styles.image} src={artwork?.image} alt={'Picture of ' + artwork?.title} />
       <div className={styles.container}>
         <div className={styles.data}>
@@ -27,6 +28,6 @@ export default function FavoriteCard({ favorite }: Props) {
         </div>
         <FavoriteButton id={favorite.artwork_id!} />
       </div>
-    </div>
+    </Link>
   )
 }

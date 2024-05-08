@@ -30,7 +30,7 @@ export default function Gallery() {
       url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSht0ZTJFkGryniuyMkSeSNTZcm6nzv-tiiKhId-Lqw8Q&s'
     },
     {
-      title: 'Abstract',
+      title: 'Surrealism',
       url: 'https://concepto.de/wp-content/uploads/2018/02/surrealismo-obra-min-e1519327827783.jpg'
     }
   ]
@@ -62,7 +62,7 @@ export default function Gallery() {
           <span>MOST</span> RECENT
         </h2>
         <Slider>
-          {artworks.map((item, i) => (
+          {artworks.reverse().map((item, i) => (
             <ArtworkCard artwork={item} key={i} />
           ))}
         </Slider>
