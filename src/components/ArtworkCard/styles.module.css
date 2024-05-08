@@ -44,3 +44,11 @@
 .card:hover .favorite, .isFavorite {
   opacity: 1;
 }
+
+.outOfStock {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}

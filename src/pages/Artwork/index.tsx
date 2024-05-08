@@ -67,7 +67,7 @@ export default function Artwork() {
             <h1 className={styles.title}>{artwork?.title}</h1>
             {!isAuthUserArtwork && <FavoriteButton id={artwork?.id} />}
           </div>
-          <p className={styles.price}>{formatPrice(artwork?.price ?? 0)}</p>
+          <p className={styles.price} style={artwork?.stock === 0 ? { textDecoration: 'line-through' } : {}}>{formatPrice(artwork?.price ?? 0)}</p>
           <p className={styles.description}>{artwork?.description}</p>
           <div className={styles.categoryContainer}>
             {artwork?.category?.map((category, i) => (
