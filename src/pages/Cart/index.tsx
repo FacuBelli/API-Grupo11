@@ -1,92 +1,68 @@
-import React, { useState } from 'react';
-import db from '../../utils/database';
-import styles from './styles.module.css';
-import { formatPrice } from '../../utils/format';
-import { Navigate, useNavigate } from 'react-router-dom';
-import Button from '../../components/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux';
-import { Artwork } from '../../types/database';
-import { cartItemRemove } from '../../redux/actions/cartActions';
-
-
+import styles from './styles.module.css'
+import { formatPrice } from '../../utils/format'
+import { useNavigate } from 'react-router-dom'
+import Button from '../../components/Button'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from '../../redux'
+import type { Artwork } from '../../types/database'
+import { cartItemDecrease, cartItemRemove, cartItemIncrease } from '../../redux/actions/cartActions'
+import { useMemo } from 'react'
+import Counter from '../../components/Counter'
 
 export default function Cart() {
-  const userId = 1;
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-
-  const cart = useSelector( (state: RootState) => state.cart.cartItems)
-
+  const cart = useSelector((state: RootState) => state.cart.cartItems)
   const artworks = useSelector((state: RootState) => state.artwork.artworks)
 
-  const cartArtworks = artworks.filter( (artwork) =>
-      cart.some ((cartItem) => cartItem.artwork_id === artwork.id )
-   )
+  const totalItems = useMemo(
+    () => cart.reduce((total, item) => total + (item.quantity ?? 0), 0),
+    [cart]
+  )
+  const subtotal = useMemo(
+    () =>
+      cart.reduce((total, item) => {
+        const artwork = artworks.find((artwork) => artwork.id === item.artwork_id)
+        return total + (artwork?.price ?? 0) * (item.quantity ?? 1)
+      }, 0),
+    [cart, artworks]
+  )
 
+  const cartArtworks = artworks.filter((artwork) =>
+    cart.some((cartItem) => cartItem.artwork_id === artwork.id)
+  )
 
-
-  const removeFromCart = (artworkId:Artwork['id']) => {
-    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId )!
+  const removeFromCart = (artworkId: Artwork['id']) => {
+    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId)!
     dispatch(cartItemRemove(cartItem.id))
-    
-  };
-
-  const updateQuantity = (artworkId, newQuantity) => {
-    const updatedCart = cart.map((item) => {
-      if (item.artwork_id === artworkId) {
-        return { ...item, quantity: newQuantity };
-      }
-      return item;
-    });
-    setCart(updatedCart);
-  };
-
-  const removeAllItems = () => {
-    setCart([]);
-  };
-
-  const decreaseQuantity = (artworkId) => {
-    const updatedCart = cart.map((item) => {
-      if (item.artwork_id === artworkId && item.quantity > 1) {
-        return { ...item, quantity: item.quantity - 1 };
-
-      }
-
-      return item;
-    })
-    setCart(updatedCart);
-  };
-
-  const increaseQuantity = (artworkId) => {
-    const updatedCart = cart.map((item) => {
-      if (item.artwork_id === artworkId) {
-        return { ...item, quantity: item.quantity + 1 };
-      }
-      return item;
-    });
-    setCart(updatedCart);
-  };
-
-  const compra = () =>{
-    if (cart.length >= 1) {
-      alert("Compra exitosa, se lo redirigira al inicio.");
-      navigate('/gallery');
-
-    }else{
-      alert("Carrito vacio.");
-    }
-
   }
 
-  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  const removeAllItems = () => {
+    cart.forEach((cartItem) => {
+      dispatch(cartItemRemove(cartItem.id))
+    })
+  }
 
+  const decreaseQuantity = (artworkId: Artwork['id']) => {
+    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId)!
+    dispatch(cartItemDecrease(cartItem.id))
+  }
 
-  const subtotal = cart.reduce((total, item) => {
-    const artwork = artworks.find((artwork) => artwork.id === item.artwork_id);
-    return total + (artwork.price * item.quantity);
-  }, 0);
+  const increaseQuantity = (artworkId: Artwork['id']) => {
+    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId)!
+    dispatch(cartItemIncrease(cartItem.id))
+  }
+
+  const compra = () => {
+    if (cart.length >= 1) {
+      alert('Compra exitosa, se lo redirigira al inicio.')
+      removeAllItems()
+      navigate('/gallery')
+    } else {
+      alert('Carrito vacio.')
+    }
+  }
 
   return (
     <main>
@@ -98,10 +74,7 @@ export default function Cart() {
         <h2 className={styles.manageCart}>Your Cart {cart.length} items</h2>
       </section>
       <section className={styles.greatContainer}>
-
-
         <div className={styles.rumba}>
-
           <div className={styles.productView}>
             {cartArtworks.map((artwork, i) => (
               <div className={styles.container} key={i}>
@@ -112,50 +85,42 @@ export default function Cart() {
                   <p className={styles.price}>{formatPrice(artwork.price!)}</p>
                   <div className={styles.border}></div>
                 </div>
-
                 <div className={styles.productAcomodo}>
-                  <div className={styles.buttonContainer}>
-
-                  <Button className={styles.button} onClick={() => decreaseQuantity(artwork.id)}>-</Button>
-                    <span>{cart.find((item) => item.artwork_id === artwork.id)?.quantity || 1}</span>
-                    <Button className={styles.button} onClick={() => increaseQuantity(artwork.id)}>+</Button>
- 
-                  </div>
-                  <Button className={styles.button} onClick={() => removeFromCart(artwork.id)}>Remove</Button>
+                  <Counter
+                    initialValue={1}
+                    limit={artwork.stock}
+                    onDecrease={() => decreaseQuantity(artwork.id)}
+                    onIncrease={() => increaseQuantity(artwork.id)}
+                    onDelete={() => removeFromCart(artwork.id)}
+                  />
+                  <Button className={styles.button} onClick={() => removeFromCart(artwork.id)}>
+                    Remove
+                  </Button>
                 </div>
- 
- 
- 
               </div>
- 
- 
- 
             ))}
           </div>
- 
-          {cart.length != 0 && <button className={styles.remove} onClick={removeAllItems}>Remove All Items</button>}
+
+          {cart.length != 0 && (
+            <button className={styles.remove} onClick={removeAllItems}>
+              Remove All Items
+            </button>
+          )}
         </div>
         <div className={styles.cartSummary}>
           <h3 className={styles.summaryTitle}>Cart Summary</h3>
           <div className={styles.border}></div>
           <div className={styles.items}>
-     
-              <div className={styles.cartContainer}>
+            <div className={styles.cartContainer}>
               <p className={styles.cartInfo}>Number of items: {totalItems}</p>
               <p className={styles.cartInfo}>Subtotal: {formatPrice(subtotal)}</p>
-              </div>
- 
- 
+            </div>
           </div>
           <div className={styles.botonComprarContainer}>
-            <Button  onClick={compra}>Comprar</Button>
- 
+            <Button onClick={compra}>Comprar</Button>
           </div>
- 
         </div>
- 
       </section>
- 
     </main>
-  );
+  )
 }
