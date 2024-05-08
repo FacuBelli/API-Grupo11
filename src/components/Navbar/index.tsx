@@ -51,7 +51,7 @@ function Profile() {
           <Link to="/cart">CART</Link>
         </ul>
         <ul>
-          <Link to="/profile/edit">BECOME A CREATOR</Link>
+          <Link to="/studio">BECOME A CREATOR</Link>
         </ul>
         {/* <ul>
           <Link to="/settings">SETTINGS</Link>
