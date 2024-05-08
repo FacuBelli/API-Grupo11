@@ -15,7 +15,7 @@ export const cartItemAdd = (CartItemData: Omit<CartItem, 'id'> & Partial<Pick<Ca
   }
 })
 
-export const cartItemincrease = (id: CartItem['id']): CustomAction<CartItem> => ({
+export const cartItemIncrease = (id: CartItem['id']): CustomAction<CartItem> => ({
   type: CartActionTypes.INCREASE_CART_ITEM,
   payload: {
     id,

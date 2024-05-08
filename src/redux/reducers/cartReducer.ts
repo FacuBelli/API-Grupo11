@@ -22,7 +22,8 @@ const cartReducer: Reducer<CartReducer, PayloadAction<CustomPayload<CartItem>, k
         cartItems: [...state.cartItems, {
           id: action.payload.id ?? state.cartItems.length + 1,
           user_id: action.payload.body.user_id,
-          artwork_id: action.payload.body.artwork_id
+          artwork_id: action.payload.body.artwork_id,
+          quantity: action.payload.body.quantity
         }],
         isLoaded: true
       }
