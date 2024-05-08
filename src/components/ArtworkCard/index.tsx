@@ -9,13 +9,14 @@ interface Props {
 }
 
 export default function ArtworkCard({ artwork }: Props) {
+  const isDisabled = artwork.stock === 0 || artwork.hidden
   return (
     <Link
       to={`/gallery/${artwork.id}`}
-      className={artwork.stock === 0 ? `${styles.card} ${styles.disabled}` : styles.card}
+      className={isDisabled ? `${styles.card} ${styles.disabled}` : styles.card}
     >
       <div className={styles.favorite}>
-        {artwork.stock !== 0 && <FavoriteButton id={artwork.id} />}
+        {!isDisabled && <FavoriteButton id={artwork.id} />}
       </div>
       <img className={styles.image} src={artwork.image} />
       <div className={styles.dataContainer}>
@@ -23,6 +24,7 @@ export default function ArtworkCard({ artwork }: Props) {
         <p className={styles.price} style={artwork.stock === 0 ? { textDecoration: 'line-through' } : {}}>{formatPrice(artwork.price ?? 0)}</p>
       </div>
       {artwork.stock === 0 && <span className={styles.outOfStock}>OUT OF STOCK</span>}
+      {artwork.hidden && <span className={styles.outOfStock}>HIDDEN BY ARTIST</span>}
     </Link>
   )
 }

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
 import type { Artwork } from '../../types/database'
 import { cartItemDecrease, cartItemRemove, cartItemIncrease } from '../../redux/actions/cartActions'
-import { useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import Counter from '../../components/Counter'
 import { artworkEdit } from '../../redux/actions/artworkActions'
 
@@ -59,54 +59,60 @@ export default function Cart() {
     cartArtworks.forEach((artwork) => {
       const cartItem = cart.find((cartItem) => cartItem.artwork_id === artwork.id)!
       dispatch(artworkEdit(artwork.id, { stock: artwork.stock! - cartItem.quantity! }))
-    }) 
+    })
     if (cart.length >= 1) {
-      alert('Compra exitosa, se lo redirigira al inicio.')
+      alert('Compra exitosa, se lo redirigirá al inicio.')
       removeAllItems()
       navigate('/gallery')
     } else {
-      alert('Carrito vacio.')
+      alert('Carrito vacío.')
     }
   }
 
   return (
     <main>
       <section className={styles.pepito}>
-        <h2 className={styles.titles}>Your Shopping Cart</h2>
+        <h1 className={styles.heading}>
+          Your <span>Shopping Cart</span>
+        </h1>
         <p>
           Welcome to your shopping cart! Here you can review and manage all the items you've added.
         </p>
-        <h2 className={styles.manageCart}>Your Cart {cart.length} items</h2>
       </section>
       <section className={styles.greatContainer}>
-        <div className={styles.rumba}>
-          <div className={styles.productView}>
-            {cartArtworks.map((artwork, i) => (
-              <>
-                <div className={styles.container} key={i}>
-                  <img className={styles.image} src={artwork.image} alt="" />
-                  <div className={styles.productInfo}>
-                    <p className={styles.title}>{artwork.title}</p>
-                    <p className={styles.description}>{artwork.description}</p>
-                    <p className={styles.price}>{formatPrice(artwork.price!)}</p>
+        <div className={styles.manageCartContainer}>
+          <h2 className={styles.manageCart}>
+            MANAGE <span>YOUR CART</span> ({cart.length} ITEMS)
+          </h2>
+          <div className={styles.rumba}>
+            <div className={styles.productView}>
+              {cartArtworks.map((artwork, i) => (
+                <Fragment key={i}>
+                  <div className={styles.container} key={i}>
+                    <img className={styles.image} src={artwork.image} alt="" />
+                    <div className={styles.productInfo}>
+                      <p className={styles.title}>{artwork.title}</p>
+                      <p className={styles.description}>{artwork.description}</p>
+                      <p className={styles.price}>{formatPrice(artwork.price!)}</p>
+                    </div>
+                    <div className={styles.productAcomodo}>
+                      <Counter
+                        initialValue={1}
+                        limit={artwork.stock}
+                        onDecrease={() => decreaseQuantity(artwork.id)}
+                        onIncrease={() => increaseQuantity(artwork.id)}
+                        onDelete={() => removeFromCart(artwork.id)}
+                      />
+                      <Button className={styles.button} onClick={() => removeFromCart(artwork.id)}>
+                        Remove
+                      </Button>
+                    </div>
                   </div>
-                  <div className={styles.productAcomodo}>
-                    <Counter
-                      initialValue={1}
-                      limit={artwork.stock}
-                      onDecrease={() => decreaseQuantity(artwork.id)}
-                      onIncrease={() => increaseQuantity(artwork.id)}
-                      onDelete={() => removeFromCart(artwork.id)}
-                    />
-                    <Button className={styles.button} onClick={() => removeFromCart(artwork.id)}>
-                      Remove
-                    </Button>
-                  </div>
-                </div>
-                {i !== cartArtworks.length && <div className={styles.separator} />}
-              </>
-            ))}
-            {cart.length != 0 && <Button onClick={removeAllItems}>Remove All Items</Button>}
+                  {i !== cartArtworks.length - 1 && <div className={styles.separator} />}
+                </Fragment>
+              ))}
+              {cart.length !== 0 && <Button onClick={removeAllItems}>Remove All Items</Button>}
+            </div>
           </div>
         </div>
         <div className={styles.cartSummary}>

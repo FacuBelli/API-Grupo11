@@ -75,3 +75,7 @@ main {
   padding-inline: var(--padding-inline-responsive);
   padding-block: 40px;
 }
+
+body {
+  position: relative;
+}
