@@ -8,6 +8,7 @@ import type { Artwork } from '../../types/database'
 import { cartItemDecrease, cartItemRemove, cartItemIncrease } from '../../redux/actions/cartActions'
 import { useMemo } from 'react'
 import Counter from '../../components/Counter'
+import { artworkEdit } from '../../redux/actions/artworkActions'
 
 export default function Cart() {
   const navigate = useNavigate()
@@ -54,7 +55,11 @@ export default function Cart() {
     dispatch(cartItemIncrease(cartItem.id))
   }
 
-  const compra = () => {
+  const comprar = () => {
+    cartArtworks.forEach((artwork) => {
+      const cartItem = cart.find((cartItem) => cartItem.artwork_id === artwork.id)!
+      dispatch(artworkEdit(artwork.id, { stock: artwork.stock! - cartItem.quantity! }))
+    }) 
     if (cart.length >= 1) {
       alert('Compra exitosa, se lo redirigira al inicio.')
       removeAllItems()
@@ -77,39 +82,36 @@ export default function Cart() {
         <div className={styles.rumba}>
           <div className={styles.productView}>
             {cartArtworks.map((artwork, i) => (
-              <div className={styles.container} key={i}>
-                <img className={styles.image} src={artwork.image} alt="" />
-                <div className={styles.productInfo}>
-                  <p className={styles.title}>{artwork.title}</p>
-                  <p className={styles.description}>{artwork.description}</p>
-                  <p className={styles.price}>{formatPrice(artwork.price!)}</p>
-                  <div className={styles.border}></div>
+              <>
+                <div className={styles.container} key={i}>
+                  <img className={styles.image} src={artwork.image} alt="" />
+                  <div className={styles.productInfo}>
+                    <p className={styles.title}>{artwork.title}</p>
+                    <p className={styles.description}>{artwork.description}</p>
+                    <p className={styles.price}>{formatPrice(artwork.price!)}</p>
+                  </div>
+                  <div className={styles.productAcomodo}>
+                    <Counter
+                      initialValue={1}
+                      limit={artwork.stock}
+                      onDecrease={() => decreaseQuantity(artwork.id)}
+                      onIncrease={() => increaseQuantity(artwork.id)}
+                      onDelete={() => removeFromCart(artwork.id)}
+                    />
+                    <Button className={styles.button} onClick={() => removeFromCart(artwork.id)}>
+                      Remove
+                    </Button>
+                  </div>
                 </div>
-                <div className={styles.productAcomodo}>
-                  <Counter
-                    initialValue={1}
-                    limit={artwork.stock}
-                    onDecrease={() => decreaseQuantity(artwork.id)}
-                    onIncrease={() => increaseQuantity(artwork.id)}
-                    onDelete={() => removeFromCart(artwork.id)}
-                  />
-                  <Button className={styles.button} onClick={() => removeFromCart(artwork.id)}>
-                    Remove
-                  </Button>
-                </div>
-              </div>
+                {i !== cartArtworks.length && <div className={styles.separator} />}
+              </>
             ))}
+            {cart.length != 0 && <Button onClick={removeAllItems}>Remove All Items</Button>}
           </div>
-
-          {cart.length != 0 && (
-            <button className={styles.remove} onClick={removeAllItems}>
-              Remove All Items
-            </button>
-          )}
         </div>
         <div className={styles.cartSummary}>
           <h3 className={styles.summaryTitle}>Cart Summary</h3>
-          <div className={styles.border}></div>
+          <div className={styles.separator}></div>
           <div className={styles.items}>
             <div className={styles.cartContainer}>
               <p className={styles.cartInfo}>Number of items: {totalItems}</p>
@@ -117,7 +119,7 @@ export default function Cart() {
             </div>
           </div>
           <div className={styles.botonComprarContainer}>
-            <Button onClick={compra}>Comprar</Button>
+            <Button onClick={comprar}>Comprar</Button>
           </div>
         </div>
       </section>
