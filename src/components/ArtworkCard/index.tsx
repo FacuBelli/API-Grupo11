@@ -20,8 +20,9 @@ export default function ArtworkCard({ artwork }: Props) {
       <img className={styles.image} src={artwork.image} />
       <div className={styles.dataContainer}>
         <h3 className={styles.title}>{artwork.title}</h3>
-        <p className={styles.price}>{formatPrice(artwork.price ?? 0)}</p>
+        <p className={styles.price} style={artwork.stock === 0 ? { textDecoration: 'line-through' } : {}}>{formatPrice(artwork.price ?? 0)}</p>
       </div>
+      {artwork.stock === 0 && <span className={styles.outOfStock}>OUT OF STOCK</span>}
     </Link>
   )
 }

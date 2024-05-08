@@ -354,7 +354,7 @@ const db: Database = {
       orientation: { id: 2, name: 'Vertical' },
       image: '/assets/artworks/67958afc-ba37-4285-94cd-f403b8f80031.png',
       price: 300,
-      stock: 1,
+      stock: 0,
       artist_id: 4,
       hidden: false
     },
@@ -399,7 +399,7 @@ const db: Database = {
       orientation: { id: 1, name: 'Horizontal' },
       image: '/assets/artworks/56ed1a22-bf19-4a88-a074-4488c731bd8c.png',
       price: 280,
-      stock: 1,
+      stock:0,
       artist_id: 5,
       hidden: false
     },
@@ -429,7 +429,7 @@ const db: Database = {
       orientation: { id: 2, name: 'Vertical' },
       image: '/assets/artworks/76952603-243c-48cf-a958-7c3f79ea0580.png',
       price: 180,
-      stock: 1,
+      stock: 0,
       artist_id: 7,
       hidden: false
     },
@@ -474,7 +474,7 @@ const db: Database = {
       orientation: { id: 1, name: 'Horizontal' },
       image: '/assets/artworks/d2aa970b-e48a-4bee-84e9-c93617ae2e77.png',
       price: 350,
-      stock: 1,
+      stock: 0,
       artist_id: 8,
       hidden: false
     },
