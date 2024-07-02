@@ -9,26 +9,12 @@ export interface User extends DatabaseTable {
   biography?: string
   email?: string
   password?: string
-  first_name?: string
-  last_name?: string
-  is_artist?: boolean
-  bought_artworks?: Artwork['id'][]
+  firstName?: string
+  lastName?: string
+  isArtist?: boolean
+  boughtArtworks?: Artwork[]
 }
 
-// export interface Artwork extends DatabaseTable {
-//   artist_id?: number
-//   category_id?: number
-//   description?: string
-//   image?: string
-//   orientation_id?: number
-//   price?: number
-//   style_id?: number
-//   theme_id?: number
-//   title?: string
-//   is_sold?: boolean
-// }
-
-// Los objetos con relaciones por id irán en el backend.
 export interface Artwork extends DatabaseTable {
   artist_id?: number
   category?: Category[]
@@ -42,7 +28,6 @@ export interface Artwork extends DatabaseTable {
   stock?: number
   hidden?: boolean
 }
-
 
 export interface Category extends DatabaseTable {
   name?: string
