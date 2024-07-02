@@ -1,4 +1,4 @@
-/// src/components/PaymentForm.jsx
+// src/components/PaymentForm.jsx
 
 import React, { useState } from 'react';
 import styles from './styles.module.css'; 
@@ -27,8 +27,24 @@ const PaymentForm = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Determine which fields to validate based on paymentMethod
+    let fieldsToValidate = [];
+    switch (paymentMethod) {
+      case 'creditCard':
+        fieldsToValidate = ['cardNumber', 'cardName', 'expiryDate', 'cvv'];
+        break;
+      case 'paypal':
+        fieldsToValidate = ['paypalEmail'];
+        break;
+      case 'bankTransfer':
+        fieldsToValidate = ['bankAccount', 'bankRouting'];
+        break;
+      default:
+        break;
+    }
 
-    const isEmpty = Object.values(formData).some(value => value === '');
+    // Check if any of the required fields are empty
+    const isEmpty = fieldsToValidate.some(field => formData[field] === '');
     if (isEmpty) {
       setFormError(true);
       return;
@@ -165,7 +181,7 @@ const PaymentForm = ({ onSubmit }) => {
         </div>
       )}
       
-      {formError && <p className={styles.error}>Please fill out all fields.</p>}
+      {formError && <p className={styles.error}>Please fill out all required fields.</p>}
 
       <div className={styles.botonComprarContainer}>
         <Button type="submit">Submit Payment</Button>
