@@ -1,3 +1,5 @@
+// src/pages/Cart.tsx
+
 import styles from './styles.module.css'
 import { formatPrice } from '../../utils/format'
 import { useNavigate } from 'react-router-dom'
@@ -9,6 +11,10 @@ import { cartItemDecrease, cartItemRemove, cartItemIncrease } from '../../redux/
 import { Fragment, useMemo, useState } from 'react'
 import Counter from '../../components/Counter'
 import { artworkEdit } from '../../redux/actions/artworkActions'
+import Modal from 'react-modal'
+import PaymentForm from '../../components/FormaDePago'
+
+Modal.setAppElement('#root')
 
 export default function Cart() {
   const navigate = useNavigate()
@@ -19,6 +25,8 @@ export default function Cart() {
 
   const [discountCode, setDiscountCode] = useState('')
   const [discount, setDiscount] = useState(0)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [paymentMethod, setPaymentMethod] = useState('')
 
   const validDiscountCode = 'DISCOUNT10'
 
@@ -85,6 +93,12 @@ export default function Cart() {
     }
   }
 
+  const handlePaymentSubmit = (formData) => {
+    console.log('Payment data submitted:', formData)
+    setPaymentMethod(formData.paymentMethod)
+    setModalIsOpen(false)
+  }
+
   return (
     <main>
       <section className={styles.pepito}>
@@ -147,6 +161,9 @@ export default function Cart() {
               />
               <Button onClick={applyDiscount}>Apply Discount</Button>
               <p className={styles.cartInfo}>Total with Discount: {formatPrice(totalWithDiscount)}</p>
+              <Button onClick={() => setModalIsOpen(true)}>
+                Elegir método de pago
+              </Button>
             </div>
           </div>
           <div className={styles.botonComprarContainer}>
@@ -154,6 +171,19 @@ export default function Cart() {
           </div>
         </div>
       </section>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        className={styles.modalContent}
+        overlayClassName={styles.modalOverlay}
+      >
+        <h2>Complete Your Purchase</h2>
+        <PaymentForm onSubmit={handlePaymentSubmit} />
+        <div className={styles.botonComprarContainer}>
+          <Button onClick={() => setModalIsOpen(false)}>Close</Button>
+        </div>
+      </Modal>
     </main>
   )
 }
