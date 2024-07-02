@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
 import type { Artwork } from '../../types/database'
 import { cartItemDecrease, cartItemRemove, cartItemIncrease } from '../../redux/actions/cartActions'
-import { Fragment, useMemo } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import Counter from '../../components/Counter'
 import { artworkEdit } from '../../redux/actions/artworkActions'
 
@@ -16,6 +16,20 @@ export default function Cart() {
 
   const cart = useSelector((state: RootState) => state.cart.cartItems)
   const artworks = useSelector((state: RootState) => state.artwork.artworks)
+
+  const [discountCode, setDiscountCode] = useState('')
+  const [discount, setDiscount] = useState(0)
+
+  const validDiscountCode = 'DISCOUNT10'
+
+  const applyDiscount = () => {
+    if (discountCode === validDiscountCode) {
+      setDiscount(0.1) // 10% discount
+    } else {
+      alert('Invalid discount code')
+      setDiscount(0)
+    }
+  }
 
   const totalItems = useMemo(
     () => cart.reduce((total, item) => total + (item.quantity ?? 0), 0),
@@ -29,6 +43,8 @@ export default function Cart() {
       }, 0),
     [cart, artworks]
   )
+
+  const totalWithDiscount = subtotal * (1 - discount)
 
   const cartArtworks = artworks.filter((artwork) =>
     cart.some((cartItem) => cartItem.artwork_id === artwork.id)
@@ -122,6 +138,15 @@ export default function Cart() {
             <div className={styles.cartContainer}>
               <p className={styles.cartInfo}>Number of items: {totalItems}</p>
               <p className={styles.cartInfo}>Subtotal: {formatPrice(subtotal)}</p>
+              <input
+                type="text"
+                value={discountCode}
+                onChange={(e) => setDiscountCode(e.target.value)}
+                placeholder="Discount Code"
+                className={styles.discountInput}
+              />
+              <Button onClick={applyDiscount}>Apply Discount</Button>
+              <p className={styles.cartInfo}>Total with Discount: {formatPrice(totalWithDiscount)}</p>
             </div>
           </div>
           <div className={styles.botonComprarContainer}>
