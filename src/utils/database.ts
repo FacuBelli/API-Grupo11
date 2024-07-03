@@ -182,10 +182,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user1@example.com',
       password: 'password1',
-      first_name: 'John',
-      last_name: 'Doe',
-      is_artist: false,
-      bought_artworks: [3, 6]
+      firstName: 'John',
+      lastName: 'Doe',
+      isArtist: false,
+      // bought_artworks: [3, 6]
     },
     {
       id: 2,
@@ -193,10 +193,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user2@example.com',
       password: 'password2',
-      first_name: 'Jane',
-      last_name: 'Smith',
-      is_artist: false,
-      bought_artworks: [8]
+      firstName: 'Jane',
+      lastName: 'Smith',
+      isArtist: false,
+      // bought_artworks: [8]
     },
     {
       id: 3,
@@ -204,10 +204,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist1@example.com',
       password: 'password1',
-      first_name: 'Alice',
-      last_name: 'Johnson',
-      is_artist: true,
-      bought_artworks: []
+      firstName: 'Alice',
+      lastName: 'Johnson',
+      isArtist: true,
+      // bought_artworks: []
     },
     {
       id: 4,
@@ -215,10 +215,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist2@example.com',
       password: 'password2',
-      first_name: 'Bob',
-      last_name: 'Williams',
-      is_artist: true,
-      bought_artworks: []
+      firstName: 'Bob',
+      lastName: 'Williams',
+      isArtist: true,
+      // bought_artworks: []
     },
     {
       id: 5,
@@ -226,10 +226,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user3@example.com',
       password: 'password3',
-      first_name: 'Emily',
-      last_name: 'Brown',
-      is_artist: true,
-      bought_artworks: []
+      firstName: 'Emily',
+      lastName: 'Brown',
+      isArtist: true,
+      // bought_artworks: []
     },
     {
       id: 6,
@@ -237,10 +237,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user4@example.com',
       password: 'password4',
-      first_name: 'Michael',
-      last_name: 'Jones',
-      is_artist: false,
-      bought_artworks: []
+      firstName: 'Michael',
+      lastName: 'Jones',
+      isArtist: false,
+      // bought_artworks: []
     },
     {
       id: 7,
@@ -248,10 +248,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist3@example.com',
       password: 'password3',
-      first_name: 'Sophia',
-      last_name: 'Lee',
-      is_artist: true,
-      bought_artworks: [11]
+      firstName: 'Sophia',
+      lastName: 'Lee',
+      isArtist: true,
+      // bought_artworks: [11]
     },
     {
       id: 8,
@@ -259,10 +259,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist4@example.com',
       password: 'password4',
-      first_name: 'William',
-      last_name: 'Davis',
-      is_artist: true,
-      bought_artworks: []
+      firstName: 'William',
+      lastName: 'Davis',
+      isArtist: true,
+      // bought_artworks: []
     },
     {
       id: 9,
@@ -270,10 +270,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user5@example.com',
       password: 'password5',
-      first_name: 'Olivia',
-      last_name: 'Martinez',
-      is_artist: false,
-      bought_artworks: []
+      firstName: 'Olivia',
+      lastName: 'Martinez',
+      isArtist: false,
+      // bought_artworks: []
     },
     {
       id: 10,
@@ -281,10 +281,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'user6@example.com',
       password: 'password6',
-      first_name: 'Liam',
-      last_name: 'Garcia',
-      is_artist: false,
-      bought_artworks: []
+      firstName: 'Liam',
+      lastName: 'Garcia',
+      isArtist: false,
+      // bought_artworks: []
     },
     {
       id: 11,
@@ -292,10 +292,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist5@example.com',
       password: 'password5',
-      first_name: 'Emma',
-      last_name: 'Rodriguez',
-      is_artist: true,
-      bought_artworks: []
+      firstName: 'Emma',
+      lastName: 'Rodriguez',
+      isArtist: true,
+      // bought_artworks: []
     },
     {
       id: 12,
@@ -303,10 +303,10 @@ const db: Database = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       email: 'artist6@example.com',
       password: 'password6',
-      first_name: 'Noah',
-      last_name: 'Hernandez',
-      is_artist: true,
-      bought_artworks: []
+      firstName: 'Noah',
+      lastName: 'Hernandez',
+      isArtist: true,
+      // bought_artworks: []
     }
   ],
   artworks: [
@@ -325,7 +325,7 @@ const db: Database = {
       image: '/assets/artworks/94f5d624-db8c-4828-89b5-7db6ec8baf12.png',
       price: 250,
       stock: 1,
-      artist_id: 3,
+      artist: 3,
       hidden: false
     },
     {
@@ -340,7 +340,7 @@ const db: Database = {
       image: '/assets/artworks/83ac23d1-984b-40cd-ba6c-f24ee835d8d7.png',
       price: 180,
       stock: 1,
-      artist_id: 3,
+      artist: 3,
       hidden: false
     },
     {
@@ -355,7 +355,7 @@ const db: Database = {
       image: '/assets/artworks/67958afc-ba37-4285-94cd-f403b8f80031.png',
       price: 300,
       stock: 0,
-      artist_id: 4,
+      artist: 4,
       hidden: false
     },
     {
@@ -370,7 +370,7 @@ const db: Database = {
       image: '/assets/artworks/0ad80f70-bf05-4099-ada1-5b369c57a21e.png',
       price: 150,
       stock: 1,
-      artist_id: 4,
+      artist: 4,
       hidden: false
     },
     {
@@ -385,7 +385,7 @@ const db: Database = {
       image: '/assets/artworks/5d91dc0a-c67f-40b6-aba2-454bf740fc7a.png',
       price: 200,
       stock: 1,
-      artist_id: 5,
+      artist: 5,
       hidden: false
     },
     {
@@ -400,7 +400,7 @@ const db: Database = {
       image: '/assets/artworks/56ed1a22-bf19-4a88-a074-4488c731bd8c.png',
       price: 280,
       stock:0,
-      artist_id: 5,
+      artist: 5,
       hidden: false
     },
     {
@@ -415,7 +415,7 @@ const db: Database = {
       image: '/assets/artworks/24061b4e-b66d-43d6-8783-224dc0b08cc4.png',
       price: 320,
       stock: 1,
-      artist_id: 5,
+      artist: 5,
       hidden: false
     },
     {
@@ -430,7 +430,7 @@ const db: Database = {
       image: '/assets/artworks/76952603-243c-48cf-a958-7c3f79ea0580.png',
       price: 180,
       stock: 0,
-      artist_id: 7,
+      artist: 7,
       hidden: false
     },
     {
@@ -445,7 +445,7 @@ const db: Database = {
       image: '/assets/artworks/b8b2f041-f4bf-4297-902f-3dae46b6e83a.png',
       price: 200,
       stock: 1,
-      artist_id: 7,
+      artist: 7,
       hidden: false
     },
     {
@@ -460,7 +460,7 @@ const db: Database = {
       image: '/assets/artworks/8feebdbc-3b3a-4102-8670-7e1a50e64468.png',
       price: 300,
       stock: 1,
-      artist_id: 7,
+      artist: 7,
       hidden: false
     },
     {
@@ -475,7 +475,7 @@ const db: Database = {
       image: '/assets/artworks/d2aa970b-e48a-4bee-84e9-c93617ae2e77.png',
       price: 350,
       stock: 0,
-      artist_id: 8,
+      artist: 8,
       hidden: false
     },
     {
@@ -490,7 +490,7 @@ const db: Database = {
       image: '/assets/artworks/4973f6ad-f18b-4b4e-8368-55ee1e6ff9d3.png',
       price: 180,
       stock: 1,
-      artist_id: 8,
+      artist: 8,
       hidden: false
     },
     {
@@ -505,7 +505,7 @@ const db: Database = {
       image: '/assets/artworks/0a94c42c-9d40-496d-9269-a52826dde7dd.png',
       price: 220,
       stock: 1,
-      artist_id: 11,
+      artist: 11,
       hidden: false
     },
     {
@@ -520,7 +520,7 @@ const db: Database = {
       image: '/assets/artworks/889cdb7c-3bb5-4127-a6ad-4cb1a206d827.png',
       price: 400,
       stock: 1,
-      artist_id: 11,
+      artist: 11,
       hidden: false
     },
     {
@@ -535,7 +535,7 @@ const db: Database = {
       image: '/assets/artworks/262b4933-6d0a-4a90-940b-6f67b2fbc993.png',
       price: 280,
       stock: 1,
-      artist_id: 12,
+      artist: 12,
       hidden: false
     },
     {
@@ -550,7 +550,7 @@ const db: Database = {
       image: '/assets/artworks/e857a7d5-2c9a-4e41-aca7-4f657f01d5b7.png',
       price: 250,
       stock: 1,
-      artist_id: 3,
+      artist: 3,
       hidden: false
     },
     {
@@ -568,7 +568,7 @@ const db: Database = {
       image: '/assets/artworks/4c3f7e04-7b8a-4802-9a67-b6c4b97f5145.png',
       price: 350,
       stock: 1,
-      artist_id: 5,
+      artist: 5,
       hidden: false
     },
     {
@@ -583,7 +583,7 @@ const db: Database = {
       image: '/assets/artworks/b545ccf5-28b6-4547-820e-907eb7e77e1e.png',
       price: 200,
       stock: 1,
-      artist_id: 4,
+      artist: 4,
       hidden: false
     },
     {
@@ -598,7 +598,7 @@ const db: Database = {
       image: '/assets/artworks/e27129b8-595a-4254-9140-e96190a2f596.png',
       price: 300,
       stock: 1,
-      artist_id: 2,
+      artist: 2,
       hidden: false
     },
     {
@@ -613,7 +613,7 @@ const db: Database = {
       image: '/assets/artworks/57ca43cd-2647-4410-8ed3-274e554af458.png',
       price: 400,
       stock: 1,
-      artist_id: 1,
+      artist: 1,
       hidden: false
     },
     {
@@ -631,7 +631,7 @@ const db: Database = {
       image: '/assets/artworks/3e447dbd-aa74-463d-ab71-3f51ee4cc770.png',
       price: 280,
       stock: 1,
-      artist_id: 3,
+      artist: 3,
       hidden: false
     },
     {
@@ -646,7 +646,7 @@ const db: Database = {
       image: '/assets/artworks/fdd5f215-c9f1-4b1e-b58f-fa07fc57e61c.png',
       price: 320,
       stock: 1,
-      artist_id: 5,
+      artist: 5,
       hidden: false
     },
     {
@@ -661,7 +661,7 @@ const db: Database = {
       image: '/assets/artworks/0d25d55d-1dee-42cb-8b65-e1760ef228e3.png',
       price: 180,
       stock: 1,
-      artist_id: 4,
+      artist: 4,
       hidden: false
     },
     {
@@ -676,7 +676,7 @@ const db: Database = {
       image: '/assets/artworks/ad181335-92ab-4a66-a554-613ab9b93ff7.png',
       price: 260,
       stock: 1,
-      artist_id: 2,
+      artist: 2,
       hidden: false
     },
     {
@@ -691,7 +691,7 @@ const db: Database = {
       image: '/assets/artworks/c48057cd-a16a-4f78-bf7c-a7b20d9c0c98.png',
       price: 290,
       stock: 1,
-      artist_id: 1,
+      artist: 1,
       hidden: false
     },
     {
@@ -706,7 +706,7 @@ const db: Database = {
       image: '/assets/artworks/1dc94558-abc5-466c-964b-e70daa8544f0.png',
       price: 270,
       stock: 1,
-      artist_id: 3,
+      artist: 3,
       hidden: false
     },
     {
@@ -721,7 +721,7 @@ const db: Database = {
       image: '/assets/artworks/cede437f-bf5d-47df-b116-bac2516b7a5b.png',
       price: 320,
       stock: 1,
-      artist_id: 5,
+      artist: 5,
       hidden: false
     },
     {
@@ -736,7 +736,7 @@ const db: Database = {
       image: '/assets/artworks/680b2603-81b9-487c-a37e-453f2792ee7f.png',
       price: 380,
       stock: 1,
-      artist_id: 4,
+      artist: 4,
       hidden: false
     },
     {
@@ -751,7 +751,7 @@ const db: Database = {
       image: '/assets/artworks/1cbb13a9-fc5b-4127-809b-73c02ff8a90e.png',
       price: 300,
       stock: 1,
-      artist_id: 2,
+      artist: 2,
       hidden: false
     },
     {
@@ -766,7 +766,7 @@ const db: Database = {
       image: '/assets/artworks/c10d65f6-677e-42bb-a95c-766519386400.png',
       price: 350,
       stock: 1,
-      artist_id: 1,
+      artist: 1,
       hidden: false
     },
     {
@@ -781,7 +781,7 @@ const db: Database = {
       image: '/assets/artworks/0fb224ca-c987-49aa-81aa-40edd055272e.png',
       price: 270,
       stock: 1,
-      artist_id: 3,
+      artist: 3,
       hidden: false
     },
     {
@@ -796,7 +796,7 @@ const db: Database = {
       image: '/assets/artworks/7c6d3ca6-6b34-4331-9fca-c100e01c57bb.png',
       price: 230,
       stock: 1,
-      artist_id: 5,
+      artist: 5,
       hidden: false
     },
     {
@@ -811,7 +811,7 @@ const db: Database = {
       image: '/assets/artworks/f04ea099-0ff9-4826-b048-046f84f62504.png',
       price: 290,
       stock: 1,
-      artist_id: 2,
+      artist: 2,
       hidden: false
     },
     {
@@ -826,7 +826,7 @@ const db: Database = {
       image: '/assets/artworks/4942bc75-2b92-427a-89c8-16dd883dc0ba.png',
       price: 380,
       stock: 1,
-      artist_id: 4,
+      artist: 4,
       hidden: false
     },
     {
@@ -841,7 +841,7 @@ const db: Database = {
       image: '/assets/artworks/f8379614-2323-452a-8708-146fe38bd591.png',
       price: 320,
       stock: 1,
-      artist_id: 1,
+      artist: 1,
       hidden: false
     }
   ],
@@ -878,11 +878,7 @@ const db: Database = {
     { id: 22, user_id: 12, artwork_id: 6 },
     { id: 23, user_id: 12, artwork_id: 1 }
   ],
-  cart: [
-    { id: 1, user_id: 1, artwork_id: 1, quantity: 1 },
-    { id: 2, user_id: 1, artwork_id: 2, quantity: 2 },
-    { id: 3, user_id: 2, artwork_id: 2, quantity: 1 }
-  ]
+  orders: []
 }
 
 export default db

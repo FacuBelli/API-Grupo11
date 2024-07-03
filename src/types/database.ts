@@ -12,11 +12,11 @@ export interface User extends DatabaseTable {
   firstName?: string
   lastName?: string
   isArtist?: boolean
-  boughtArtworks?: Artwork[]
+  created?: Artwork[]
 }
 
 export interface Artwork extends DatabaseTable {
-  artist_id?: number
+  artist?: User | number
   category?: Category[]
   description?: string
   image?: string
@@ -50,10 +50,11 @@ export interface Favorite extends DatabaseTable {
   artwork_id?: number
 }
 
-export interface CartItem extends DatabaseTable {
-  user_id?: number
-  artwork_id?: number
+export interface Order extends DatabaseTable {
+  user?: User
+  artwork?: Artwork
   quantity?: number
+  isBought?: boolean
 }
 
 export interface Database {
@@ -64,5 +65,5 @@ export interface Database {
   themes: Theme[]
   orientations: Orientation[]
   favorites: Favorite[]
-  cart: CartItem[]
+  orders: Order[]
 }

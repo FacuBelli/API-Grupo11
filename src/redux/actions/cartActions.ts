@@ -1,4 +1,4 @@
-import type { CartItem } from '../../types/database'
+import type { Order } from '../../types/database'
 import type { CustomAction } from '../../types/redux'
 
 export enum CartActionTypes {
@@ -8,28 +8,28 @@ export enum CartActionTypes {
   REMOVE_CART_ITEM = 'REMOVE_CART_ITEM'
 }
 
-export const cartItemAdd = (CartItemData: Omit<CartItem, 'id'> & Partial<Pick<CartItem, 'id'>>): CustomAction<CartItem> => ({
+export const orderAdd = (OrderData: Omit<Order, 'id'> & Partial<Pick<Order, 'id'>>): CustomAction<Order> => ({
   type: CartActionTypes.ADD_CART_ITEM,
   payload: {
-    body: CartItemData
+    body: OrderData
   }
 })
 
-export const cartItemIncrease = (id: CartItem['id']): CustomAction<CartItem> => ({
+export const orderIncrease = (id: Order['id']): CustomAction<Order> => ({
   type: CartActionTypes.INCREASE_CART_ITEM,
   payload: {
     id,
   }
 })
 
-export const cartItemDecrease = (id: CartItem['id']): CustomAction<CartItem> => ({
+export const orderDecrease = (id: Order['id']): CustomAction<Order> => ({
   type: CartActionTypes.DECREASE_CART_ITEM,
   payload: {
     id,
   }
 })
 
-export const cartItemRemove = (id: CartItem['id']): CustomAction<CartItem> => ({
+export const orderRemove = (id: Order['id']): CustomAction<Order> => ({
   type: CartActionTypes.REMOVE_CART_ITEM,
   payload: {
     id

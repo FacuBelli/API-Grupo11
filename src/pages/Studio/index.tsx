@@ -6,19 +6,50 @@ import Input from '../../components/Input'
 import Select from '../../components/Select'
 import Button from '../../components/Button'
 import { RocketOutlined } from '@mui/icons-material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import db from '../../utils/database'
+import type { Category, Orientation, Style, Theme } from '../../types/database'
 
 export default function Studio() {
-  const user = useSelector((state: RootState) => state.auth.user)
+  const user = useSelector((state: RootState) => state.auth.auth.user)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [category, setCategory] = useState<Category[]>([])
+  const [style, setyStyle] = useState<Style[]>([])
+  const [theme, setTheme] = useState<Theme[]>([])
+  const [orientation, setOrientation] = useState<Orientation[]>([])
+
+  useEffect(() => {
+    fetch('http://localhost:8080/category')
+      .then((res) => res.json())
+      .then((data: Category[]) => {
+        setCategory(data)
+      })
+
+    fetch('http://localhost:8080/style')
+      .then((res) => res.json())
+      .then((data: Style[]) => {
+        setyStyle(data)
+      })
+
+    fetch('http://localhost:8080/theme')
+      .then((res) => res.json())
+      .then((data: Theme[]) => {
+        setTheme(data)
+      })
+
+    fetch('http://localhost:8080/orientation')
+      .then((res) => res.json())
+      .then((data: Orientation[]) => {
+        setOrientation(data)
+      })
+  }, [])
 
   return (
     <main>
       <h1 className={styles.title}>
         <span>STUDIO</span> CREATOR
       </h1>
-      {user?.is_artist ? (
+      {user?.isArtist ? (
         <section className={styles.section}>
           <div className={styles.imageContainer}>
             {isLoaded ? (
@@ -52,26 +83,26 @@ export default function Studio() {
               <h3 className={styles.inputTitle}>
                 <span>ORIENTATION</span>
               </h3>
-              <Select options={[...db.orientations.map((orientation) => orientation.name!)]} />
+              <Select options={[...orientation.map((orientation) => orientation.name!)]} />
             </div>
             <div className={styles.properties}>
               <div className={styles.inputContainer}>
                 <h3 className={styles.inputTitle}>
                   <span>CATEGORY</span>
                 </h3>
-                <Select options={['Any', ...db.categories.map((category) => category.name!)]} />
+                <Select options={['Any', ...category.map((category) => category.name!)]} />
               </div>
               <div className={styles.inputContainer}>
                 <h3 className={styles.inputTitle}>
                   <span>STYLE</span>
                 </h3>
-                <Select options={['Any', ...db.styles.map((style) => style.name!)]} />
+                <Select options={['Any', ...style.map((style) => style.name!)]} />
               </div>
               <div className={styles.inputContainer}>
                 <h3 className={styles.inputTitle}>
                   <span>THEME</span>
                 </h3>
-                <Select options={['Any', ...db.themes.map((theme) => theme.name!)]} />
+                <Select options={['Any', ...theme.map((theme) => theme.name!)]} />
               </div>
             </div>
             <span className={styles.separator} />

@@ -5,7 +5,7 @@ export enum AuthActionTypes {
   LOGOUT_AUTH = 'LOGOUT_AUTH'
 }
 
-export const authLogin = (authData: User) => ({
+export const authLogin = (authData: { user: User; token: string }) => ({
   type: AuthActionTypes.LOGIN_AUTH,
   payload: authData
 })

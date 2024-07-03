@@ -4,33 +4,47 @@ import { AuthActionTypes } from '../actions/authActions'
 
 interface AuthReducer {
   isLogged: boolean
-  user: User | null
+  auth: {
+    user: User | null
+    token: string
+  }
 }
 
 const initialState: AuthReducer = {
   isLogged: false,
-  user: null
+  auth: {
+    user: null,
+    token: ''
+  }
 }
 
-const userReducer: Reducer<AuthReducer, PayloadAction<User, keyof typeof AuthActionTypes>> =
-  (state = initialState, action) => {
-    switch (action.type) {
+const userReducer: Reducer<
+  AuthReducer,
+  PayloadAction<{ user: User; token: string }, keyof typeof AuthActionTypes>
+> = (state = initialState, action) => {
+  switch (action.type) {
     case AuthActionTypes.LOGIN_AUTH: {
       return {
         isLogged: true,
-        user: action.payload
+        auth: {
+          user: action.payload.user,
+          token: action.payload.token
+        }
       }
     }
     case AuthActionTypes.LOGOUT_AUTH: {
       return {
         isLogged: false,
-        user: null
+        auth: {
+          user: null,
+          token: ''
+        }
       }
     }
     default: {
       return state
     }
-    }
   }
+}
 
 export default userReducer

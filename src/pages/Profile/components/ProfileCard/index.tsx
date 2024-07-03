@@ -19,13 +19,13 @@ export default function ProfileCard({ user, stats }: Props) {
   const { userId: userIdParam } = useParams()
   const userId = userIdParam ? parseInt(userIdParam) : undefined
 
-  const { user: authUser } = useSelector((state: RootState) => state.auth)
+  const { user: authUser } = useSelector((state: RootState) => state.auth.auth)
   const isAuthUser = userId === undefined || userId === authUser?.id
 
   return (
     <div className={styles.container}>
       <h3 className={styles.username}>
-        {(user.first_name ? user.first_name + ' ' : '') + (user.last_name ?? '')}
+        {(user.firstName ? user.firstName + ' ' : '') + (user.lastName ?? '')}
       </h3>
       <div className={styles.statsContainer}>
         <h4 className={styles.statsTitle}>ARTWORKS</h4>
@@ -47,7 +47,7 @@ export default function ProfileCard({ user, stats }: Props) {
       {isAuthUser && (
         <Button to="/studio">
           <span className={styles.buttonContent}>
-            {user.is_artist ? 'NEW DESIGN' : 'BECOME A CREATOR'}
+            {user.isArtist ? 'NEW DESIGN' : 'BECOME A CREATOR'}
             <BrushIcon />
           </span>
         </Button>

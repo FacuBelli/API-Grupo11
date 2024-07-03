@@ -13,7 +13,7 @@ import {
 import Form from '../../components/Form'
 import { type FormEvent } from 'react'
 import { useDispatch } from 'react-redux'
-import { userAdd } from '../../redux/actions/userActions'
+import { authLogin } from '../../redux/actions/authActions'
 
 export default function Register() {
   const navigate = useNavigate()
@@ -54,7 +54,11 @@ export default function Register() {
       throw new Error(passwordValidation.message)
     }
 
-    const repeatPassValidation = validateInput('repeatPassword', repeatPassword, e.currentTarget.elements)
+    const repeatPassValidation = validateInput(
+      'repeatPassword',
+      repeatPassword,
+      e.currentTarget.elements
+    )
     if (!repeatPassValidation.isValid) {
       throw new Error(repeatPassValidation.message)
     }
@@ -63,13 +67,23 @@ export default function Register() {
       biography: '',
       email,
       password,
-      first_name: firstName,
-      last_name: lastName,
-      is_artist: false
+      firstName: firstName,
+      lastName: lastName,
+      isArtist: false
     }
 
-    dispatch(userAdd(user))
-    navigate('/auth/login')
+    fetch('http://localhost:8080/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+      .then((res) => res.json())
+      .then((data) => dispatch(authLogin(data)))
+      .catch((err) => console.error(err))
+
+    navigate('/')
   }
 
   return (

@@ -2,18 +2,30 @@ import { Link } from 'react-router-dom'
 import Button from '../../../../components/Button'
 import styles from './styles.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { userEdit } from '../../../../redux/actions/userActions'
 import type { RootState } from '../../../../redux'
 import useAuthUserUpdate from '../../../../hooks/useAuthUserUpdate'
+import { authLogin } from '../../../../redux/actions/authActions'
 
 export default function BecomeAnArtist() {
   const dispatch = useDispatch()
-  const user = useSelector((state: RootState) => state.auth.user)
+  const auth = useSelector((state: RootState) => state.auth.auth)
   useAuthUserUpdate()
 
   const handleBecomeArtist = () => {
-    if (user === null) return
-    dispatch(userEdit(user.id, { is_artist: true }))
+    if (auth.user === null) return
+    fetch('http://localhost/user/' + auth.user.id, {
+      method: 'PUT',
+      body: JSON.stringify({ ...auth.user, isArtist: true })
+    })
+      .then((res) => res.json())
+      .then((user) =>
+        dispatch(
+          authLogin({
+            user,
+            token: auth.token
+          })
+        )
+      )
   }
 
   return (

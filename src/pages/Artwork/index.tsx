@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
 import { formatPrice } from '../../utils/format'
-import { cartItemAdd } from '../../redux/actions/cartActions'
+import { orderAdd } from '../../redux/actions/cartActions'
 import FavoriteButton from '../../components/FavoriteButton'
 import Slider from '../../components/Slider'
 import ArtworkCard from '../../components/ArtworkCard'
@@ -15,7 +15,10 @@ import { artworkEdit } from '../../redux/actions/artworkActions'
 export default function Artwork() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { user, isLogged } = useSelector((state: RootState) => state.auth)
+  const {
+    isLogged,
+    auth: { user }
+  } = useSelector((state: RootState) => state.auth)
 
   const { artworkId } = useParams()
   const id = artworkId ? parseInt(artworkId) : 0
@@ -23,11 +26,10 @@ export default function Artwork() {
   const artworks = useSelector((state: RootState) => state.artwork.artworks)
   const artwork = artworks.find((artwork) => artwork.id === id)
 
-  const users = useSelector((state: RootState) => state.user.users)
-  const artist = users.find((user) => user.id === artwork?.artist_id)
-  const userArtworks = artworks.filter((artwork) => artwork.artist_id === artist?.id)
+  const artist = typeof artwork?.artist === 'object' ? artwork?.artist : null
+  const userArtworks = artist?.created
 
-  const isAuthUserArtwork = useMemo(() => user?.id === artwork?.artist_id, [user, artwork])
+  const isAuthUserArtwork = useMemo(() => user?.id === artist?.id, [user, artist])
 
   const handleAddToCart = () => {
     if (artwork === undefined) return
@@ -37,10 +39,11 @@ export default function Artwork() {
     }
 
     dispatch(
-      cartItemAdd({
-        artwork_id: artwork.id,
-        user_id: user!.id,
-        quantity: 1
+      orderAdd({
+        artwork: artwork,
+        user: user!,
+        quantity: 1,
+        isBought: false
       })
     )
     navigate('/cart')
@@ -67,7 +70,12 @@ export default function Artwork() {
             <h1 className={styles.title}>{artwork?.title}</h1>
             {!isAuthUserArtwork && <FavoriteButton id={artwork?.id} />}
           </div>
-          <p className={styles.price} style={artwork?.stock === 0 ? { textDecoration: 'line-through' } : {}}>{formatPrice(artwork?.price ?? 0)}</p>
+          <p
+            className={styles.price}
+            style={artwork?.stock === 0 ? { textDecoration: 'line-through' } : {}}
+          >
+            {formatPrice(artwork?.price ?? 0)}
+          </p>
           <p className={styles.description}>{artwork?.description}</p>
           <div className={styles.categoryContainer}>
             {artwork?.category?.map((category, i) => (
@@ -100,12 +108,12 @@ export default function Artwork() {
       </section>
       <section className={styles.artistSection}>
         <h2 className={styles.artistTitle}>ARTIST</h2>
-        <p className={styles.artistName}>{artist?.first_name + ' ' + artist?.last_name}</p>
+        <p className={styles.artistName}>{artist?.firstName + ' ' + artist?.lastName}</p>
         <h3 className={styles.artistTitle}>ABOUT THE ARTIST</h3>
         <p className={styles.artistBiography}>{artist?.biography}</p>
         <h4 className={styles.artistTitle}>MORE ABOUT THE ARTIST</h4>
         <Slider>
-          {userArtworks.map((artwork, i) => (
+          {userArtworks?.map((artwork, i) => (
             <ArtworkCard artwork={artwork} key={i} />
           ))}
         </Slider>

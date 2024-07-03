@@ -5,37 +5,50 @@ import type { RootState } from '../../redux'
 import ImageGallery from '../../components/ImageGallery'
 import Button from '../../components/Button'
 import { useParams } from 'react-router-dom'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import type { Artwork, Order, User } from '../../types/database'
 
 export default function Profile() {
   const { userId: userIdParam } = useParams()
   const userId = userIdParam ? parseInt(userIdParam) : undefined
 
-  const { user: authUser } = useSelector((state: RootState) => state.auth)
+  const {
+    isLogged,
+    auth: { user: authUser }
+  } = useSelector((state: RootState) => state.auth)
   const isAuthUser = userId === undefined || userId === authUser?.id
 
-  const { users } = useSelector((state: RootState) => state.user)
-  const user = isAuthUser ? authUser : users.find((user) => user.id === userId)
-
-  const { artworks } = useSelector((state: RootState) => state.artwork)
-
-  const createdArtworks = useMemo(
-    () => artworks.filter((artwork) => artwork.artist_id === user?.id),
-    [user, artworks]
-  )
+  const [user, setUser] = useState<User>()
+  const createdArtworks = useMemo(() => user?.created, [user])
 
   const soldArtworks = useMemo(
     () => createdArtworks?.filter((artwork) => artwork?.stock === 0),
     [createdArtworks]
   )
+  const [boughtArtworks, setBoughtArtworks] = useState<Artwork[]>([])
 
-  const boughtArtworks = useMemo(
-    () =>
-      user?.bought_artworks?.map(
-        (artworkId) => artworks.find((artwork) => artwork.id === artworkId)!
-      ),
-    [user, artworks]
-  )
+  useEffect(() => {
+    if (isLogged && isAuthUser) {
+      setUser(authUser!)
+      return
+    }
+
+    fetch(`http://localhost:8080/user/${userId}`)
+      .then((res) => res.json())
+      .then((user) => {
+        setUser(user)
+      })
+  }, [isLogged, authUser, isAuthUser, userId])
+
+  useEffect(() => {
+    if (user === undefined) return
+
+    fetch(`http://localhost:8080/order/${userId}/bought`)
+      .then((res) => res.json())
+      .then((data: Order[]) => {
+        setBoughtArtworks(data.map((order) => order.artwork!))
+      })
+  })
 
   return (
     <main className={styles.main}>
@@ -53,7 +66,7 @@ export default function Profile() {
       </section>
       {user && (
         <section className={styles.galleryContainer}>
-          {user?.is_artist && (
+          {user?.isArtist && (
             <div className={styles.gallery}>
               <h1 className={styles.galleryTitle}>
                 <span>Published</span> Artworks
@@ -71,8 +84,7 @@ export default function Profile() {
               ) : (
                 <p className={styles.empty}>
                   This gallery is waiting to be filled with artworks. Explore more of{' '}
-                  {`${user.first_name} ${user.last_name}`}'s profile or check back later for
-                  updates.
+                  {`${user.firstName} ${user.lastName}`}'s profile or check back later for updates.
                 </p>
               )}
             </div>
@@ -93,7 +105,7 @@ export default function Profile() {
               </>
             ) : (
               <p className={styles.empty}>
-                Gallery is empty. Stay tuned for {`${user.first_name} ${user.last_name}`}'s latest
+                Gallery is empty. Stay tuned for {`${user.firstName} ${user.lastName}`}'s latest
                 acquisitions!
               </p>
             )}

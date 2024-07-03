@@ -5,10 +5,10 @@ import Button from '../../components/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
 import type { Artwork } from '../../types/database'
-import { cartItemDecrease, cartItemRemove, cartItemIncrease } from '../../redux/actions/cartActions'
 import { Fragment, useMemo, useState } from 'react'
 import Counter from '../../components/Counter'
 import { artworkEdit } from '../../redux/actions/artworkActions'
+import { orderDecrease, orderIncrease, orderRemove } from '../../redux/actions/cartActions'
 
 export default function Cart() {
   const navigate = useNavigate()
@@ -38,7 +38,7 @@ export default function Cart() {
   const subtotal = useMemo(
     () =>
       cart.reduce((total, item) => {
-        const artwork = artworks.find((artwork) => artwork.id === item.artwork_id)
+        const artwork = artworks.find((artwork) => artwork.id === item.artwork?.id)
         return total + (artwork?.price ?? 0) * (item.quantity ?? 1)
       }, 0),
     [cart, artworks]
@@ -47,33 +47,33 @@ export default function Cart() {
   const totalWithDiscount = subtotal * (1 - discount)
 
   const cartArtworks = artworks.filter((artwork) =>
-    cart.some((cartItem) => cartItem.artwork_id === artwork.id)
+    cart.some((cartItem) => cartItem.artwork?.id === artwork.id)
   )
 
   const removeFromCart = (artworkId: Artwork['id']) => {
-    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId)!
-    dispatch(cartItemRemove(cartItem.id))
+    const cartItem = cart.find((cartItem) => cartItem.artwork?.id === artworkId)!
+    dispatch(orderRemove(cartItem.id))
   }
 
   const removeAllItems = () => {
     cart.forEach((cartItem) => {
-      dispatch(cartItemRemove(cartItem.id))
+      dispatch(orderRemove(cartItem.id))
     })
   }
 
   const decreaseQuantity = (artworkId: Artwork['id']) => {
-    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId)!
-    dispatch(cartItemDecrease(cartItem.id))
+    const cartItem = cart.find((cartItem) => cartItem.artwork?.id === artworkId)!
+    dispatch(orderDecrease(cartItem.id))
   }
 
   const increaseQuantity = (artworkId: Artwork['id']) => {
-    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId)!
-    dispatch(cartItemIncrease(cartItem.id))
+    const cartItem = cart.find((cartItem) => cartItem.artwork?.id === artworkId)!
+    dispatch(orderIncrease(cartItem.id))
   }
 
   const comprar = () => {
     cartArtworks.forEach((artwork) => {
-      const cartItem = cart.find((cartItem) => cartItem.artwork_id === artwork.id)!
+      const cartItem = cart.find((cartItem) => cartItem.artwork?.id === artwork.id)!
       dispatch(artworkEdit(artwork.id, { stock: artwork.stock! - cartItem.quantity! }))
     })
     if (cart.length >= 1) {

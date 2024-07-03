@@ -5,37 +5,66 @@ import Filter from '../../components/Filter'
 import ImageGallery from '../../components/ImageGallery'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../redux'
-import { type ChangeEvent, useMemo, useState } from 'react'
+import { type ChangeEvent, useMemo, useState, useEffect } from 'react'
 import { Tune } from '@mui/icons-material'
 import { useSearchParams } from 'react-router-dom'
-import db from '../../utils/database'
-
-const filterOptions = [
-  {
-    value: 'category',
-    options: db.categories.map((category) => category.name!)
-  },
-  {
-    value: 'style',
-    options: db.styles.map((style) => style.name!)
-  },
-  {
-    value: 'theme',
-    options: db.themes.map((theme) => theme.name!)
-  },
-  {
-    value: 'price range',
-    options: ['Under $50', '$50 - $100', '$100 - $200', '$200+']
-  },
-  {
-    value: 'orientation',
-    options: db.orientations.map((orientation) => orientation.name!)
-  }
-]
+import type { Category, Orientation, Style, Theme } from '../../types/database'
 
 export default function Search() {
+  const [filterOptions, setFilterOptions] = useState<
+    {
+      value: string
+      options: string[]
+    }[]
+  >([
+    {
+      value: 'price range',
+      options: ['Under $50', '$50 - $100', '$100 - $200', '$200+']
+    }
+  ])
+
+  useEffect(() => {
+    fetch('http://localhost:8080/category')
+      .then((res) => res.json())
+      .then((data: Category[]) => {
+        setFilterOptions((filterOptions) => [
+          { value: 'category', options: data.map((category) => category.name!) },
+          ...filterOptions
+        ])
+      })
+
+    fetch('http://localhost:8080/style')
+      .then((res) => res.json())
+      .then((data: Style[]) => {
+        setFilterOptions((filterOptions) => [
+          { value: 'style', options: data.map((style) => style.name!) },
+          ...filterOptions
+        ])
+      })
+
+    fetch('http://localhost:8080/theme')
+      .then((res) => res.json())
+      .then((data: Theme[]) => {
+        setFilterOptions((filterOptions) => [
+          { value: 'theme', options: data.map((theme) => theme.name!) },
+          ...filterOptions
+        ])
+      })
+
+    fetch('http://localhost:8080/orientation')
+      .then((res) => res.json())
+      .then((data: Orientation[]) => {
+        setFilterOptions((filterOptions) => [
+          { value: 'orientation', options: data.map((orientation) => orientation.name!) },
+          ...filterOptions
+        ])
+      })
+  }, [])
+
   const [searchParams, setSearchParams] = useSearchParams()
-  const artworks = useSelector((state: RootState) => state.artwork.artworks.filter((artwork) => !artwork.hidden))
+  const artworks = useSelector((state: RootState) =>
+    state.artwork.artworks.filter((artwork) => !artwork.hidden)
+  )
   const [isFiltersOpen, setIsFilterOpen] = useState(searchParams.size !== 0)
   const [searchInput, setSearchInput] = useState('')
 
@@ -52,7 +81,7 @@ export default function Search() {
           if (
             typeof propertyValue === 'object' &&
             !(propertyValue instanceof Date) &&
-            propertyValue?.name === selectedValue
+            (propertyValue as Orientation).name === selectedValue
           ) {
             return true
           }

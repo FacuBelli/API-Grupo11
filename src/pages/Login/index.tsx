@@ -5,14 +5,12 @@ import Input from '../../components/Input'
 import { emailErrors, validateInput } from '../../utils/validation'
 import Form from '../../components/Form'
 import { type FormEvent } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import type { RootState } from '../../redux'
 import { authLogin } from '../../redux/actions/authActions'
+import { useDispatch } from 'react-redux'
 
 export default function Login() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const users = useSelector((state: RootState) => state.user.users)
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -27,10 +25,22 @@ export default function Login() {
       throw new Error(emailValidation.message)
     }
 
-    const user = users.find((user) => user.email === email && user.password === password)
-    if (user === undefined) throw new Error('User not found.')
+    fetch('http://localhost:8080/auth/authenticate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        dispatch(authLogin(data))})
+      .catch((err) => console.error(err))
 
-    dispatch(authLogin(user))
     navigate(-1)
   }
 

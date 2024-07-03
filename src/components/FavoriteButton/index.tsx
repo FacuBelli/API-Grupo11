@@ -16,7 +16,10 @@ interface Props {
 export default function FavoriteButton({ id }: Props) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { isLogged, user } = useSelector((state: RootState) => state.auth)
+  const {
+    isLogged,
+    auth: { user }
+  } = useSelector((state: RootState) => state.auth)
   const favorites = useSelector((state: RootState) => state.favorite.favorites)
   const favorite = useMemo(() => {
     if (!isLogged) return

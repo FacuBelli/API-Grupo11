@@ -1,10 +1,10 @@
 import type { PayloadAction, Reducer } from '@reduxjs/toolkit'
-import type { CartItem } from '../../types/database'
+import type { Order } from '../../types/database'
 import type { CustomPayload } from '../../types/redux'
 import { CartActionTypes } from '../actions/cartActions'
 
 interface CartReducer {
-  cartItems: CartItem[]
+  cartItems: Order[]
   isLoaded: boolean
 }
 
@@ -13,7 +13,7 @@ const initialState: CartReducer = {
   isLoaded: false
 }
 
-const cartReducer: Reducer<CartReducer, PayloadAction<CustomPayload<CartItem>, keyof typeof CartActionTypes>> =
+const cartReducer: Reducer<CartReducer, PayloadAction<CustomPayload<Order>, keyof typeof CartActionTypes>> =
   (state = initialState, action) => {
     switch (action.type) {
     case CartActionTypes.ADD_CART_ITEM: {
@@ -21,8 +21,8 @@ const cartReducer: Reducer<CartReducer, PayloadAction<CustomPayload<CartItem>, k
       return {
         cartItems: [...state.cartItems, {
           id: action.payload.id ?? state.cartItems.length + 1,
-          user_id: action.payload.body.user_id,
-          artwork_id: action.payload.body.artwork_id,
+          user: action.payload.body.user,
+          artwork: action.payload.body.artwork,
           quantity: action.payload.body.quantity
         }],
         isLoaded: true

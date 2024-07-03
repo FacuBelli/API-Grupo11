@@ -15,39 +15,47 @@ import RequireAuth from './pages/RequireAuth'
 import { useDispatch, useSelector } from 'react-redux'
 import Logout from './pages/Logout'
 import { useEffect } from 'react'
-import db from './utils/database'
 import { artworkAdd } from './redux/actions/artworkActions'
 import type { RootState } from './redux'
-import { userAdd } from './redux/actions/userActions'
-import { favoriteAdd } from './redux/actions/favoriteActions'
 import Auth from './pages/Auth'
+import { favoriteAdd } from './redux/actions/favoriteActions'
 
 function App() {
   const dispatch = useDispatch()
+
+  const { isLogged, auth } = useSelector((state: RootState) => state.auth)
   const isArtworkLoaded = useSelector((state: RootState) => state.artwork.isLoaded)
-  const isUserLoaded = useSelector((state: RootState) => state.user.isLoaded)
   const isFavoriteLoaded = useSelector((state: RootState) => state.favorite.isLoaded)
 
   useEffect(() => {
-    // simulando un fetch
     if (!isArtworkLoaded) {
-      db.artworks.forEach((artwork) => {
-        dispatch(artworkAdd(artwork))
-      })
+      fetch('http://localhost:8080/artwork')
+        .then((res) => res.json())
+        .then((data) => {
+          if (Array.isArray(data)) {
+            console.log(data)
+            data.forEach((artwork) => {
+              dispatch(artworkAdd(artwork))
+            })
+          }
+        })
+        .catch((err) => console.error(err))
     }
-    if (!isUserLoaded) {
-      // simulando un fetch
-      db.users.forEach((user) => {
-        dispatch(userAdd(user))
-      })
+
+    if (isLogged && !isFavoriteLoaded) {
+      fetch(`http://localhost:8080/user/${auth.user!.id}/favorite`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (Array.isArray(data)) {
+            console.log(data)
+            data.forEach((favorite) => {
+              dispatch(favoriteAdd(favorite))
+            })
+          }
+        })
+        .catch((err) => console.error(err))
     }
-    if (!isFavoriteLoaded) {
-      // simulando un fetch
-      db.favorites.forEach((favorite) => {
-        dispatch(favoriteAdd(favorite))
-      })
-    }
-  }, [dispatch, isArtworkLoaded, isUserLoaded, isFavoriteLoaded])
+  }, [dispatch, isArtworkLoaded, auth.user, isLogged, isFavoriteLoaded])
 
   return (
     <>
@@ -91,7 +99,7 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="/auth" element={<Auth />} >
+        <Route path="/auth" element={<Auth />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="logout" element={<Logout />} />

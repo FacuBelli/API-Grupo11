@@ -5,12 +5,15 @@ import type { RootState } from '../../redux'
 import { useMemo } from 'react'
 
 export default function Favorites() {
-  const { user, isLogged } = useSelector((state: RootState) => state.auth)
+  const {
+    auth: { user },
+    isLogged
+  } = useSelector((state: RootState) => state.auth)
   const { favorites } = useSelector((state: RootState) => state.favorite)
   const userFavorites = useMemo(() => {
     if (!isLogged) return []
-    return favorites.filter((favorite) => favorite.user_id === user!.id)}
-  , [user, isLogged, favorites])
+    return favorites.filter((favorite) => favorite.user_id === user!.id)
+  }, [user, isLogged, favorites])
 
   return (
     <main>

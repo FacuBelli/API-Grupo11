@@ -103,12 +103,12 @@ export default function Navbar() {
 }
 
 function Profile() {
-  const { user } = useSelector((state: RootState) => state.auth)
+  const { user } = useSelector((state: RootState) => state.auth.auth)
 
   return (
     <div className={styles.profile}>
       <Link to="/profile" className={styles.name}>
-        MR. {user?.first_name}
+        MR. {user?.firstName}
         <KeyboardArrowDown />
       </Link>
       <div className={styles.menu}>
