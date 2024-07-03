@@ -1,113 +1,119 @@
 // src/pages/Cart.tsx
 
-import styles from './styles.module.css'
-import { formatPrice } from '../../utils/format'
-import { useNavigate } from 'react-router-dom'
-import Button from '../../components/Button'
-import { useDispatch, useSelector } from 'react-redux'
-import type { RootState } from '../../redux'
-import type { Artwork } from '../../types/database'
-import { cartItemDecrease, cartItemRemove, cartItemIncrease } from '../../redux/actions/cartActions'
-import { Fragment, useMemo, useState } from 'react'
-import Counter from '../../components/Counter'
-import { artworkEdit } from '../../redux/actions/artworkActions'
-import Modal from 'react-modal'
-import PaymentForm from '../../components/FormaDePago'
+import React, { Fragment, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
+import styles from './styles.module.css';
+import { formatPrice } from '../../utils/format';
+import Button from '../../components/Button';
+import Counter from '../../components/Counter';
+import PaymentTabs from '../../components/PaymentTabs'; // Corregido el nombre del componente importado
+import { cartItemDecrease, cartItemRemove, cartItemIncrease } from '../../redux/actions/cartActions';
+import type { RootState } from '../../redux';
+import type { Artwork } from '../../types/database';
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 
-export default function Cart() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+const Cart = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const cart = useSelector((state: RootState) => state.cart.cartItems)
-  const artworks = useSelector((state: RootState) => state.artwork.artworks)
+  const cart = useSelector((state: RootState) => state.cart.cartItems);
+  const artworks = useSelector((state: RootState) => state.artwork.artworks);
 
-  const [discountCode, setDiscountCode] = useState('')
-  const [discount, setDiscount] = useState(0)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [paymentMethod, setPaymentMethod] = useState('')
+  const [discountCode, setDiscountCode] = useState('');
+  const [discount, setDiscount] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('');
+  const [isPaymentMethodSelected, setIsPaymentMethodSelected] = useState(false);
+  const [shippingAddress, setShippingAddress] = useState({ address: '', city: '' });
+  const [isAddressValid, setIsAddressValid] = useState(false);
 
-  const validDiscountCode = 'DISCOUNT10'
+  const validDiscountCode = 'DISCOUNT10';
 
   const applyDiscount = () => {
     if (discountCode === validDiscountCode) {
-      setDiscount(0.1) // 10% discount
+      setDiscount(0.1); // 10% discount
     } else {
-      alert('Invalid discount code')
-      setDiscount(0)
+      alert('Invalid discount code');
+      setDiscount(0);
     }
-  }
+  };
 
-  const totalItems = useMemo(
-    () => cart.reduce((total, item) => total + (item.quantity ?? 0), 0),
-    [cart]
-  )
+  const totalItems = useMemo(() => cart.reduce((total, item) => total + (item.quantity ?? 0), 0), [cart]);
   const subtotal = useMemo(
     () =>
       cart.reduce((total, item) => {
-        const artwork = artworks.find((artwork) => artwork.id === item.artwork_id)
-        return total + (artwork?.price ?? 0) * (item.quantity ?? 1)
+        const artwork = artworks.find((art: Artwork) => art.id === item.id);
+        const price = artwork ? artwork.price ?? 0 : 0;
+        return total + (item.quantity ?? 0) * price;
       }, 0),
     [cart, artworks]
-  )
+  );
 
-  const totalWithDiscount = subtotal * (1 - discount)
+  const totalWithDiscount = subtotal - subtotal * discount;
 
-  const cartArtworks = artworks.filter((artwork) =>
-    cart.some((cartItem) => cartItem.artwork_id === artwork.id)
-  )
+  const cartArtworks = useMemo(
+    () =>
+      cart.map((item) => ({
+        ...artworks.find((art) => art.id === item.id),
+        quantity: item.quantity,
+      })) as (Artwork & { quantity: number })[],
+    [cart, artworks]
+  );
 
-  const removeFromCart = (artworkId: Artwork['id']) => {
-    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId)!
-    dispatch(cartItemRemove(cartItem.id))
-  }
+  const decreaseQuantity = (id: number) => {
+    dispatch(cartItemDecrease(id));
+  };
+
+  const increaseQuantity = (id: number) => {
+    dispatch(cartItemIncrease(id));
+  };
+
+  const removeFromCart = (id: number) => {
+    dispatch(cartItemRemove(id));
+  };
 
   const removeAllItems = () => {
-    cart.forEach((cartItem) => {
-      dispatch(cartItemRemove(cartItem.id))
-    })
-  }
-
-  const decreaseQuantity = (artworkId: Artwork['id']) => {
-    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId)!
-    dispatch(cartItemDecrease(cartItem.id))
-  }
-
-  const increaseQuantity = (artworkId: Artwork['id']) => {
-    const cartItem = cart.find((cartItem) => cartItem.artwork_id === artworkId)!
-    dispatch(cartItemIncrease(cartItem.id))
-  }
+    cart.forEach((item) => {
+      dispatch(cartItemRemove(item.id));
+    });
+  };
 
   const comprar = () => {
-    cartArtworks.forEach((artwork) => {
-      const cartItem = cart.find((cartItem) => cartItem.artwork_id === artwork.id)!
-      dispatch(artworkEdit(artwork.id, { stock: artwork.stock! - cartItem.quantity! }))
-    })
-    if (cart.length >= 1) {
-      alert('Compra exitosa, se lo redirigirá al inicio.')
-      removeAllItems()
-      navigate('/gallery')
+    if (isAddressValid && isPaymentMethodSelected) {
+      navigate('/checkout');
     } else {
-      alert('Carrito vacío.')
+      alert('Please complete all required fields.');
     }
-  }
+  };
 
   const handlePaymentSubmit = (formData) => {
-    console.log('Payment data submitted:', formData)
-    setPaymentMethod(formData.paymentMethod)
-    setModalIsOpen(false)
-  }
+    console.log('Payment data submitted:', formData);
+    // Actualiza la dirección de envío y valida
+    setShippingAddress(formData);
+    setIsAddressValid(true);
+  };
+
+  const handleMethodChange = (method) => {
+    setPaymentMethod(method);
+    setIsPaymentMethodSelected(true);
+    // No cerrar el modal automáticamente al cambiar el método de pago
+  };
+
+  const handleAddressChange = (address) => {
+    setShippingAddress(address);
+    setIsAddressValid(address.address.trim().length > 0 && address.city.trim().length > 0);
+  };
 
   return (
     <main>
-      <section className={styles.pepito}>
+      <section className={styles.cartTitle}>
         <h1 className={styles.heading}>
           Your <span>Shopping Cart</span>
         </h1>
-        <p>
-          Welcome to your shopping cart! Here you can review and manage all the items you've added.
-        </p>
+        <p>Welcome to your shopping cart! Here you can review and manage all the items you've added.</p>
       </section>
       <section className={styles.greatContainer}>
         <div className={styles.manageCartContainer}>
@@ -152,6 +158,12 @@ export default function Cart() {
             <div className={styles.cartContainer}>
               <p className={styles.cartInfo}>Number of items: {totalItems}</p>
               <p className={styles.cartInfo}>Subtotal: {formatPrice(subtotal)}</p>
+              {discount > 0 && (
+                <>
+                  <p className={styles.cartInfo}>Discount Applied: {discount * 100}%</p>
+                  <p className={styles.cartInfo}>Total with Discount: {formatPrice(totalWithDiscount)}</p>
+                </>
+              )}
               <input
                 type="text"
                 value={discountCode}
@@ -160,14 +172,20 @@ export default function Cart() {
                 className={styles.discountInput}
               />
               <Button onClick={applyDiscount}>Apply Discount</Button>
-              <p className={styles.cartInfo}>Total with Discount: {formatPrice(totalWithDiscount)}</p>
-              <Button onClick={() => setModalIsOpen(true)}>
-                Elegir método de pago
-              </Button>
+              <Button onClick={() => setModalIsOpen(true)}>Choose Payment Method</Button>
+              <div className={styles.botonComprarContainer}>
+                <Button onClick={comprar} disabled={!isAddressValid || !isPaymentMethodSelected}>
+                  Buy
+                </Button>
+              </div>
+              {/* Mostrar la dirección de envío y método de pago seleccionado */}
+              {isAddressValid && isPaymentMethodSelected && (
+                <div className={styles.addressAndPayment}>
+                  <p>Shipping Address: {shippingAddress.address}, {shippingAddress.city}</p>
+                  <p>Payment Method: {paymentMethod}</p>
+                </div>
+              )}
             </div>
-          </div>
-          <div className={styles.botonComprarContainer}>
-            <Button onClick={comprar}>Comprar</Button>
           </div>
         </div>
       </section>
@@ -179,11 +197,19 @@ export default function Cart() {
         overlayClassName={styles.modalOverlay}
       >
         <h2>Complete Your Purchase</h2>
-        <PaymentForm onSubmit={handlePaymentSubmit} />
+        <PaymentTabs
+          onSubmit={handlePaymentSubmit}
+          onMethodChange={handleMethodChange}
+          paymentMethod={paymentMethod}
+          onAddressChange={handleAddressChange}
+          shippingAddress={shippingAddress}
+        />
         <div className={styles.botonComprarContainer}>
           <Button onClick={() => setModalIsOpen(false)}>Close</Button>
         </div>
       </Modal>
     </main>
-  )
-}
+  );
+};
+
+export default Cart;

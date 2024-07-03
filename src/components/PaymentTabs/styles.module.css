@@ -1,0 +1,50 @@
+/* src/components/PaymentTabs.module.css */
+
+.container {
+    width: 100%;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .tabButton {
+    flex: 1;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: none;
+    outline: none;
+    transition: background-color 0.3s;
+  }
+  
+  .tabButton:hover {
+    background-color: #ddd;
+  }
+  
+  .active {
+    background-color: #ccc;
+  }
+  
+  .tabContent {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  .shippingForm {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .addressInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  

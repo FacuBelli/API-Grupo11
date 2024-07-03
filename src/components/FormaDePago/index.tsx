@@ -1,11 +1,11 @@
 // src/components/PaymentForm.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css'; 
 import Button from '../Button';
 
-const PaymentForm = ({ onSubmit }) => {
-  const [paymentMethod, setPaymentMethod] = useState('creditCard');
+const PaymentForm = ({ onSubmit, onMethodChange, paymentMethod: initialPaymentMethod }) => {
+  const [paymentMethod, setPaymentMethod] = useState(initialPaymentMethod || 'creditCard');
   const [formData, setFormData] = useState({
     cardNumber: '',
     cardName: '',
@@ -17,6 +17,10 @@ const PaymentForm = ({ onSubmit }) => {
   });
   const [formError, setFormError] = useState(false);
 
+  useEffect(() => {
+    setPaymentMethod(initialPaymentMethod || 'creditCard');
+  }, [initialPaymentMethod]);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -27,7 +31,6 @@ const PaymentForm = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Determine which fields to validate based on paymentMethod
     let fieldsToValidate = [];
     switch (paymentMethod) {
       case 'creditCard':
@@ -43,7 +46,6 @@ const PaymentForm = ({ onSubmit }) => {
         break;
     }
 
-    // Check if any of the required fields are empty
     const isEmpty = fieldsToValidate.some(field => formData[field] === '');
     if (isEmpty) {
       setFormError(true);
@@ -51,7 +53,12 @@ const PaymentForm = ({ onSubmit }) => {
     }
 
     setFormError(false);
-    onSubmit(formData);
+    onSubmit({ ...formData, paymentMethod });
+  };
+
+  const handleMethodChange = (method) => {
+    setPaymentMethod(method);
+    onMethodChange(method);
   };
 
   return (
@@ -65,7 +72,7 @@ const PaymentForm = ({ onSubmit }) => {
             name="paymentMethod"
             value="creditCard"
             checked={paymentMethod === 'creditCard'}
-            onChange={() => setPaymentMethod('creditCard')}
+            onChange={() => handleMethodChange('creditCard')}
           />
           Credit Card
         </label>
@@ -75,7 +82,7 @@ const PaymentForm = ({ onSubmit }) => {
             name="paymentMethod"
             value="paypal"
             checked={paymentMethod === 'paypal'}
-            onChange={() => setPaymentMethod('paypal')}
+            onChange={() => handleMethodChange('paypal')}
           />
           PayPal
         </label>
@@ -85,7 +92,7 @@ const PaymentForm = ({ onSubmit }) => {
             name="paymentMethod"
             value="bankTransfer"
             checked={paymentMethod === 'bankTransfer'}
-            onChange={() => setPaymentMethod('bankTransfer')}
+            onChange={() => handleMethodChange('bankTransfer')}
           />
           Bank Transfer
         </label>
