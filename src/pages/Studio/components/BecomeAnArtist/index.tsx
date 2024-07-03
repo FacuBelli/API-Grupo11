@@ -3,19 +3,21 @@ import Button from '../../../../components/Button'
 import styles from './styles.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../../../redux'
-import useAuthUserUpdate from '../../../../hooks/useAuthUserUpdate'
 import { authLogin } from '../../../../redux/actions/authActions'
 
 export default function BecomeAnArtist() {
   const dispatch = useDispatch()
   const auth = useSelector((state: RootState) => state.auth.auth)
-  useAuthUserUpdate()
 
   const handleBecomeArtist = () => {
     if (auth.user === null) return
-    fetch('http://localhost/user/' + auth.user.id, {
+    fetch('http://localhost:8080/user/' + auth.user.id, {
       method: 'PUT',
-      body: JSON.stringify({ ...auth.user, isArtist: true })
+      body: JSON.stringify({ isArtist: true }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + auth.token
+      }
     })
       .then((res) => res.json())
       .then((user) =>
@@ -26,6 +28,9 @@ export default function BecomeAnArtist() {
           })
         )
       )
+      .catch((err) => {
+        console.error(err)
+      })
   }
 
   return (

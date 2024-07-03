@@ -38,7 +38,7 @@ export default function Login() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
-        dispatch(authLogin(data))})
+        dispatch(authLogin({user: data.user, token: data.access_token}))})
       .catch((err) => console.error(err))
 
     navigate(-1)
@@ -58,7 +58,6 @@ export default function Login() {
               placeholder="EMAIL"
               required
               errorValidation={emailErrors}
-              defaultValue="user1@example.com"
             />
             <Input
               name="password"
@@ -69,7 +68,6 @@ export default function Login() {
                 to: '',
                 message: 'FORGOT YOUR PASSWORD?'
               }}
-              defaultValue="password1"
             />
             <Button type="submit">Log In</Button>
           </Form>

@@ -130,7 +130,7 @@ const Cart = () => {
               {cartArtworks.map((artwork, i) => (
                 <Fragment key={i}>
                   <div className={styles.container} key={i}>
-                    <img className={styles.image} src={artwork.image} alt="" />
+                    <img className={styles.image} src={`http://localhost:8080/artwork/${artwork.id}/image`} alt="" />
                     <div className={styles.productInfo}>
                       <p className={styles.title}>{artwork.title}</p>
                       <p className={styles.description}>{artwork.description}</p>

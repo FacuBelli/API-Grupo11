@@ -80,7 +80,7 @@ export default function Register() {
       body: JSON.stringify(user)
     })
       .then((res) => res.json())
-      .then((data) => dispatch(authLogin(data)))
+      .then((data) => dispatch(authLogin({user: data.user, token: data.access_token})))
       .catch((err) => console.error(err))
 
     navigate('/')

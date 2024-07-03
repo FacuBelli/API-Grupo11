@@ -18,7 +18,7 @@ export default function ArtworkCard({ artwork }: Props) {
       <div className={styles.favorite}>
         {!isDisabled && <FavoriteButton id={artwork.id} />}
       </div>
-      <img className={styles.image} src={artwork.image} />
+      <img className={styles.image} src={`http://localhost:8080/artwork/${artwork.id}/image`} />
       <div className={styles.dataContainer}>
         <h3 className={styles.title}>{artwork.title}</h3>
         <p className={styles.price} style={artwork.stock === 0 ? { textDecoration: 'line-through' } : {}}>{formatPrice(artwork.price ?? 0)}</p>

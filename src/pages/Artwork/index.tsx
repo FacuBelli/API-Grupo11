@@ -62,7 +62,7 @@ export default function Artwork() {
       <section className={styles.artworkSection}>
         <img
           className={styles.image}
-          src={artwork?.image}
+          src={`http://localhost:8080/artwork/${artwork?.id}/image`}
           alt={`Image of artwork "${artwork?.title}"`}
         />
         <div className={styles.dataContainer}>

@@ -42,8 +42,8 @@ function App() {
         .catch((err) => console.error(err))
     }
 
-    if (isLogged && !isFavoriteLoaded) {
-      fetch(`http://localhost:8080/user/${auth.user!.id}/favorite`)
+    if (isLogged && !isFavoriteLoaded && auth.user) {
+      fetch(`http://localhost:8080/user/${auth.user.id}/favorite`)
         .then((res) => res.json())
         .then((data) => {
           if (Array.isArray(data)) {

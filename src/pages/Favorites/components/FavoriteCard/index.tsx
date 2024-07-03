@@ -19,7 +19,7 @@ export default function FavoriteCard({ favorite }: Props) {
 
   return (
     <Link to={`/gallery/${artwork?.id}`} className={styles.card}>
-      <img className={styles.image} src={artwork?.image} alt={'Picture of ' + artwork?.title} />
+      <img className={styles.image} src={`http://localhost:8080/artwork/${artwork?.id}/image`} alt={'Picture of ' + artwork?.title} />
       <div className={styles.container}>
         <div className={styles.data}>
           <h2 className={styles.title}>{artwork?.title}</h2>
